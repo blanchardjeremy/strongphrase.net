@@ -1,6 +1,7 @@
-// Copyright 2017 by getapassphrase.com. All rights reserved.
+// Copyright 2018 by getapassphrase.com. All rights reserved.
+"use strict";
 
-var passphraseGenerator = (function() {
+let passphraseGenerator = (function() {
     let module = {};
     
     module.getPassphrase = function(bits) {        

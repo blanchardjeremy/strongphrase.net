@@ -1,3 +1,4 @@
+<!doctype html>
 <html>
 <head>
 <title>Get a Passphrase - Generator for Strong Passphrases</title>
@@ -62,7 +63,9 @@ Learn more at <a href="https://whatisapassphrase.com">whatisapassphrase.com</a>.
 <footer>&copy; 2017-2018 getapassphrase.com</footer>
 <script src="../js/passphrasegenerator.js?v=20171120"></script>
 <script>
-var newPassphrase = function() {
+"use strict";
+
+let newPassphrase = function() {
   let strength = document.getElementById('strength').value;
   let response = passphraseGenerator.getPassphrase(strength);
   document.getElementById('phrase').innerHTML = response.message;
@@ -70,8 +73,8 @@ var newPassphrase = function() {
 
 document.getElementById('erase').onclick = function(e) {
   document.getElementById('phrase').innerHTML = '';
-  var practice = document.getElementsByClassName('practice');
-  for(var i = 0; i < practice.length; i++) {
+  let practice = document.getElementsByClassName('practice');
+  for(let i = 0; i < practice.length; i++) {
     practice[i].value = '';
   }
 };

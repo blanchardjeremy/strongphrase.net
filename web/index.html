@@ -1,3 +1,4 @@
+<!doctype html>
 <html>
 <head>
 <title>Get a Passphrase - Generator for Strong Passphrases</title>
@@ -27,8 +28,9 @@ Learn more at <a href="https://whatisapassphrase.com">whatisapassphrase.com</a>.
 <footer>&copy; 2017-2018 getapassphrase.com</footer>
 <script src="js/passphrasegenerator.js?v=20171120"></script>
 <script>
-document.getElementById('phrase').innerHTML = passphraseGenerator.getPassphrase(44).message;
+"use strict";
 
+document.getElementById('phrase').innerHTML = passphraseGenerator.getPassphrase(44).message;
 </script>
 </body>
 </html>
