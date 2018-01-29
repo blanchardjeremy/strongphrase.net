@@ -21,7 +21,9 @@ var passphraseGenerator = (function() {
         let errorInGrammar = false;
         let actualBits = 0;
         components.forEach(function(component) {
-            let [wordType, wordBits] = component.split(':');
+            let parts = component.split(':');
+            let wordType = parts[0];
+            let wordBits = parts[1] || -1;
             wordBits = parseInt(wordBits);
             if(wordBits >= 2 && wordBits <= 16) {
                 if(!words.hasOwnProperty(wordType) || words[wordType].length < (1 << wordBits)) {
