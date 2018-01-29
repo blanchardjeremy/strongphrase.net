@@ -1,0 +1,34 @@
+<html>
+<head>
+<title>Get a Passphrase - Generator for Strong Passphrases</title>
+<link href="/css/style.css?v=20171130" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<section>
+<header>
+<h1>Get a Passphrase</h1>
+<p>Cryptographically Secure Passphrase Generator</p>
+</header>
+<p id="phrase"></p>
+<p style="font-size:1.5em">
+Need a passphrase? Use our <a href="/generate/">passphrase generator</a>.
+</p>
+</section>
+
+<section>
+<h2>How does it work?</h2>
+<p>
+This website randomly selects words from long lists of words and arranges them into meaningful sentences.
+Each word randomly added to the sentence increases the strength of the passphrase.
+These passphrases are millions of times stronger than most humanly-generated passwords, but reasonably easy to memorize, making them ideal for protecting your password manager, email accounts, and other important systems.
+Learn more at <a href="https://whatisapassphrase.com">whatisapassphrase.com</a>.
+</p>
+</section>
+<footer>&copy; 2017 getapassphrase.com</footer>
+<script src="/js/passphrasegenerator.js?v=20171120"></script>
+<script>
+document.getElementById('phrase').innerHTML = passphraseGenerator.getPassphrase(44).message;
+
+</script>
+</body>
+</html>

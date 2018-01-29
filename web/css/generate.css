@@ -1,0 +1,98 @@
+html, body { 
+  margin:0; 
+  padding:0;
+}
+body {
+  font-size:18px;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+p {
+  line-height:1.4em;
+}
+section {
+  width:900px;
+  margin:10px auto;
+
+}
+h1 {
+  font-size: 3em;
+  text-transform:uppercase;
+  text-align: center;
+}
+header p {
+  margin: -2em 0 2em;
+  text-align: center;
+  font-style:italic;
+}
+ol {
+  counter-reset: listNumbering;
+}
+
+li {
+  list-style-type: none;
+  counter-increment: listNumbering;
+  font-size: 1.3em;
+}
+
+li:before {
+  content: counter(listNumbering) '.';
+  font-size: 2em;
+  color: #ccc;
+  vertical-align: middle;
+  font-style: italic;
+  margin-left:0;
+  margin-right:0.5em;
+}
+#phrase {
+  width:700px;
+  margin:10px auto;
+  border: 2px solid black;
+  text-align: center;
+  line-height: 2em;
+}
+
+input[type="text"],
+input[type="password"] {
+  display: block;
+  width:700px;
+  margin:10px auto;
+  border: 2px solid black;
+  text-align: center;
+}
+
+h1,
+#phrase,
+li:before,
+input[type="text"],
+input[type="password"] {
+  color: #2d72e2;
+}
+#phrase,
+input[type="text"],
+input[type="password"] {
+  border: 2px solid #2d72e2;
+  border: 2px solid #aaa;
+  font-size: 120%;
+  line-height: 1.8em;
+  min-height: 1.8em;
+}
+#options {
+  display:inline-block;
+  text-align:center;
+  margin: 10px auto;
+}
+#options > select {
+  font-weight: bold;
+  font-size: inherit;
+  background-color: yellow;
+}
+button {
+  font-weight: inherit;
+  font-size: inherit;
+  width:4em;
+}
+footer {
+  font-size:85%;
+  line-height:3em;
+  text-align: center;
+}

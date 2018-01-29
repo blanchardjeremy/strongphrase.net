@@ -1,0 +1,100 @@
+<html>
+<head>
+<title>Get a Passphrase - Generator for Strong Passphrases</title>
+<link href="../css/generate.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<section>
+<header>
+<h1>Get a Passphrase</h1>
+<p>Cryptographically Secure Passphrase Generator</p>
+</header>
+<ol>
+<li>Verify that you are at <b>https://getapassphrase.com</b> and that the connection is secure.</li>
+<li>
+<div id="options">
+Get a random <select id="strength">
+<option>44</option>
+<option>46</option>
+<option>48</option>
+<option>50</option>
+<option selected>52</option>
+<option>54</option>
+<option>56</option>
+<option>58</option>
+<option>60</option>
+<option>62</option>
+<option>64</option>
+<option>66</option>
+<option>68</option>
+<option>70</option>
+<option>80</option>
+<option>90</option>
+<option>100</option>
+<option>110</option>
+</select>
+bit passphrase
+<button id="newphrase">Go</button>
+</div>
+
+<div id="phrase"></div>
+</li>
+<li>Visualize the scene described by the phrase</li>
+<li>Practice typing the phrase
+<input class="practice" type="text">
+<input class="practice" type="text">
+</li>
+<li>Add the phrase to your <a href="https://passphrasemanager.com">passphrase manager</a>.</li>
+<li>
+<button id="erase">Erase</button> the password
+</li>
+</ol>
+</section>
+
+<section>
+<h2>How does it work?</h2>
+<p>
+This website randomly selects words from predefined lists and arranges them into meaningful sentences.
+These passphrases are millions of times stronger than most humanly-generated passwords, but reasonably easy to memorize, making them ideal for protecting your most important accounts.
+Learn more at <a href="https://whatisapassphrase.com">whatisapassphrase.com</a>.
+</p>
+</section>
+<footer>&copy; 2017 getapassphrase.com</footer>
+<script src="../js/passphrasegenerator.js?v=20171120"></script>
+<script>
+var newPassphrase = function() {
+  let strength = document.getElementById('strength').value;
+  let response = passphraseGenerator.getPassphrase(strength);
+  document.getElementById('phrase').innerHTML = response.message;
+  document.getElementById('bits').innerHTML = response.bits; 
+};
+
+document.getElementById('erase').onclick = function(e) {
+  document.getElementById('phrase').innerHTML = '';
+  var practice = document.getElementsByClassName('practice');
+  for(var i = 0; i < practice.length; i++) {
+    practice[i].value = '';
+  }
+};
+
+document.getElementById('newphrase').onclick = newPassphrase; 
+newPassphrase();
+
+
+
+document.getElementById('erase').onclick = function(e) {
+  document.getElementById('phrase').innerHTML = '';
+  var practice = document.getElementsByClassName('practice');
+  for(var i = 0; i < practice.length; i++) {
+    practice[i].value = '';
+  }
+};
+document.getElementById('newphrase').onclick = function(e) {
+    let bits = document.getElementById('bits').value;
+    document.getElementById('phrase').innerHTML = passphraseGenerator.getPassphrase(bits).message;
+};
+document.getElementById('phrase').innerHTML = passphraseGenerator.getPassphrase(document.getElementById('bits').value).message;
+
+</script>
+</body>
+</html>
