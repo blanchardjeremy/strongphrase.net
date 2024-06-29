@@ -14,30 +14,9 @@
 <li>Verify that the connection is secure.</li>
 <li>
 <div id="options">
-Get a random 
-<br>
-<label><input type="radio" name="strength" value="44"> 44 bit</label><br>
-<label><input type="radio" name="strength" value="46"> 46 bit</label><br>
-<label><input type="radio" name="strength" value="48"> 48 bit</label><br>
-<label><input type="radio" name="strength" value="50"> 50 bit</label><br>
-<label><input type="radio" name="strength" value="52"> 52 bit</label><br>
-<label><input type="radio" name="strength" value="54" checked> 54 bit</label><br>
-<label><input type="radio" name="strength" value="56"> 56 bit</label><br>
-<label><input type="radio" name="strength" value="58"> 58 bit</label><br>
-<label><input type="radio" name="strength" value="60"> 60 bit</label><br>
-<label><input type="radio" name="strength" value="62"> 62 bit</label><br>
-<label><input type="radio" name="strength" value="64"> 64 bit</label><br>
-<label><input type="radio" name="strength" value="66"> 66 bit</label><br>
-<label><input type="radio" name="strength" value="68"> 68 bit</label><br>
-<label><input type="radio" name="strength" value="70"> 70 bit</label><br>
-<label><input type="radio" name="strength" value="80"> 80 bit</label><br>
-<label><input type="radio" name="strength" value="90"> 90 bit</label><br>
-<label><input type="radio" name="strength" value="100"> 100 bit</label><br>
-<label><input type="radio" name="strength" value="110"> 110 bit</label><br>
-
-bit passphrase
+<h3>Get a random passphrase:</h3>
+<!-- Text input fields and labels will be generated here -->
 </div>
-
 <div id="phrase"></div>
 </li>
 <li>Visualize the scene described by the phrase</li>
@@ -56,17 +35,43 @@ This website randomly selects words from predefined lists and arranges them into
 These passphrases are millions of times stronger than most humanly-generated passwords, but reasonably easy to memorize, making them ideal for protecting your most important accounts.
 </p>
 </section>
-<footer>&copy; 2017-2018 getapassphrase.com</footer>
+<footer></footer>
 <script src="js/passphrasegenerator.js?v=20180129"></script>
 <script>
 "use strict";
 
-let newPassphrase = function() {
-  let strength = document.querySelector('input[name="strength"]:checked').value;
-  let response = passphraseGenerator.getPassphrase(strength);
-  document.getElementById('phrase').innerHTML = response.message;
-};
+document.addEventListener('DOMContentLoaded', function() {
+  const optionsContainer = document.getElementById('options');
+  const grammars = passphraseGenerator.getGrammars();
+  const bitsOptions = Object.keys(grammars);
+  bitsOptions.forEach(function(bits) {
+    let label = document.createElement('label');
+    label.htmlFor = 'bit-' + bits;
+    label.textContent = bits + ' bit passphrase:';
+    optionsContainer.appendChild(label);
 
+    let input = document.createElement('input');
+    input.type = 'text';
+    input.id = 'bit-' + bits;
+    input.dataset.bits = bits; // Store bits in a data attribute
+    optionsContainer.appendChild(input);
+    optionsContainer.appendChild(document.createElement('br'));
+    
+    generateAndDisplayPassphrase(bits, input);
+    input.addEventListener('input', function() {
+      generateAndDisplayPassphrase(bits, input);
+    });
+  });
+});
+
+let generateAndDisplayPassphrase = function(bits, inputField) {
+  let response = passphraseGenerator.getPassphrase(bits);
+  if (response.status === "ok") {
+    inputField.value = response.message; // Automatically fill the text box with the passphrase
+  } else {
+    inputField.value = "Error: " + response.message; // Display error if passphrase generation fails
+  }
+};
 
 document.getElementById('erase').onclick = function(e) {
   document.getElementById('phrase').innerHTML = '';
@@ -75,13 +80,6 @@ document.getElementById('erase').onclick = function(e) {
     practice[i].value = '';
   }
 };
-
-
-document.querySelectorAll('input[name="strength"]').forEach(function(radio) {
-  radio.addEventListener('change', newPassphrase);
-});
-newPassphrase();
-
 </script>
 </body>
 </html>
