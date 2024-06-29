@@ -14,16 +14,16 @@
 <li>Verify that the connection is secure.</li>
 <li>
 <div id="options">
+<button id="refreshPassphrases">New Passphrases</button>
+
 <h3>Get a random passphrase:</h3>
 <!-- Text input fields and labels will be generated here -->
 </div>
-<div id="phrase"></div>
 </li>
 <li>Visualize the scene described by the phrase</li>
 <li>Practice typing the phrase
 <input class="practice" type="text">
 <input class="practice" type="text">
-<button id="erase">Erase</button> the password
 </li>
 </ol>
 </section>
@@ -73,13 +73,15 @@ let generateAndDisplayPassphrase = function(bits, inputField) {
   }
 };
 
-document.getElementById('erase').onclick = function(e) {
-  document.getElementById('phrase').innerHTML = '';
-  let practice = document.getElementsByClassName('practice');
-  for(let i = 0; i < practice.length; i++) {
-    practice[i].value = '';
-  }
-};
+document.getElementById('refreshPassphrases').addEventListener('click', function() {
+  document.querySelectorAll('input[type="text"]').forEach(input => {
+    const bits = input.dataset.bits;
+    if (bits) { // Check if the input field has the 'bits' data attribute
+      generateAndDisplayPassphrase(bits, input);
+    }
+  });
+});
+
 </script>
 </body>
 </html>
