@@ -56,6 +56,14 @@ document.addEventListener('DOMContentLoaded', function() {
     copyBtn.textContent = '📋 Copy';
     copyBtn.className = 'copy-button';
     copyBtn.onclick = function() {
+        // Remove 'copied' class from all passphrase outputs
+        document.querySelectorAll('.passphrase-output.copied').forEach(div => {
+            div.classList.remove('copied');
+        });
+
+        // Add 'copied' class to the current passphrase output
+        passphraseDiv.classList.add('copied');
+
         navigator.clipboard.writeText(passphraseDiv.textContent).then(() => {
             copyBtn.textContent = '✅ Copied';
             setTimeout(() => {

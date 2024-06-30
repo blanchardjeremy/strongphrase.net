@@ -1,4 +1,5 @@
 html, body { 
+  width: 100%;
   margin:0; 
   padding:0;
 }
@@ -43,12 +44,42 @@ li:before {
   margin-left:0;
   margin-right:0.5em;
 }
-#phrase {
-  width:700px;
-  margin:10px auto;
-  border: 2px solid black;
-  text-align: center;
-  line-height: 2em;
+
+/* Add to your CSS file */
+@font-face {
+  font-family: 'Courier Prime';
+  src: url('CourierPrime-Italic.woff2') format('woff2'),
+      url('CourierPrime-Italic.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Courier Prime';
+  src: url('CourierPrime-Bold.woff2') format('woff2'),
+      url('CourierPrime-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Courier Prime';
+  src: url('CourierPrime-BoldItalic.woff2') format('woff2'),
+      url('CourierPrime-BoldItalic.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Courier Prime';
+  src: url('CourierPrime-Regular.woff2') format('woff2'),
+      url('CourierPrime-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 input[type="text"],
@@ -73,11 +104,11 @@ input[type="password"] {
   border: 2px solid #2d72e2;
   border: 2px solid #aaa;
   font-size: 120%;
+  font-family: 'Courier Prime', monospace; /* Fallback to generic monospace if load fails */
   line-height: 1.8em;
   min-height: 1.8em;
 }
 #options {
-  display:inline-block;
   text-align:center;
   margin: 10px auto;
 }
@@ -111,8 +142,10 @@ footer {
   width: 450px;
 }
 
-.passphrase-output:hover {
+.passphrase-output:hover,
+.copied {
   background-color: #cefed5;
+  color: rgb(11, 99, 11);
 }
 
 .copy-button {
