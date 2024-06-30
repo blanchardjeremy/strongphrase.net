@@ -197,3 +197,32 @@ tr:hover {
       padding: 10px; /* More padding for touch targets on smaller screens */
   }
 }
+
+
+.custom-dropdown {
+  width: 100%; /* Full width */
+  max-width: 400px; /* Max width for readability */
+  padding: 10px; /* Padding inside the dropdown */
+  margin: 10px 0; /* Margin around the dropdown */
+  border: 1px solid #ccc; /* Light border */
+  border-radius: 4px; /* Rounded corners */
+  background-color: #fff; /* White background */
+  font-size: 16px; /* Font size */
+  color: #333; /* Text color */
+  -webkit-appearance: none; /* Remove default styles in Webkit browsers */
+  -moz-appearance: none; /* Remove default styles in Firefox */
+  appearance: none; /* Remove default styles */
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns%3D%22http%3A//www.w3.org/2000/svg%22 viewBox%3D%220 0 4 5%22%3E%3Cpath fill%3D%22%23333%22 d%3D%22M2 0L0 2h4L2 0zM2 5L0 3h4L2 5z%22/%3E%3C/svg%3E'); /* Custom arrow */
+  background-repeat: no-repeat;
+  background-position: right 10px center; /* Position the arrow */
+  background-size: 10px; /* Size of the arrow */
+}
+
+.custom-dropdown:focus {
+  border-color: #007bff; /* Blue border on focus */
+  outline: none; /* Remove default focus outline */
+}
+
+.custom-dropdown:hover {
+  border-color: #007bff; /* Blue border on hover */
+}

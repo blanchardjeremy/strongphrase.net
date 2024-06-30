@@ -32,9 +32,14 @@ These passphrases are millions of times stronger than most humanly-generated pas
 </section>
 <section>
   <h2>How long would it take to crack each?</h2>
-  <table id="crack-timetable">
-
-  </table>
+  <label for="hashRateSelect">Select attacker's computing power:</label>
+  <select id="hashRateSelect" class="custom-dropdown">
+    <option value="1e10">Standard Consumer GPU (10 billion hashes/second)</option>
+    <option value="1e11">High-end GPU (100 billion hashes/second)</option>
+    <option value="1e12" selected>Best Available Hardware (1 trillion hashes/second)</option>
+    <option value="1e13">Nation State Attacker (10 trillion hashes/second)</option>
+  </select>
+  <table id="crack-timetable"></table>
 </section>
 <footer></footer>
 <script src="js/passphrasegenerator.js?v=20180129"></script>
@@ -87,35 +92,36 @@ document.addEventListener('DOMContentLoaded', function() {
     generateAndDisplayPassphrase(bits, passphraseDiv); // Assuming this function exists and sets the initial passphrase text
   });
 
-  addCrackTimeTable();
-});
+    // Add event listener to the dropdown
+    document.getElementById('hashRateSelect').addEventListener('change', addCrackTimeTable);
 
+    // Initially populate the table
+    addCrackTimeTable();
+});
 
 
 
 let generateAndDisplayPassphrase = function(bits, displayElement) {
-  let response = passphraseGenerator.getPassphrase(bits);
-  if (response.status === "ok") {
-    displayElement.textContent = response.message;
-  } else {
-    displayElement.textContent = "Error: " + response.message;
-  }
+    let response = passphraseGenerator.getPassphrase(bits);
+    if (response.status === "ok") {
+        displayElement.textContent = response.message;
+    } else {
+        displayElement.textContent = "Error: " + response.message;
+    }
 };
 
 document.getElementById('refreshPassphrases').addEventListener('click', function() {
-  // Selecting all passphrase divs instead of input fields
-  document.querySelectorAll('.passphrase-output').forEach(passphraseDiv => {
-    const bits = passphraseDiv.dataset.bits;
-    if (bits) { // Check if the div has the 'bits' data attribute
-      generateAndDisplayPassphrase(bits, passphraseDiv);
-    }
-  });
+    // Selecting all passphrase divs instead of input fields
+    document.querySelectorAll('.passphrase-output').forEach(passphraseDiv => {
+        const bits = passphraseDiv.dataset.bits;
+        if (bits) { // Check if the div has the 'bits' data attribute
+            generateAndDisplayPassphrase(bits, passphraseDiv);
+        }
+    });
 });
 
-
-
 function addCrackTimeTable() {
-    const hashRate = 1e12; // 1 trillion hashes per second
+    const hashRate = parseFloat(document.getElementById('hashRateSelect').value); // Get selected hash rate
     const grammars = passphraseGenerator.getGrammars();
     const bitsList = Object.keys(grammars).map(bits => parseInt(bits));
     
@@ -126,6 +132,7 @@ function addCrackTimeTable() {
 
     // Create and append the table
     const table = document.getElementById('crack-timetable');
+    table.innerHTML = ''; // Clear previous content
     table.className = 'table'; // Bootstrap class for styling
     const headerRow = table.insertRow();
     const headerCell1 = headerRow.insertCell();
