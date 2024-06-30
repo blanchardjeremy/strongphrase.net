@@ -32,14 +32,17 @@ These passphrases are millions of times stronger than most humanly-generated pas
 </section>
 <section>
   <h2>How long would it take to crack each?</h2>
-  <label for="hashRateSelect">Select attacker's computing power:</label>
+  <label for="hashRateSelect">Select attacker's computing power*:</label><br>
   <select id="hashRateSelect" class="custom-dropdown">
-    <option value="1e10">Standard Consumer GPU (10 billion hashes/second)</option>
-    <option value="1e11">High-end GPU (100 billion hashes/second)</option>
-    <option value="1e12" selected>Best Available Hardware (1 trillion hashes/second)</option>
-    <option value="1e13">Nation State Attacker (10 trillion hashes/second)</option>
+    <option value="1e2">Online attack (10 guesses/second)</option>
+    <option value="1e6">Slow attack (1 million guesses/second)</option>
+    <option value="1e10">Standard Consumer GPU (10 billion guesses/second)</option>
+    <option value="1e11">High-end GPU (100 billion guesses/second)</option>
+    <option value="1e12" selected>Best Available Hardware (1 trillion guesses/second)</option>
+    <option value="1e13">Nation State Attacker (10 trillion guesses/second)</option>
   </select>
   <table id="crack-timetable"></table>
+  <em>* Best guesses as of 2024 computing power</em>
 </section>
 <footer></footer>
 <script src="js/passphrasegenerator.js?v=20180129"></script>
@@ -49,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const optionsContainer = document.getElementById('options');
   const grammars = passphraseGenerator.getGrammars();
   const bitsOptions = Object.keys(grammars);
+  
   bitsOptions.forEach(function(bits) {
     let container = document.createElement('div');
     container.className = 'passphrase-container';
@@ -66,38 +70,38 @@ document.addEventListener('DOMContentLoaded', function() {
     let copyBtn = document.createElement('button');
     copyBtn.textContent = '📋 Copy';
     copyBtn.className = 'copy-button';
-    copyBtn.onclick = function() {
-        // Remove 'copied' class from all passphrase outputs
-        document.querySelectorAll('.passphrase-output.copied').forEach(div => {
-            div.classList.remove('copied');
-        });
-
-        // Add 'copied' class to the current passphrase output
-        passphraseDiv.classList.add('copied');
-
-        navigator.clipboard.writeText(passphraseDiv.textContent).then(() => {
-            copyBtn.textContent = '✅ Copied';
-            setTimeout(() => {
-                copyBtn.textContent = '📋 Copy';
-            }, 3000);
-        }, () => {
-            copyBtn.textContent = '❌ Failed';
-            setTimeout(() => {
-                copyBtn.textContent = '📋 Copy';
-            }, 3000);
-        });
-    };
     container.appendChild(copyBtn);
+
+    const copyToClipboard = () => {
+      // Remove 'copied' class from all passphrase outputs
+      document.querySelectorAll('.passphrase-output.copied').forEach(div => {
+        div.classList.remove('copied');
+      });
+      document.querySelectorAll('.copy-button').forEach(button => {
+        button.textContent = '📋 Copy';
+      })
+
+      // Add 'copied' class to the current passphrase output
+      passphraseDiv.classList.add('copied');
+
+      navigator.clipboard.writeText(passphraseDiv.textContent).then(() => {
+        copyBtn.textContent = '✅ Copied';
+      });
+    };
+
+    copyBtn.onclick = copyToClipboard;
+    passphraseDiv.onclick = copyToClipboard;
 
     generateAndDisplayPassphrase(bits, passphraseDiv); // Assuming this function exists and sets the initial passphrase text
   });
 
-    // Add event listener to the dropdown
-    document.getElementById('hashRateSelect').addEventListener('change', addCrackTimeTable);
+  // Add event listener to the dropdown
+  document.getElementById('hashRateSelect').addEventListener('change', addCrackTimeTable);
 
-    // Initially populate the table
-    addCrackTimeTable();
+  // Initially populate the table
+  addCrackTimeTable();
 });
+
 
 
 
@@ -111,13 +115,8 @@ let generateAndDisplayPassphrase = function(bits, displayElement) {
 };
 
 document.getElementById('refreshPassphrases').addEventListener('click', function() {
-    // Selecting all passphrase divs instead of input fields
-    document.querySelectorAll('.passphrase-output').forEach(passphraseDiv => {
-        const bits = passphraseDiv.dataset.bits;
-        if (bits) { // Check if the div has the 'bits' data attribute
-            generateAndDisplayPassphrase(bits, passphraseDiv);
-        }
-    });
+  // Not elegant. But simplest way to get back to fresh state on everything 
+  location.reload();
 });
 
 function addCrackTimeTable() {
@@ -163,19 +162,20 @@ function convertTimeToReadableFormat(seconds) {
     const century = year * 100;
 
     if (seconds < minute) {
-        return seconds.toFixed(0) + " seconds";
+        return parseInt(seconds.toFixed(0)).toLocaleString() + " seconds";
     } else if (seconds < hour) {
-        return (seconds / minute).toFixed(0) + " minutes";
+        return parseInt((seconds / minute).toFixed(0)).toLocaleString() + " minutes";
     } else if (seconds < day) {
-        return (seconds / hour).toFixed(0) + " hours";
+        return parseInt((seconds / hour).toFixed(0)).toLocaleString() + " hours";
     } else if (seconds < year) {
-        return (seconds / day).toFixed(0) + " days";
+        return parseInt((seconds / day).toFixed(0)).toLocaleString() + " days";
     } else if (seconds < century) {
-        return (seconds / year).toFixed(0) + " years";
+        return parseInt((seconds / year).toFixed(0)).toLocaleString() + " years";
     } else {
-        return (seconds / century).toFixed(0) + " centuries";
+        return parseInt((seconds / century).toFixed(0)).toLocaleString() + " centuries";
     }
 }
+
 
 
 </script>
