@@ -61,13 +61,13 @@ input[type="password"] {
 }
 
 h1,
-#phrase,
+.passphrase-output,
 li:before,
 input[type="text"],
 input[type="password"] {
   color: #2d72e2;
 }
-#phrase,
+.passphrase-output,
 input[type="text"],
 input[type="password"] {
   border: 2px solid #2d72e2;

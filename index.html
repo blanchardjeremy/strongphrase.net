@@ -50,34 +50,33 @@ document.addEventListener('DOMContentLoaded', function() {
     label.textContent = bits + ' bit passphrase:';
     optionsContainer.appendChild(label);
 
-    let input = document.createElement('input');
-    input.type = 'text';
-    input.id = 'bit-' + bits;
-    input.dataset.bits = bits; // Store bits in a data attribute
-    optionsContainer.appendChild(input);
+    let div = document.createElement('div');
+    div.id = 'bit-' + bits;
+    div.dataset.bits = bits; // Store bits in a data attribute
+    div.style.whiteSpace = 'pre-wrap'; // Ensures that whitespace and line breaks are preserved
+    div.className = 'passphrase-output'; // You can style it using CSS
+    optionsContainer.appendChild(div);
     optionsContainer.appendChild(document.createElement('br'));
     
-    generateAndDisplayPassphrase(bits, input);
-    input.addEventListener('input', function() {
-      generateAndDisplayPassphrase(bits, input);
-    });
+    generateAndDisplayPassphrase(bits, div);
   });
+
 });
 
-let generateAndDisplayPassphrase = function(bits, inputField) {
+let generateAndDisplayPassphrase = function(bits, displayElement) {
   let response = passphraseGenerator.getPassphrase(bits);
   if (response.status === "ok") {
-    inputField.value = response.message; // Automatically fill the text box with the passphrase
+    displayElement.textContent = response.message; // Automatically fill the div with the passphrase
   } else {
-    inputField.value = "Error: " + response.message; // Display error if passphrase generation fails
+    displayElement.textContent = "Error: " + response.message; // Display error if passphrase generation fails
   }
 };
 
 document.getElementById('refreshPassphrases').addEventListener('click', function() {
-  document.querySelectorAll('input[type="text"]').forEach(input => {
-    const bits = input.dataset.bits;
-    if (bits) { // Check if the input field has the 'bits' data attribute
-      generateAndDisplayPassphrase(bits, input);
+  document.querySelectorAll('.passphrase-output').forEach(div => {
+    const bits = div.dataset.bits;
+    if (bits) { // Check if the div has the 'bits' data attribute
+      generateAndDisplayPassphrase(bits, div);
     }
   });
 });
