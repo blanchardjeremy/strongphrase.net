@@ -6,26 +6,21 @@
 </head>
 <body>
 <section>
-<header>
-<h1>Get a Passphrase</h1>
-<p>Cryptographically Secure Passphrase Generator</p>
-</header>
-<ol>
-<li>Verify that the connection is secure.</li>
-<li>
-<div id="options">
-<button id="refreshPassphrases">New Passphrases</button>
+  <header>
+  <h1>Get a Passphrase</h1>
+  <p>Cryptographically Secure Passphrase Generator</p>
+  </header>
 
-<h3>Get a random passphrase:</h3>
-<!-- Text input fields and labels will be generated here -->
-</div>
-</li>
-<li>Visualize the scene described by the phrase</li>
-<li>Practice typing the phrase
-<input class="practice" type="text">
-<input class="practice" type="text">
-</li>
-</ol>
+  <div id="options">
+    <button id="refreshPassphrases">New Passphrases</button>
+    <h3>Get a random passphrase:</h3>
+    <!-- Text input fields and labels will be generated here -->
+  </div>
+
+
+  Practice typing the phrase
+  <input class="practice" type="text">
+  <input class="practice" type="text">
 </section>
 
 <section>
@@ -39,47 +34,73 @@ These passphrases are millions of times stronger than most humanly-generated pas
 <script src="js/passphrasegenerator.js?v=20180129"></script>
 <script>
 "use strict";
-
 document.addEventListener('DOMContentLoaded', function() {
   const optionsContainer = document.getElementById('options');
   const grammars = passphraseGenerator.getGrammars();
   const bitsOptions = Object.keys(grammars);
   bitsOptions.forEach(function(bits) {
+    let container = document.createElement('div');
+    container.className = 'passphrase-container';
+    optionsContainer.appendChild(container);
+
     let label = document.createElement('label');
-    label.htmlFor = 'bit-' + bits;
-    label.textContent = bits + ' bit passphrase:';
-    optionsContainer.appendChild(label);
+    label.textContent = bits + ' bits:';
+    container.appendChild(label);
 
-    let div = document.createElement('div');
-    div.id = 'bit-' + bits;
-    div.dataset.bits = bits; // Store bits in a data attribute
-    div.style.whiteSpace = 'pre-wrap'; // Ensures that whitespace and line breaks are preserved
-    div.className = 'passphrase-output'; // You can style it using CSS
-    optionsContainer.appendChild(div);
-    optionsContainer.appendChild(document.createElement('br'));
-    
-    generateAndDisplayPassphrase(bits, div);
+    let passphraseDiv = document.createElement('div');
+    passphraseDiv.className = 'passphrase-output';
+    passphraseDiv.dataset.bits = bits; // Ensure data-bits is set here
+    container.appendChild(passphraseDiv);
+
+    let copyBtn = document.createElement('button');
+    copyBtn.textContent = '📋 Copy';
+    copyBtn.className = 'copy-button';
+    copyBtn.onclick = function() {
+        navigator.clipboard.writeText(passphraseDiv.textContent).then(() => {
+            copyBtn.textContent = '✅ Copied';
+            setTimeout(() => {
+                copyBtn.textContent = '📋 Copy';
+            }, 3000);
+        }, () => {
+            copyBtn.textContent = '❌ Failed';
+            setTimeout(() => {
+                copyBtn.textContent = '📋 Copy';
+            }, 3000);
+        });
+    };
+    container.appendChild(copyBtn);
+
+    generateAndDisplayPassphrase(bits, passphraseDiv); // Assuming this function exists and sets the initial passphrase text
   });
-
 });
+
+
+
+
+
+
+
 
 let generateAndDisplayPassphrase = function(bits, displayElement) {
   let response = passphraseGenerator.getPassphrase(bits);
   if (response.status === "ok") {
-    displayElement.textContent = response.message; // Automatically fill the div with the passphrase
+    displayElement.textContent = response.message;
   } else {
-    displayElement.textContent = "Error: " + response.message; // Display error if passphrase generation fails
+    displayElement.textContent = "Error: " + response.message;
   }
 };
 
 document.getElementById('refreshPassphrases').addEventListener('click', function() {
-  document.querySelectorAll('.passphrase-output').forEach(div => {
-    const bits = div.dataset.bits;
+  // Selecting all passphrase divs instead of input fields
+  document.querySelectorAll('.passphrase-output').forEach(passphraseDiv => {
+    const bits = passphraseDiv.dataset.bits;
     if (bits) { // Check if the div has the 'bits' data attribute
-      generateAndDisplayPassphrase(bits, div);
+      generateAndDisplayPassphrase(bits, passphraseDiv);
     }
   });
 });
+
+
 
 </script>
 </body>

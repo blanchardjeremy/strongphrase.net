@@ -81,11 +81,6 @@ input[type="password"] {
   text-align:center;
   margin: 10px auto;
 }
-#options > select {
-  font-weight: bold;
-  font-size: inherit;
-  background-color: yellow;
-}
 button {
   font-weight: inherit;
   font-size: inherit;
@@ -94,4 +89,33 @@ footer {
   font-size:85%;
   line-height:3em;
   text-align: center;
+}
+
+
+.passphrase-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 700px; 
+  margin: 10px auto;
+  margin-bottom: 1.6em;
+}
+
+.passphrase-output {
+  flex-grow: 0;
+  margin-right: 10px; 
+  width: 450px;
+}
+
+.passphrase-output:hover {
+  background-color: #cefed5;
+}
+
+.copy-button {
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 0.8em;
+  width: 7em;
+  transition: opacity 0.3s ease-in-out;
 }
