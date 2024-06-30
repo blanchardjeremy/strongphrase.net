@@ -1,0 +1,38 @@
+
+
+/* Add to your CSS file */
+@font-face {
+  font-family: 'Courier Prime';
+  src: url('../fonts/CourierPrime-Italic.woff2') format('woff2'),
+      url('../fonts/CourierPrime-Italic.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Courier Prime';
+  src: url('../fonts/CourierPrime-Bold.woff2') format('woff2'),
+      url('../fonts/CourierPrime-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Courier Prime';
+  src: url('../fonts/CourierPrime-BoldItalic.woff2') format('woff2'),
+      url('../fonts/CourierPrime-BoldItalic.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Courier Prime';
+  src: url('../fonts/CourierPrime-Regular.woff2') format('woff2'),
+      url('../fonts/CourierPrime-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

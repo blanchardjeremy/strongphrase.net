@@ -1,6 +1,8 @@
 import React from 'react';
+import './styles/fonts.css';
 import PassphraseGenerator from './PassphraseGenerator.js';
 import CrackTimeTable from './CrackTimeTable.js';
+
 
 const App = () => {
   return (

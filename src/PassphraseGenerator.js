@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { getPassphrase } from './utils.js';
+import './PassphraseGenerator.css';
 
 const PassphraseGenerator = () => {
   const [passphrases, setPassphrases] = useState({});
@@ -40,7 +41,7 @@ const PassphraseGenerator = () => {
         <div key={bits} className="mb-4">
           <label className="block font-bold mb-1">{bits} bits:</label>
           <div className="flex items-center">
-            <div className="bg-gray-100 p-2 rounded flex-grow">{passphrase}</div>
+            <div className="bg-gray-100 p-2 rounded flex-grow passphrase-content">{passphrase}</div>
             <button
               onClick={() => copyToClipboard(passphrase)}
               className="ml-2 bg-gray-300 px-2 py-1 rounded hover:bg-gray-400"
