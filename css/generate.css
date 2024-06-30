@@ -140,6 +140,7 @@ footer {
   flex-grow: 0;
   margin-right: 10px; 
   width: 450px;
+  padding: 5px 10px;
 }
 
 .passphrase-output:hover,
@@ -154,4 +155,45 @@ footer {
   font-size: 0.8em;
   width: 7em;
   transition: opacity 0.3s ease-in-out;
+}
+
+
+table {
+  width: 100%; /* Full-width */
+  border-collapse: collapse; /* Ensures borders between cells are merged */
+  border-spacing: 0; /* Removes space between borders */
+  margin-bottom: 20px; /* Space below the table */
+  background-color: #fff; /* White background */
+}
+
+table, th, td {
+  border: 1px solid #ddd; /* Light grey border */
+}
+
+th, td {
+  text-align: left; /* Align text to the left in cells */
+  padding: 8px; /* Padding inside cells */
+}
+
+th {
+  background-color: #f8f9fa; /* Light grey background for headers */
+  color: #333; /* Dark grey text for contrast */
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2; /* Zebra striping for rows */
+}
+
+tr:hover {
+  background-color: #e9ecef; /* Light grey background on row hover */
+}
+
+/* Add a bit of responsiveness to improve viewing on smaller screens */
+@media screen and (max-width: 768px) {
+  table {
+      width: 100%; /* Adjusts width on smaller screens */
+  }
+  th, td {
+      padding: 10px; /* More padding for touch targets on smaller screens */
+  }
 }

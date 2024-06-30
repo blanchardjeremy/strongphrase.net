@@ -30,6 +30,12 @@ This website randomly selects words from predefined lists and arranges them into
 These passphrases are millions of times stronger than most humanly-generated passwords, but reasonably easy to memorize, making them ideal for protecting your most important accounts.
 </p>
 </section>
+<section>
+  <h2>How long would it take to crack each?</h2>
+  <table id="crack-timetable">
+
+  </table>
+</section>
 <footer></footer>
 <script src="js/passphrasegenerator.js?v=20180129"></script>
 <script>
@@ -80,6 +86,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     generateAndDisplayPassphrase(bits, passphraseDiv); // Assuming this function exists and sets the initial passphrase text
   });
+
+  addCrackTimeTable();
 });
 
 
@@ -104,6 +112,63 @@ document.getElementById('refreshPassphrases').addEventListener('click', function
   });
 });
 
+
+
+function addCrackTimeTable() {
+    const hashRate = 1e12; // 1 trillion hashes per second
+    const grammars = passphraseGenerator.getGrammars();
+    const bitsList = Object.keys(grammars).map(bits => parseInt(bits));
+    
+    const results = bitsList.map(bits => ({
+        bits: bits,
+        timeToCrack: convertTimeToReadableFormat(timeToCrack(bits, hashRate))
+    }));
+
+    // Create and append the table
+    const table = document.getElementById('crack-timetable');
+    table.className = 'table'; // Bootstrap class for styling
+    const headerRow = table.insertRow();
+    const headerCell1 = headerRow.insertCell();
+    headerCell1.innerHTML = "<b>Bits of Entropy</b>";
+    const headerCell2 = headerRow.insertCell();
+    headerCell2.innerHTML = "<b>Time to Crack</b>";
+
+    results.forEach(result => {
+        const row = table.insertRow();
+        const cell1 = row.insertCell();
+        cell1.innerHTML = result.bits;
+        const cell2 = row.insertCell();
+        cell2.innerHTML = result.timeToCrack;
+    });
+}
+
+function timeToCrack(bits, hashesPerSecond) {
+    const totalCombinations = Math.pow(2, bits);
+    const seconds = totalCombinations / (2 * hashesPerSecond);
+    return seconds; // return time in seconds
+}
+
+function convertTimeToReadableFormat(seconds) {
+    const minute = 60;
+    const hour = minute * 60;
+    const day = hour * 24;
+    const year = day * 365;
+    const century = year * 100;
+
+    if (seconds < minute) {
+        return seconds.toFixed(0) + " seconds";
+    } else if (seconds < hour) {
+        return (seconds / minute).toFixed(0) + " minutes";
+    } else if (seconds < day) {
+        return (seconds / hour).toFixed(0) + " hours";
+    } else if (seconds < year) {
+        return (seconds / day).toFixed(0) + " days";
+    } else if (seconds < century) {
+        return (seconds / year).toFixed(0) + " years";
+    } else {
+        return (seconds / century).toFixed(0) + " centuries";
+    }
+}
 
 
 </script>
