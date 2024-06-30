@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import PassphraseGenerator from './PassphraseGenerator.js';
+import CrackTimeTable from './CrackTimeTable.js';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className="container mx-auto px-4 py-8">
+      <header className="mb-8">
+        <h1 className="text-4xl font-bold mb-2">Get a Passphrase</h1>
+        <p className="text-xl">Cryptographically Secure Passphrase Generator</p>
       </header>
+      <PassphraseGenerator />
+      <CrackTimeTable />
+      <section className="mt-8">
+        <h2 className="text-2xl font-bold mb-4">How does it work?</h2>
+        <p>
+          This website randomly selects words from predefined lists and arranges them into meaningful sentences.
+          These passphrases are millions of times stronger than most humanly-generated passwords, but reasonably easy to memorize, making them ideal for protecting your most important accounts.
+        </p>
+      </section>
+      <footer className="mt-8">
+        <p>Find the <a href="https://github.com/blanchardjeremy/getapassphrase" className="text-blue-500 hover:underline">source code on GitHub</a>.</p>
+      </footer>
     </div>
   );
-}
+};
 
 export default App;
