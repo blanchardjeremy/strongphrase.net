@@ -91,6 +91,9 @@ footer {
   text-align: center;
 }
 
+#refreshPassphrases {
+  font-size: 1.5em;
+}
 
 .passphrase-container {
   display: flex;
