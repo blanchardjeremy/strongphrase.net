@@ -115,6 +115,7 @@ input[type="password"] {
 button {
   font-weight: inherit;
   font-size: inherit;
+  border: 1px solid gray;
 }
 footer {
   font-size:85%;
@@ -144,7 +145,7 @@ footer {
 }
 
 .passphrase-output:hover,
-.copied {
+.copied .passphrase-output {
   background-color: #cefed5;
   color: rgb(11, 99, 11);
 }
@@ -156,6 +157,11 @@ footer {
   width: 7em;
   transition: opacity 0.3s ease-in-out;
 }
+.copied .copy-button {
+  background-color: #cefed5;
+  color: rgb(11, 99, 11);
+}
+
 
 
 table {
