@@ -31,7 +31,7 @@ const CrackTimeTable = ({ copiedBits }) => {
         </select>
       </div>
       <table className="border-collapse crack-time-table">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
             <th className="border p-2">Bits of Entropy</th>
             <th className="border p-2">Avg. Time to Crack</th>

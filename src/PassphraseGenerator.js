@@ -2,16 +2,22 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { getPassphrase } from './utils.js';
 import './PassphraseGenerator.css';
 
-const PassphraseGenerator = ({ copyToClipboard }) => {
+const PassphraseGenerator = () => {
   const [passphrases, setPassphrases] = useState({});
   const [practiceInput, setPracticeInput] = useState('');
-  
+  const [copiedBits, setCopiedBits] = useState(null);
+
   const generatePassphrases = useCallback(() => {
     const newPassphrases = {};
     [46, 54, 58, 66, 70, 80].forEach(bits => {
       newPassphrases[bits] = getPassphrase(bits);
     });
     setPassphrases(newPassphrases);
+  }, []);
+
+  const copyToClipboard = useCallback((text, bits) => {
+    navigator.clipboard.writeText(text);
+    setCopiedBits(bits);
   }, []);
 
   // Use the useEffect hook to generate the passphrases when the component is first loaded
@@ -36,13 +42,15 @@ const PassphraseGenerator = ({ copyToClipboard }) => {
         <div key={bits} className="mb-4">
           <label className="block font-bold mb-1">{bits} bits:</label>
           <div className="flex items-center">
-            <div className="passphrase-content">{passphrase}</div>
-            <button
+            <div 
+              className={`passphrase-content ${copiedBits === bits ? 'copied' : ''}`}
               onClick={() => copyToClipboard(passphrase, bits)}
-              className="ml-2 bg-gray-300 px-2 py-1 rounded hover:bg-gray-400"
             >
-              📋 Copy
-            </button>
+                {passphrase}
+                <span className="ml-2 px-2 py-1 bg-gray-50 rounded float-right" >
+                  {copiedBits === bits ? '✅ Copied!' : '📋 Copy'}
+                </span>
+            </div>
           </div>
         </div>
       ))}
