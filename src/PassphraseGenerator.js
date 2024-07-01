@@ -55,9 +55,9 @@ const PassphraseGenerator = () => {
             className="p-2 border rounded"
           >
             <option value={1e2}>Online attack (10 guesses/second)</option>
-            <option value={1e6}>Slow attack (1 million guesses/second)</option>
+            {/* <option value={1e6}>Slow attack (1 million guesses/second)</option> */}
             <option value={1e10}>Standard Consumer GPU (10 billion guesses/second)</option>
-            <option value={1e11}>High-end GPU (100 billion guesses/second)</option>
+            {/* <option value={1e11}>High-end GPU (100 billion guesses/second)</option> */}
             <option value={1e12}>Best Available Hardware (1 trillion guesses/second)</option>
             <option value={1e14}>Nation State Attacker (100 trillion guesses/second)</option>
           </select>
