@@ -1,27 +1,29 @@
-import React, { useState, useCallback } from 'react';
+import React from 'react';
 import PassphraseGenerator from './PassphraseGenerator.js';
 import './App.css';
-
+import { Container, Typography, Link, Box } from '@mui/joy';
 
 const App = () => {
   return (
-    <div className="container mx-auto px-4 py-8">
-      <header className="mb-8">
-        <h1 className="text-4xl font-bold mb-2">Get a Passphrase</h1>
-        <p className="text-xl">Cryptographically Secure Passphrase Generator</p>
+    <Container>
+      <header>
+        <Typography level="h1">Get a Passphrase</Typography>
+        <Typography level="h2">Cryptographically Secure Passphrase Generator</Typography>
       </header>
       <PassphraseGenerator />
-      <section className="mt-8">
-        <h2 className="text-2xl font-bold mb-4">How does it work?</h2>
-        <p>
+      <section>
+        <Typography level="h2">How does it work?</Typography>
+        <Typography>
           This website randomly selects words from predefined lists and arranges them into meaningful sentences.
           These passphrases are millions of times stronger than most humanly-generated passwords, but reasonably easy to memorize, making them ideal for protecting your most important accounts.
-        </p>
+        </Typography>
       </section>
-      <footer className="mt-8">
-        <p>Find the <a href="https://github.com/blanchardjeremy/getapassphrase" className="text-blue-500 hover:underline">source code on GitHub</a>.</p>
+      <footer>
+        <Typography>
+          Find the <Link href="https://github.com/blanchardjeremy/getapassphrase" className="text-blue-500 hover:underline">source code on GitHub</Link>.
+        </Typography>
       </footer>
-    </div>
+    </Container>
   );
 };
 

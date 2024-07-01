@@ -4,10 +4,13 @@
   "private": true,
   "homepage": "https://blanchardjeremy.github.io/getapassphrase",
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/joy": "^5.0.0-beta.36",
+    "@mui/material": "^5.15.21",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "daisyui": "^4.12.10",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-scripts": "^5.0.1",
@@ -42,7 +45,6 @@
   "devDependencies": {
     "autoprefixer": "^10.4.19",
     "gh-pages": "^6.1.1",
-    "postcss": "^8.4.39",
-    "tailwindcss": "^3.4.4"
+    "postcss": "^8.4.39"
   }
 }

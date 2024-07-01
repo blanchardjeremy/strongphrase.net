@@ -14,11 +14,11 @@
 }
 
 .crack-time {
-  @apply p-1 mb-1 rounded flex-grow  inline-block border-2
+  @apply badge badge-outline
 }
 
 .crack-time em {
-  @apply font-custom font-bold
+  @apply font-bold
 }
 
 .copy-button {
@@ -31,5 +31,5 @@
 
 .passphrase-content:hover .copy-button,
 .copied .copy-button {
-  @apply bg-green-300
+  @apply bg-green-200
 }

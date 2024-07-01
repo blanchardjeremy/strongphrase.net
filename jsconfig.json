@@ -1,9 +1,13 @@
-
 {
   "compilerOptions": {
-    "module": "commonjs",
     "target": "es6",
-    "jsx": "react"
+    "module": "commonjs",
+    "jsx": "react",
+    "baseUrl": ".",
+    "paths": {
+      "@mui/*": ["node_modules/@mui/*"],
+      "@emotion/*": ["node_modules/@emotion/*"]
+    }
   },
   "include": ["src/**/*"]
 }

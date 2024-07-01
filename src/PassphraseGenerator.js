@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import { timeToCrack, convertTimeToReadableFormat, getPassphrase } from './utils.js';
-import './PassphraseGenerator.css';
+import { Container, Button, Select, MenuItem, Typography, Input, Box, Sheet } from '@mui/joy';
 
 const PassphraseGenerator = () => {
   const [passphrases, setPassphrases] = useState({});
@@ -29,68 +29,81 @@ const PassphraseGenerator = () => {
     setCopiedBits(bits);
   }, []);
 
-  // Use the useEffect hook to generate the passphrases when the component is first loaded
   useEffect(() => {
     generatePassphrases();
   }, [generatePassphrases]);
   
-  
-
   return (
-    <section>
-      <div className="mb-4">
-        <h3 className="text-xl font-bold mb-2">Get a random passphrase:</h3>
-        <button
+    <Box component="section" sx={{ p: 2 }}>
+      <Sheet sx={{ mb: 2, p: 2 }}>
+        <Typography level="h3" sx={{ mb: 1 }}>Get a random passphrase:</Typography>
+        <Button
           onClick={generatePassphrases}
-          className="btn btn-success btn-outline"
+          variant="outlined"
+          color="success"
         >
           ♻️ Refresh!
-        </button>
-      </div>
+        </Button>
+      </Sheet>
 
-      <div className="mb-4">
-        <label htmlFor="hashRateSelect" className="mb-2 mr-3">Select attacker's computing power*:</label>
-        <select
-          id="hashRateSelect"
+      <Sheet sx={{ mb: 2, p: 2 }}>
+        <Typography level="body1" sx={{ mb: 1 }}>Select attacker's computing power*:</Typography>
+        <Select
           value={hashRate}
-          onChange={(e) => setHashRate(Number(e.target.value))}
-          className="p-2 border rounded"
+          onChange={(e) => {
+            if (e && e.target) {
+              setHashRate(Number(e.target.value));
+            }
+          }}
+          sx={{ width: 300 }}
         >
-          <option value={1e2}>Online attack (10 guesses/second)</option>
-          <option value={1e6}>Slow attack (1 million guesses/second)</option>
-          <option value={1e10}>Standard Consumer GPU (10 billion guesses/second)</option>
-          <option value={1e11}>High-end GPU (100 billion guesses/second)</option>
-          <option value={1e12}>Best Available Hardware (1 trillion guesses/second)</option>
-          <option value={1e14}>Nation State Attacker (100 trillion guesses/second)</option>
-        </select>
-        <p className="mt-2 text-sm italic">* Best guesses as of 2024 computing power</p>
-      </div>
+          <MenuItem value={1e2}>Online attack (10 guesses/second)</MenuItem>
+          <MenuItem value={1e6}>Slow attack (1 million guesses/second)</MenuItem>
+          <MenuItem value={1e10}>Standard Consumer GPU (10 billion guesses/second)</MenuItem>
+          <MenuItem value={1e11}>High-end GPU (100 billion guesses/second)</MenuItem>
+          <MenuItem value={1e12}>Best Available Hardware (1 trillion guesses/second)</MenuItem>
+          <MenuItem value={1e14}>Nation State Attacker (100 trillion guesses/second)</MenuItem>
+        </Select>
+        <Typography level="body2" sx={{ mt: 1, fontStyle: 'italic' }}>* Best guesses as of 2024 computing power</Typography>
+      </Sheet>
       {crackTimes.map(({ bits, time }) => (
-        <div key={bits} className="mb-8">
-          <label className="block mb-1"><span className="font-bold inline-block w-44">{bits} bits of entropy</span> <span className="crack-time">Avg time to crack = <em>{time}</em></span></label>
-          <div className="flex items-center">
-            <div 
-              className={`passphrase-content ${copiedBits === bits ? 'copied' : ''}`}
+        <Container key={bits} sx={{ mb: 2, p: 2 }}>
+          <Typography level="body1" sx={{ mb: 1 }}>
+            <Typography level="body1" fontWeight="bold" sx={{ display: 'inline-block', width: 170 }}>{bits} bits of entropy</Typography> 
+            <Typography level="body1" sx={{ display: 'inline' }}>Avg time to crack = &nbsp;<em>{time}</em></Typography>
+          </Typography>
+          <Sheet sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Typography
+              level="body1"
+              sx={{
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                backgroundColor: copiedBits === bits ? 'action.selected' : 'transparent',
+                p: 1,
+                borderRadius: 1,
+                flexGrow: 1,
+              }}
+              className="passphrase-content"
               onClick={() => copyToClipboard(passphrases[bits], bits)}
             >
-                {passphrases[bits]}
-                <span className="copy-button flex items-center" >
-                  {copiedBits === bits ? '✅ Copied!' : '📋 Copy'}
-                </span>
-            </div>
-          </div>
-        </div>
+              {passphrases[bits]}
+            </Typography>
+            <Typography level="body1" sx={{ float: 'right' }}>
+              {copiedBits === bits ? '✅ Copied!' : '📋 Copy'}
+            </Typography>
+          </Sheet>
+        </Container>
       ))}
-      <div className="mt-4">
-        <label className="block font-bold mb-1">Practice typing the phrase:</label>
-        <input
-          type="text"
+      <Sheet sx={{ p: 2 }}>
+        <Typography level="body1" fontWeight="bold" sx={{ mb: 1 }}>Practice typing the phrase:</Typography>
+        <Input
           value={practiceInput}
           onChange={(e) => setPracticeInput(e.target.value)}
-          className="w-full p-2 border rounded"
+          fullWidth
         />
-      </div>
-    </section>
+      </Sheet>
+    </Box>
   );
 };
 
