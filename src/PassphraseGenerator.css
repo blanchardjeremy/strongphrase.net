@@ -1,15 +1,35 @@
 
 .passphrase-content {
-  @apply bg-gray-100 p-2 rounded flex-grow font-custom text-lg
+  @apply p-2 bg-gray-100 rounded flex-grow font-custom text-lg
+}
+
+.passphrase-content {
+  @apply bg-gray-100 items-center
 }
 
 /* highlight when hovering */
 .passphrase-content:hover,
 .copied {
-  background-color: rgb(210, 255, 216);
-  color: rgb(14, 99, 14);
-  
-  /* make pointer a hand on hover */
-  cursor: pointer;
+  @apply bg-green-100 text-green-800 cursor-pointer
+}
 
+.crack-time {
+  @apply p-1 mb-1 rounded flex-grow  inline-block border-2
+}
+
+.crack-time em {
+  @apply font-custom font-bold
+}
+
+.copy-button {
+  @apply px-2 rounded float-right text-sm uppercase font-sans
+}
+
+.copy-button {
+  @apply bg-gray-200
+}
+
+.passphrase-content:hover .copy-button,
+.copied .copy-button {
+  @apply bg-green-300
 }
