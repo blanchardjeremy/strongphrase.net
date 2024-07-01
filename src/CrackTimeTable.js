@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { timeToCrack, convertTimeToReadableFormat } from './utils.js';
 
-const CrackTimeTable = () => {
+const CrackTimeTable = ({ copiedBits }) => {
   const [hashRate, setHashRate] = useState(1e12);
 
   const crackTimes = useMemo(() => {
@@ -20,7 +20,7 @@ const CrackTimeTable = () => {
           id="hashRateSelect"
           value={hashRate}
           onChange={(e) => setHashRate(Number(e.target.value))}
-          className="w-full p-2 border rounded"
+          className="p-2 border rounded"
         >
           <option value={1e2}>Online attack (10 guesses/second)</option>
           <option value={1e6}>Slow attack (1 million guesses/second)</option>
@@ -30,8 +30,8 @@ const CrackTimeTable = () => {
           <option value={1e14}>Nation State Attacker (100 trillion guesses/second)</option>
         </select>
       </div>
-      <table className="w-full border-collapse">
-        <thead>
+      <table className="border-collapse crack-time-table">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
             <th className="border p-2">Bits of Entropy</th>
             <th className="border p-2">Avg. Time to Crack</th>
@@ -39,8 +39,11 @@ const CrackTimeTable = () => {
         </thead>
         <tbody>
           {crackTimes.map(({ bits, time }) => (
-            <tr key={bits}>
-              <td className="border p-2">{bits}</td>
+            <tr 
+              key={bits} 
+              className={`bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-500 odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 ${copiedBits === bits ? 'highlight' : ''}`}
+            >
+              <td className="border p-2">{bits} bits</td>
               <td className="border p-2">{time}</td>
             </tr>
           ))}

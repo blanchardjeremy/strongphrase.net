@@ -5,7 +5,8 @@
 
 /* highlight when hovering */
 .passphrase-content:hover {
-  background-color: rgb(206, 226, 210);
+  background-color: rgb(210, 255, 216);
+  color: rgb(14, 99, 14);
   
   /* make pointer a hand on hover */
   cursor: pointer;
