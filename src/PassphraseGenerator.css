@@ -1,15 +1,27 @@
 
 .passphrase-header {
   @apply flex items-center mb-12
-
 }
 
 .passphrase-header .dropdown-container {
   @apply ml-8
 }
 
+.passphrase-block {
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out, height 0.5s ease-out, padding 0.5s ease-out, margin-bottom 0.5s ease-out;
+}
+
+.hide {
+  opacity: 0;
+  transform: translateY(-20px); /* Move up slightly as they fade out */
+  height: 0;
+  overflow: hidden;
+  margin-bottom: 0;
+  padding: 0;
+}
+
 .passphrase-content {
-  @apply p-2 bg-gray-100 rounded-xl flex-grow relative font-custom text-lg pr-28
+  @apply p-2 px-4 bg-gray-100 rounded-xl flex-grow relative font-custom text-xl pr-28
 }
 
 /* highlight when hovering */
@@ -19,11 +31,11 @@
 }
 
 .crack-time {
-  @apply py-1 px-3 mb-1 rounded-full flex-grow  inline-block border-2 text-sm
+  @apply py-1 px-3 mb-1 rounded-full flex-grow  inline-block border-2 text-xs
 }
 
 .crack-time em {
-  @apply font-custom font-bold
+  @apply font-bold
 }
 
 .copy-button {

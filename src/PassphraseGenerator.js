@@ -7,6 +7,7 @@ const PassphraseGenerator = () => {
   const [practiceInput, setPracticeInput] = useState('');
   const [copiedBits, setCopiedBits] = useState(null);
   const [hashRate, setHashRate] = useState(1e12);
+  const [showHidden, setShowHidden] = useState(true);
 
   const generatePassphrases = useCallback(() => {
     const newPassphrases = {};
@@ -15,6 +16,7 @@ const PassphraseGenerator = () => {
     });
     setPassphrases(newPassphrases);
     setCopiedBits(null); // Reset the copiedBits state
+    setShowHidden(true);
   }, []);
   
   const crackTimes = useMemo(() => {
@@ -26,7 +28,11 @@ const PassphraseGenerator = () => {
 
   const copyToClipboard = useCallback((text, bits) => {
     navigator.clipboard.writeText(text);
-    setCopiedBits(bits);
+    setCopiedBits(null); // Reset first to ensure transition can trigger
+    setTimeout(() => {
+      setCopiedBits(bits); // Then set the new copied bits after a very short delay
+    }, 10); // A very short delay
+    setShowHidden(false);
   }, []);
 
   // Use the useEffect hook to generate the passphrases when the component is first loaded
@@ -41,13 +47,13 @@ const PassphraseGenerator = () => {
       <div className="passphrase-header">
         <button
           onClick={generatePassphrases}
-          className="btn btn-success btn-outline btn-lg"
+          className="btn btn-primary btn-lg"
         >
           ♻️ Refresh!
         </button>
 
-        <div className="dropdown-container">
-          <label htmlFor="hashRateSelect" className="mb-2 mr-3 block">Select attacker's computing power (2024 estimates):</label>
+        <div className="dropdown-container form-control">
+          <label htmlFor="hashRateSelect" className="label mb-0 mr-3 text-sm tracking-wide block">Select attacker's computing power (2024 estimates):</label>
           <select
             id="hashRateSelect"
             value={hashRate}
@@ -56,20 +62,23 @@ const PassphraseGenerator = () => {
           >
             <option value={1e2}>Online attack (10 guesses/second)</option>
             {/* <option value={1e6}>Slow attack (1 million guesses/second)</option> */}
-            <option value={1e10}>Standard Consumer GPU (10 billion guesses/second)</option>
+            <option value={1e10}>Standard consumer hardware (10 billion guesses/second)</option>
             {/* <option value={1e11}>High-end GPU (100 billion guesses/second)</option> */}
-            <option value={1e12}>Best Available Hardware (1 trillion guesses/second)</option>
+            <option value={1e12}>Best available consumer hardware (1 trillion guesses/second)</option>
             <option value={1e14}>Nation State Attacker (100 trillion guesses/second)</option>
           </select>
         </div>
       </div>
       {crackTimes.map(({ bits, time }) => (
         <div key={bits} 
-          className={`passphrase-block mb-8 ${copiedBits === bits ? 'copied' : ''}`}
+          className={`passphrase-block mb-8 ${
+            copiedBits === bits ? 'copied' : 
+            (copiedBits && !showHidden) ? 'hide' : ''
+          }`}
         >
           <label className="block mb-1 tracking-wide uppercase">
             <span className="font-bold inline-block w-52">{bits} bits of entropy</span>
-            <span className="crack-time">Avg time to crack = <em>{time}</em></span>
+            <span className="crack-time">Avg time to crack: <em>{time}</em></span>
           </label>
           <div className="relative passphrase-content" onClick={() => copyToClipboard(passphrases[bits], bits)}>
             {passphrases[bits]}
@@ -79,6 +88,13 @@ const PassphraseGenerator = () => {
           </div>
         </div>
       ))}
+      <button 
+        onClick={() => setShowHidden(true)} 
+        className="btn btn-sm mt-4"
+        style={{ display: showHidden ? 'none' : 'block' }}
+      >
+        Show Hidden Passphrases
+      </button>
       <div className="mt-4">
         <label className="block font-bold mb-1">Practice typing the phrase:</label>
         <input

@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React from 'react';
 import PassphraseGenerator from './PassphraseGenerator.js';
 import './App.css';
 
