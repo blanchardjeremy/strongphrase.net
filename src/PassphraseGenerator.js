@@ -14,6 +14,7 @@ const PassphraseGenerator = () => {
       newPassphrases[bits] = getPassphrase(bits);
     });
     setPassphrases(newPassphrases);
+    setCopiedBits(null); // Reset the copiedBits state
   }, []);
   
   const crackTimes = useMemo(() => {
@@ -41,7 +42,7 @@ const PassphraseGenerator = () => {
         <h3 className="text-xl font-bold mb-2">Get a random passphrase:</h3>
         <button
           onClick={generatePassphrases}
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+          className="btn btn-success btn-outline"
         >
           ♻️ Refresh!
         </button>
