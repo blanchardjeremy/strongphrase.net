@@ -64,7 +64,9 @@ const PassphraseGenerator = () => {
         </div>
       </div>
       {crackTimes.map(({ bits, time }) => (
-        <div key={bits} className="passphrase-block mb-8">
+        <div key={bits} 
+          className={`passphrase-block mb-8 ${copiedBits === bits ? 'copied' : ''}`}
+        >
           <label className="block mb-1 tracking-wide uppercase">
             <span className="font-bold inline-block w-52">{bits} bits of entropy</span>
             <span className="crack-time">Avg time to crack = <em>{time}</em></span>
