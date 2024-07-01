@@ -1,6 +1,7 @@
 
 .passphrase-content {
-  @apply p-2 bg-gray-100 rounded flex-grow font-custom text-lg
+  /* @apply p-2 bg-gray-100 rounded flex-grow font-custom text-lg; */
+  font-family: 'Courier Prime', 'Courier New', Courier, monospace !important;
 }
 
 .passphrase-content {
