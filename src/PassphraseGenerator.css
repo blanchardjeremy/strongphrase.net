@@ -1,10 +1,15 @@
 
-.passphrase-content {
-  @apply p-2 bg-gray-100 rounded flex-grow font-custom text-lg
+.passphrase-header {
+  @apply flex items-center mb-12
+
+}
+
+.passphrase-header .dropdown-container {
+  @apply ml-8
 }
 
 .passphrase-content {
-  @apply bg-gray-100 items-center
+  @apply p-2 bg-gray-100 rounded flex-grow relative font-custom text-lg pr-28
 }
 
 /* highlight when hovering */
@@ -22,11 +27,13 @@
 }
 
 .copy-button {
-  @apply px-2 rounded float-right text-sm uppercase font-sans
+  @apply px-2 py-1 rounded absolute right-0 text-sm uppercase font-sans bg-gray-300 tracking-wide top-0 flex items-center cursor-pointer
 }
 
 .copy-button {
-  @apply bg-gray-300 tracking-wide btn btn-xs
+  top: 50%; /* Adjust this to move it slightly down */
+  transform: translateY(-50%); /* Center it vertically relative to its new position */
+  margin-right: 8px; /* Ensure some spacing from the right edge */
 }
 
 .passphrase-content:hover .copy-button,

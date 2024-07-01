@@ -38,49 +38,42 @@ const PassphraseGenerator = () => {
 
   return (
     <section>
-      <div className="mb-4">
-        <h3 className="text-xl font-bold mb-2">Get a random passphrase:</h3>
+      <div className="passphrase-header">
         <button
           onClick={generatePassphrases}
-          className="btn btn-success btn-outline"
+          className="btn btn-success btn-outline btn-lg"
         >
           ♻️ Refresh!
         </button>
-      </div>
 
-      <div className="mb-4">
-        <label htmlFor="hashRateSelect" className="mb-2 mr-3">Select attacker's computing power*:</label>
-        <select
-          id="hashRateSelect"
-          value={hashRate}
-          onChange={(e) => setHashRate(Number(e.target.value))}
-          className="p-2 border rounded"
-        >
-          <option value={1e2}>Online attack (10 guesses/second)</option>
-          <option value={1e6}>Slow attack (1 million guesses/second)</option>
-          <option value={1e10}>Standard Consumer GPU (10 billion guesses/second)</option>
-          <option value={1e11}>High-end GPU (100 billion guesses/second)</option>
-          <option value={1e12}>Best Available Hardware (1 trillion guesses/second)</option>
-          <option value={1e14}>Nation State Attacker (100 trillion guesses/second)</option>
-        </select>
-        <p className="mt-2 text-sm italic">* Best guesses as of 2024 computing power</p>
+        <div className="dropdown-container">
+          <label htmlFor="hashRateSelect" className="mb-2 mr-3 block">Select attacker's computing power (2024 estimates):</label>
+          <select
+            id="hashRateSelect"
+            value={hashRate}
+            onChange={(e) => setHashRate(Number(e.target.value))}
+            className="p-2 border rounded"
+          >
+            <option value={1e2}>Online attack (10 guesses/second)</option>
+            <option value={1e6}>Slow attack (1 million guesses/second)</option>
+            <option value={1e10}>Standard Consumer GPU (10 billion guesses/second)</option>
+            <option value={1e11}>High-end GPU (100 billion guesses/second)</option>
+            <option value={1e12}>Best Available Hardware (1 trillion guesses/second)</option>
+            <option value={1e14}>Nation State Attacker (100 trillion guesses/second)</option>
+          </select>
+        </div>
       </div>
       {crackTimes.map(({ bits, time }) => (
-        <div key={bits} className="mb-8">
+        <div key={bits} className="passphrase-block mb-8">
           <label className="block mb-1 tracking-wide uppercase">
             <span className="font-bold inline-block w-52">{bits} bits of entropy</span>
             <span className="crack-time">Avg time to crack = <em>{time}</em></span>
           </label>
-          <div className="flex items-center">
-            <div 
-              className={`passphrase-content ${copiedBits === bits ? 'copied' : ''}`}
-              onClick={() => copyToClipboard(passphrases[bits], bits)}
-            >
-                {passphrases[bits]}
-                <span className="copy-button flex items-center" >
-                  {copiedBits === bits ? '✅ Copied!' : '📋 Copy'}
-                </span>
-            </div>
+          <div className="relative passphrase-content" onClick={() => copyToClipboard(passphrases[bits], bits)}>
+            {passphrases[bits]}
+            <span className="copy-button" >
+              {copiedBits === bits ? '✅ Copied!' : '📋 Copy'}
+            </span>
           </div>
         </div>
       ))}
