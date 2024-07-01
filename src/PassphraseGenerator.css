@@ -14,7 +14,7 @@
 }
 
 .crack-time {
-  @apply p-1 mb-1 rounded flex-grow  inline-block border-2
+  @apply py-1 px-3 mb-1 rounded-full flex-grow  inline-block border-2 text-sm
 }
 
 .crack-time em {
@@ -26,7 +26,7 @@
 }
 
 .copy-button {
-  @apply bg-gray-200
+  @apply bg-gray-300 tracking-wide btn btn-xs
 }
 
 .passphrase-content:hover .copy-button,

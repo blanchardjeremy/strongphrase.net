@@ -67,7 +67,10 @@ const PassphraseGenerator = () => {
       </div>
       {crackTimes.map(({ bits, time }) => (
         <div key={bits} className="mb-8">
-          <label className="block mb-1"><span className="font-bold inline-block w-44">{bits} bits of entropy</span> <span className="crack-time">Avg time to crack = <em>{time}</em></span></label>
+          <label className="block mb-1 tracking-wide uppercase">
+            <span className="font-bold inline-block w-52">{bits} bits of entropy</span>
+            <span className="crack-time">Avg time to crack = <em>{time}</em></span>
+          </label>
           <div className="flex items-center">
             <div 
               className={`passphrase-content ${copiedBits === bits ? 'copied' : ''}`}
