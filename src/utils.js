@@ -89,19 +89,20 @@ export const timeToCrack = (bits, hashesPerSecond) => {
 
 export const convertTimeToReadableFormat = (seconds) => {
   const units = [
-    { value: 60 * 60 * 24 * 365 * 1000000000000, label: "trillion years" },
-    { value: 60 * 60 * 24 * 365 * 1000000000, label: "billion years" },
-    { value: 60 * 60 * 24 * 365 * 1000000, label: "million years" },
-    { value: 60 * 60 * 24 * 365, label: "years" },
-    { value: 60 * 60 * 24, label: "days" },
-    { value: 60 * 60, label: "hours" },
-    { value: 60, label: "minutes" },
-    { value: 1, label: "seconds" }
+    { value: 60 * 60 * 24 * 365 * 1000000000000, singular: "trillion year", plural: "trillion years" },
+    { value: 60 * 60 * 24 * 365 * 1000000000, singular: "billion year", plural: "billion years" },
+    { value: 60 * 60 * 24 * 365 * 1000000, singular: "million year", plural: "million years" },
+    { value: 60 * 60 * 24 * 365, singular: "year", plural: "years" },
+    { value: 60 * 60 * 24, singular: "day", plural: "days" },
+    { value: 60 * 60, singular: "hour", plural: "hours" },
+    { value: 60, singular: "minute", plural: "minutes" },
+    { value: 1, singular: "second", plural: "seconds" }
   ];
 
-  for (const { value, label } of units) {
+  for (const { value, singular, plural } of units) {
     if (seconds >= value) {
       const amount = Math.floor(seconds / value);
+      const label = amount === 1 ? singular : plural;  // Choose the appropriate label based on the amount
       return `${amount.toLocaleString()} ${label}`;
     }
   }

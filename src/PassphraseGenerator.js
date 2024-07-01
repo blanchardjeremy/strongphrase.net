@@ -49,7 +49,7 @@ const PassphraseGenerator = () => {
           onClick={generatePassphrases}
           className="btn btn-primary btn-lg"
         >
-          ♻️ Refresh!
+          ♻️ New passphrases!
         </button>
 
         <div className="dropdown-container form-control">
