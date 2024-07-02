@@ -1,5 +1,7 @@
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import { timeToCrack, convertTimeToReadableFormat, getPassphrase } from './utils.js';
+import { FaRegCopy, FaCheck, FaSyncAlt } from "react-icons/fa";
+
 import './PassphraseGenerator.css';
 
 const PassphraseGenerator = () => {
@@ -50,7 +52,7 @@ const PassphraseGenerator = () => {
           onClick={generatePassphrases}
           className="btn btn-primary text-xl text-white"
         >
-          ♻️ New passphrases!
+          <FaSyncAlt /> New passphrases!
         </button>
 
         <div className="dropdown-container form-control">
@@ -84,7 +86,7 @@ const PassphraseGenerator = () => {
           <div className="relative passphrase-content" onClick={() => copyToClipboard(passphrases[bits], bits)}>
             {passphrases[bits]}
             <span className="copy-button" >
-              {copiedBits === bits ? '✅ Copied!' : '📋 Copy'}
+              {copiedBits === bits ? <FaCheck /> : <FaRegCopy />} {copiedBits === bits ? 'Copied!' : 'Copy'}
             </span>
           </div>
         </div>
