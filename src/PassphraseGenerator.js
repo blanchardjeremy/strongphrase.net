@@ -15,7 +15,8 @@ const PassphraseGenerator = () => {
       newPassphrases[bits] = getPassphrase(bits);
     });
     setPassphrases(newPassphrases);
-    setCopiedBits(null); // Reset the copiedBits state
+    // Reset everything 
+    setCopiedBits(null);
     setShowHidden(true);
   }, []);
   
@@ -47,7 +48,7 @@ const PassphraseGenerator = () => {
       <div className="passphrase-header">
         <button
           onClick={generatePassphrases}
-          className="btn btn-primary btn-lg"
+          className="btn btn-primary text-xl text-white"
         >
           ♻️ New passphrases!
         </button>
@@ -58,7 +59,7 @@ const PassphraseGenerator = () => {
             id="hashRateSelect"
             value={hashRate}
             onChange={(e) => setHashRate(Number(e.target.value))}
-            className="p-2 border rounded"
+            className="p-2 border rounded-lg select select-bordered max-w-px-900 w-full pr-10" 
           >
             <option value={1e2}>Online attack (10 guesses/second)</option>
             {/* <option value={1e6}>Slow attack (1 million guesses/second)</option> */}
@@ -95,13 +96,13 @@ const PassphraseGenerator = () => {
       >
         Show Hidden Passphrases
       </button>
-      <div className="mt-4">
-        <label className="block font-bold mb-1">Practice typing the phrase:</label>
+      <div className="mt-4 form-control">
+        <label className="block font-bold mb-1 text-2xl label label-text">Practice typing the phrase:</label>
         <input
           type="text"
           value={practiceInput}
           onChange={(e) => setPracticeInput(e.target.value)}
-          className="w-full p-2 border rounded"
+          className="w-3/4 p-2 border rounded font-custom text-2xl"
         />
       </div>
     </section>
