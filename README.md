@@ -8,9 +8,9 @@ This tool is similar to [diceeware](https://www.eff.org/dice), but generates phr
 
 | Diceware                                                          | **StrongPhrase.net**                                                                  | 
 |-------------------------------------------------------------------|---------------------------------------------------------------------------------------|
-| `shading deflected panorama` (40 bits of entropy)                 | `evil juror obtains 300 thin moths` (46 bits of entropy)                              |
-| `country cradle barbecue predator` (52 bits of entropy)           | `drunk niece and greedy goose clean tall book` (58 bits of entropy)                   |
-| `dyslexia glitter repossess glimpse unrobed` (64 bits of entropy) | `emotional boxer and concerned virus acquire 45 smashed baskets` (66 bits of entropy) |
+| `shading deflected panorama`<br>(40 bits of entropy)                 | `evil juror obtains 300 thin moths`<br>(46 bits of entropy)                              |
+| `country cradle barbecue predator`<br>(52 bits of entropy)           | `drunk niece and greedy goose clean tall book`<br>(58 bits of entropy)                   |
+| `dyslexia glitter repossess glimpse unrobed`<br>(64 bits of entropy) | `emotional boxer and concerned virus acquire 45 smashed baskets`<br>(66 bits of entropy) |
 
 Entropy referrs to how many attempts would be required to guess the password.
 
