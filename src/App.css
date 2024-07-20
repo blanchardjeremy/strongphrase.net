@@ -47,6 +47,6 @@ footer a.link, footer a:hover.link, footer a:active.link, footer a:visited.link 
 }
 
 
-.password-scheme code {
+.password-scheme code, .example-label {
   @apply text-green-700
 }
