@@ -101,10 +101,9 @@ const PassphraseGenerator = () => {
             <div className="flex items-center">
               <span className={`font-bold inline-block w-30 ${label}`}>{label}</span>
               <span className={`ml-2 relative group ${showAllGrammars ? 'hide' : ''}`}>
-                <FaInfoCircle className="h-5 w-5 text-gray-500 cursor-pointer" />
-                <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-2 bg-gray-700 text-white text-xs rounded-md opacity-0 group-hover:opacity-100 transition-opacity">
-                  {bits} bits of entropy
-                </span>
+                <div class="tooltip" data-tip={`${bits} bits of entropy`}>
+                  <FaInfoCircle className="h-5 w-5 text-gray-500 cursor-pointer" />
+                </div>
               </span>
               <div className="ml-2 flex-shrink-0">
                 <span className="crack-time ml-2">Avg time to crack: <em>{time}</em></span>
