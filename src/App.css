@@ -41,3 +41,8 @@ a, a:hover, a:active, a:visited {
     transform: rotate(360deg);
   }
 }
+
+
+.password-scheme code {
+  @apply text-green-700
+}

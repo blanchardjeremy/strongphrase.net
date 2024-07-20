@@ -12,13 +12,25 @@ const App = () => {
       </header>
       <PassphraseGenerator />
       <section className="content">
-        <div className="card bg-slate-100 w-full shadow-xl mt-12">
+        <div className="card bg-slate-100 w-full shadow-xl mt-12 password-scheme">
           <div className="card-body">
             <h2 className="card-title">When to use passphrases</h2>
             <p>Here is the password system we recommend</p>
             <ol className="list-decimal ml-8">
-              <li>Use a strong, randomly-generated pass<strong class="italic">phrase</strong> (like the ones offered on this site) for each of your most important accounts that you type often: Your password manager, Google, Apple iCloud, laptop login</li>
-              <li>Use a <strong>password manager</strong> with <strong>unqiue, randomly-generated</strong> passwords for everything else. (We suggest <a href="https://1password.com/" target="_blank" rel="noreferrer">1Password</a>.)</li>
+              <li>
+                <p>Use a strong, randomly-generated pass<strong class="italic">phrase</strong> (like the ones offered on this site) for each of your most important accounts that you type often: Your password manager, Google, Apple iCloud, laptop login. Examples:</p>
+                <ul className="list-disc ml-8">
+                  <li><code>dynamic mutt eats 250 deformed worms</code></li>
+                  <li><code>cruel major and vocal cop fashion petty bedbug</code></li>
+                </ul>
+              </li>
+              <li>
+                <p>Use a <strong>password manager</strong> with <strong>unqiue, randomly-generated</strong> passwords for everything else. (We suggest <a href="https://1password.com/" target="_blank" rel="noreferrer">1Password</a>.) Examples:</p>
+                <ul className="list-disc ml-8">
+                  <li><code>7ZuNburjjGmme-MDuE*</code></li>
+                  <li><code>3@Y@qXWb@LKnd7qCfsd</code></li>
+                </ul>
+              </li>
             </ol>
           </div>
         </div>
