@@ -26,7 +26,7 @@ const App = () => {
         </p>
       </section>
       <footer className="mt-8">
-        <p>Find the <a href="https://github.com/blanchardjeremy/getapassphrase" className="text-blue-500 hover:underline">source code on GitHub</a>.</p>
+        <p>Find the <a href="https://github.com/blanchardjeremy/getapassphrase" className="text-blue-500 hover:underline">source code on GitHub</a>. You can also <a href="https://github.com/blanchardjeremy/getapassphrase/issues" className="text-blue-500 hover:underline">report a bug or offer feedback</a>.</p>
       </footer>
     </div>
   );
