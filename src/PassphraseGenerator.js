@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
-import { timeToCrack, convertTimeToReadableFormat, getPassphrase, getPrimaryGrammars } from './utils.js';
+import { timeToCrack, convertTimeToReadableFormat, getPassphrase, getPrimaryGrammarLabels, getAllGrammarLabels } from './utils.js';
 import { FaRegCopy, FaCheck, FaSyncAlt, FaInfoCircle } from "react-icons/fa";
 
 import './PassphraseGenerator.css';
@@ -10,11 +10,15 @@ const PassphraseGenerator = () => {
   const [copiedBits, setCopiedBits] = useState(null);
   const [hashRate, setHashRate] = useState(1e12);
   const [showHidden, setShowHidden] = useState(true);
+  const [showAllGrammars, setShowAllGrammars] = useState(false);
+
+  const numTotalGrammars = Object.keys(getAllGrammarLabels()).length;
+  console.log(numTotalGrammars);
 
   const generatePassphrases = useCallback(() => {
     const newPassphrases = {};
-    const grammars = getPrimaryGrammars();
-    const grammar_keys = Object.keys(grammars).map(Number);
+    const grammar_labels = showAllGrammars ? getAllGrammarLabels() : getPrimaryGrammarLabels();
+    const grammar_keys = Object.keys(grammar_labels).map(Number);
     grammar_keys.forEach(bits => {
       newPassphrases[bits] = getPassphrase(bits);
     });
@@ -22,17 +26,18 @@ const PassphraseGenerator = () => {
     // Reset everything 
     setCopiedBits(null);
     setShowHidden(true);
-  }, []);
+  }, [showAllGrammars]);
   
   const crackTimes = useMemo(() => {
-    const grammars = getPrimaryGrammars();
-    const grammar_keys = Object.keys(grammars).map(Number);
+    const grammar_labels = showAllGrammars ? getAllGrammarLabels() : getPrimaryGrammarLabels();
+    console.log(getAllGrammarLabels);
+    const grammar_keys = Object.keys(grammar_labels).map(Number);
     return grammar_keys.map(bits => ({
       bits,
-      label: grammars[bits],
+      label: grammar_labels[bits],
       time: convertTimeToReadableFormat(timeToCrack(bits, hashRate))
     }));
-  }, [hashRate]);
+  }, [hashRate, showAllGrammars]);
 
   const copyToClipboard = useCallback((text, bits) => {
     navigator.clipboard.writeText(text);
@@ -60,6 +65,7 @@ const PassphraseGenerator = () => {
           <FaSyncAlt /> New passphrases!
         </button>
 
+
         <div className="dropdown-container form-control">
           <label htmlFor="hashRateSelect" className="label mb-0 mr-3 text-sm tracking-wide block">Select attacker's computing power (2024 estimates):</label>
           <select
@@ -76,6 +82,13 @@ const PassphraseGenerator = () => {
             <option value={1e14}>Nation State Attacker (100 trillion guesses/second)</option>
           </select>
         </div>
+
+        <button 
+          onClick={() => setShowAllGrammars(!showAllGrammars)} 
+          className="btn btn-sm mt-4 ml-10"
+        >
+          {showAllGrammars ? 'Show main formats only' : `Show all ${numTotalGrammars} formats`}
+        </button>
       </div>
       {crackTimes.map(({ bits, label, time }) => (
         <div key={bits} 
@@ -86,8 +99,8 @@ const PassphraseGenerator = () => {
         >
           <label className="block mb-1 tracking-wide uppercase">
             <div className="flex items-center">
-              <span className={`font-bold inline-block ${label}`}>{label}</span>
-              <span className="ml-2 relative group">
+              <span className={`font-bold inline-block w-30 ${label}`}>{label}</span>
+              <span className={`ml-2 relative group ${showAllGrammars ? 'hide' : ''}`}>
                 <FaInfoCircle className="h-5 w-5 text-gray-500 cursor-pointer" />
                 <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-2 bg-gray-700 text-white text-xs rounded-md opacity-0 group-hover:opacity-100 transition-opacity">
                   {bits} bits of entropy
@@ -106,6 +119,7 @@ const PassphraseGenerator = () => {
           </div>
         </div>
       ))}
+
       <button 
         onClick={() => setShowHidden(true)} 
         className="btn btn-sm mt-4"
@@ -113,6 +127,7 @@ const PassphraseGenerator = () => {
       >
         Show Hidden Passphrases
       </button>
+      
       <div className="mt-4 form-control">
         <label className="block font-bold mb-1 text-2xl label label-text">Practice typing the phrase:</label>
         <input
