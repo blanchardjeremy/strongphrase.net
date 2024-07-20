@@ -13,29 +13,45 @@ const App = () => {
         </header>
         <PassphraseGenerator />
         <section className="content">
-          <div className="card bg-slate-100 w-full shadow-xl mt-12 password-scheme">
-            <div className="card-body">
-              <h2 className="card-title font-header font-extrabold">When to use passphrases</h2>
-              <p>Here is the password system we recommend</p>
-              <ol className="list-decimal ml-8">
-                <li>
-                  <p>Use a strong, randomly-generated pass<strong class="italic">phrase</strong> (like the ones offered on this site) for each of your most important accounts that you type often: Your password manager, Google, Apple iCloud, laptop login. Examples:</p>
-                  <ul className="list-disc ml-8">
-                    <li><code>dynamic mutt eats 250 deformed worms</code></li>
-                    <li><code>cruel major and vocal cop fashion petty bedbug</code></li>
-                  </ul>
-                </li>
-                <li>
-                  <p>Use a <strong>password manager</strong> with <strong>unqiue, randomly-generated</strong> passwords for everything else. (We suggest <a href="https://1password.com/" target="_blank" rel="noreferrer">1Password</a>.) Examples:</p>
-                  <ul className="list-disc ml-8">
-                    <li><code>7ZuNburjjGmme-MDuE*</code></li>
-                    <li><code>3@Y@qXWb@LKnd7qCfsd</code></li>
-                  </ul>
-                </li>
-              </ol>
+
+
+          <div className="card flex flex-row bg-slate-100 shadow-xl mt-12 password-scheme">
+            <div className="flex-none w-1/2 relative card-body">
+              <h2 className="card-title">Use a passphrase for...</h2>
+              <p>Use randomly-generated pass<strong className="italic">phrase</strong> for each of your most important accounts that you type often:</p>
+              <ul className="list-disc ml-8">
+                <li>Your master password for your password manager</li>
+                <li>Laptop</li>
+                <li>Google / Apple account</li>
+                <li>Wi-fi</li>
+              </ul>
+
+              <p>Examples:</p>
+              <ul className="list-disc ml-8">
+                <li><code>dynamic mutt eats 250 deformed worms</code></li>
+                <li><code>cruel major and vocal cop fashion petty bedbug</code></li>
+              </ul>
+            </div>
+            
+            <div className="border-r border-gray-200"></div>
+
+            <div className="flex-grow card-body flex flex-col">
+              <div class="flex-grow"> 
+                <h2 className="card-title">And a password manager for everything else!</h2>
+                <p>Use a <strong>password manager</strong> with <strong>unqiue, randomly-generated</strong> passwords for everything else. (We suggest <a href="https://1password.com/" className="link" target="_blank" rel="noreferrer">1Password</a>).</p>
+                <p>Examples:</p>
+                <ul className="list-disc ml-8">
+                  <li><code>7ZuNburjjGmme-MDuE*</code></li>
+                  <li><code>3@Y@qXWb@LKnd7qCfsd</code></li>
+                </ul>
+              </div>
+              <div className="card-actions justify-end">
+                <a className="btn btn-secondary text-white" href="https://1password.com" target="_blank" rel="noreferrer">Get 1Password</a>
+              </div>
             </div>
           </div>
         </section>
+
         <section className="mt-8 content">
           <h2 className="text-2xl my-4">How does it work?</h2>
           <p>
@@ -47,7 +63,7 @@ const App = () => {
             Yes (relatively). This website runs entirely on your browser. There's no server that genereates the password. You can turn off your wifi and the site will still work!
           </p>
           <p>
-            To be extra safe, you can generate a passphase entirely offline <a href="https://www.eff.org/dice" target="_blank" rel="noreferrer">using 6-sided dice</a>.
+            To be extra safe, you can generate a passphase entirely offline <a href="https://www.eff.org/dice" className="link" target="_blank" rel="noreferrer">using dice</a>.
           </p>
         </section>
       </div>

@@ -130,19 +130,22 @@ const PassphraseGenerator = () => {
         </div>
       ))}
 
-      <div className="mt-12 form-control text-secondary">
-        <span className="block font-header font-extrabold mb-1 text-2xl label label-text text-secondary">Practice typing the phrase</span>
-        <label className="input input-bordered flex items-center gap-2 p-2 border rounded font-custom text-xl input-secondary">
-        
-          <FaKey className="text-base" />
+
+      <div className="card bg-blue-100 w-full shadow-xl mt-12 password-scheme">
+        <div className="card-body form-control text-secondary">
+          <span className="block font-header font-extrabold text-2xl mt-0 pt-0 label label-text text-secondary">Practice typing the phrase</span>
+          <label className="input input-bordered flex items-center gap-2 p-2 border rounded font-custom text-xl input-secondary">
           
-          <input
-            type="text"
-            value={practiceInput}
-            onChange={(e) => setPracticeInput(e.target.value)}
-            className="grow"
-          />
-        </label>
+            <FaKey className="text-base" />
+            
+            <input
+              type="text"
+              value={practiceInput}
+              onChange={(e) => setPracticeInput(e.target.value)}
+              className="grow"
+            />
+          </label>
+        </div>
       </div>
     </section>
   );
