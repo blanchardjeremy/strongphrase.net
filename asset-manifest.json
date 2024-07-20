@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/getapassphrase/static/css/main.14f33daf.css",
-    "main.js": "/getapassphrase/static/js/main.9d1d552c.js",
+    "main.css": "/getapassphrase/static/css/main.495172aa.css",
+    "main.js": "/getapassphrase/static/js/main.e3a26dde.js",
     "static/media/CourierPrime-BoldItalic.woff": "/getapassphrase/static/media/CourierPrime-BoldItalic.6968ed20cbecc2b18e03.woff",
     "static/media/CourierPrime-Italic.woff": "/getapassphrase/static/media/CourierPrime-Italic.f5495136e96800600a86.woff",
     "static/media/CourierPrime-Bold.woff": "/getapassphrase/static/media/CourierPrime-Bold.0f4e4a705251a79f36f5.woff",
@@ -11,11 +11,11 @@
     "static/media/CourierPrime-Bold.woff2": "/getapassphrase/static/media/CourierPrime-Bold.bf75426b6af6f029d70d.woff2",
     "static/media/CourierPrime-Regular.woff2": "/getapassphrase/static/media/CourierPrime-Regular.f771e36de1c902a4c6c4.woff2",
     "index.html": "/getapassphrase/index.html",
-    "main.14f33daf.css.map": "/getapassphrase/static/css/main.14f33daf.css.map",
-    "main.9d1d552c.js.map": "/getapassphrase/static/js/main.9d1d552c.js.map"
+    "main.495172aa.css.map": "/getapassphrase/static/css/main.495172aa.css.map",
+    "main.e3a26dde.js.map": "/getapassphrase/static/js/main.e3a26dde.js.map"
   },
   "entrypoints": [
-    "static/css/main.14f33daf.css",
-    "static/js/main.9d1d552c.js"
+    "static/css/main.495172aa.css",
+    "static/js/main.e3a26dde.js"
   ]
 }
