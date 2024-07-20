@@ -18,7 +18,7 @@ const App = () => {
             <p>Here is the password system we recommend</p>
             <ol className="list-decimal ml-8">
               <li>Use a strong, randomly-generated pass<strong class="italic">phrase</strong> (like the ones offered on this site) for each of your most important accounts that you type often: Your password manager, Google, Apple iCloud, laptop login</li>
-              <li>Use a <strong>password manager</strong> with <strong>unqiue, randomly-generated</strong> passwords for everything else. (We suggest <a href="https://1password.com/">1Password</a>.)</li>
+              <li>Use a <strong>password manager</strong> with <strong>unqiue, randomly-generated</strong> passwords for everything else. (We suggest <a href="https://1password.com/" target="_blank" rel="noreferrer">1Password</a>.)</li>
             </ol>
           </div>
         </div>
@@ -34,7 +34,7 @@ const App = () => {
           Yes (relatively). This website runs entirely on your browser. There's no server that genereates the password. You can turn off your wifi and the site will still work!
         </p>
         <p>
-          To be extra safe, you can generate a passphase entirely offline <a href="https://www.eff.org/dice">using 6-sided dice</a>.
+          To be extra safe, you can generate a passphase entirely offline <a href="https://www.eff.org/dice" target="_blank" rel="noreferrer">using 6-sided dice</a>.
         </p>
       </section>
       <footer className="mt-8">
