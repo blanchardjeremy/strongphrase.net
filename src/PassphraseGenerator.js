@@ -92,7 +92,7 @@ const PassphraseGenerator = () => {
       </div>
       {crackTimes.map(({ bits, label, time }) => (
         <div key={bits} 
-          className={`passphrase-block mb-8 ${
+          className={`passphrase-block mb-6 ${
             copiedBits === bits ? 'copied' : 
             (copiedBits && !showHidden) ? 'hide' : ''
           }`}
