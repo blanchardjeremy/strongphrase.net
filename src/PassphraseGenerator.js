@@ -74,12 +74,9 @@ const PassphraseGenerator = () => {
             onChange={(e) => setHashRate(Number(e.target.value))}
             className="border rounded-lg select select-bordered select-sm w-full"
           >
-            {/* <option value={1e2}>Online attack [10 guesses/sec]</option> */}
-            {/* <option value={1e6}>Slow attack [1 million guesses/sec]</option> */}
-            <option value={1e10}>Standard consumer hardware [10 billion guesses/sec]</option>
-            {/* <option value={1e11}>High-end GPU [100 billion guesses/sec]</option> */}
-            <option value={1e12}>Best available consumer hardware [1 trillion guesses/sec]</option>
-            <option value={1e14}>Nation state (NSA, etc.) [100 trillion guesses/sec]</option>
+            <option value={2e5}>Standard consumer hardware [200,000 guesses/sec]</option>
+            <option value={3e6}>Best available consumer hardware [3 million guesses/sec]</option>
+            <option value={2e12}>Nation state (NSA, etc.) [2 trillion guesses/sec]</option>
           </select>
         </div>
 
