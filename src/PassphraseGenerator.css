@@ -39,7 +39,7 @@
 }
 
 .copy-button {
-  @apply px-2 py-0 rounded absolute right-0 text-sm uppercase font-sans bg-gray-300 tracking-wide top-0 flex items-center cursor-pointer btn btn-xs
+  @apply px-2 py-0 rounded absolute right-0 text-sm uppercase font-sans bg-gray-300 tracking-wide top-0 flex items-center cursor-pointer btn btn-xs border-0
 }
 
 

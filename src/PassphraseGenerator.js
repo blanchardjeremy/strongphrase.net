@@ -8,7 +8,7 @@ const PassphraseGenerator = () => {
   const [passphrases, setPassphrases] = useState({});
   const [practiceInput, setPracticeInput] = useState('');
   const [copiedBits, setCopiedBits] = useState(null);
-  const [hashRate, setHashRate] = useState(1e12);
+  const [hashRate, setHashRate] = useState(1e10);
   const [showHidden, setShowHidden] = useState(true);
   const [showAllGrammars, setShowAllGrammars] = useState(false);
 
@@ -26,6 +26,7 @@ const PassphraseGenerator = () => {
     // Reset everything 
     setCopiedBits(null);
     setShowHidden(true);
+    setPracticeInput('');
   }, [showAllGrammars]);
   
   const crackTimes = useMemo(() => {
@@ -57,47 +58,48 @@ const PassphraseGenerator = () => {
 
   return (
     <section>
-      <div className="passphrase-header">
+      <div className="flex flex-col md:flex-row gap-3 items-end justify-start mb-10">
         <button
           onClick={generatePassphrases}
-          className="btn btn-primary text-xl text-white"
+          className="btn btn-primary text-base md:text-xl text-white mb-2 md:mb-0"
         >
           <FaSyncAlt /> New passphrases!
         </button>
-
-
-        <div className="dropdown-container form-control">
-          <label htmlFor="hashRateSelect" className="label mb-0 mr-3 text-sm tracking-wide block">Select attacker's computing power (2024 estimates):</label>
+        
+        <div className="dropdown-container form-control mb-2 md:mb-0">
+          <label htmlFor="hashRateSelect" className="label text-xs font-bold tracking-wide block">Select attacker's power (2024 estimates):</label>
           <select
             id="hashRateSelect"
             value={hashRate}
             onChange={(e) => setHashRate(Number(e.target.value))}
-            className="p-2 border rounded-lg select select-bordered max-w-px-900 w-full pr-10" 
+            className="border rounded-lg select select-bordered select-sm w-full"
           >
-            {/* <option value={1e2}>Online attack (10 guesses/second)</option> */}
-            {/* <option value={1e6}>Slow attack (1 million guesses/second)</option> */}
-            <option value={1e10}>Standard consumer hardware (10 billion guesses/second)</option>
-            {/* <option value={1e11}>High-end GPU (100 billion guesses/second)</option> */}
-            <option value={1e12}>Best available consumer hardware (1 trillion guesses/second)</option>
-            <option value={1e14}>Nation State Attacker (100 trillion guesses/second)</option>
+            {/* <option value={1e2}>Online attack [10 guesses/sec]</option> */}
+            {/* <option value={1e6}>Slow attack [1 million guesses/sec]</option> */}
+            <option value={1e10}>Standard consumer hardware [10 billion guesses/sec]</option>
+            {/* <option value={1e11}>High-end GPU [100 billion guesses/sec]</option> */}
+            <option value={1e12}>Best available consumer hardware [1 trillion guesses/sec]</option>
+            <option value={1e14}>Nation state (NSA, etc.) [100 trillion guesses/sec]</option>
           </select>
         </div>
 
         <button 
           onClick={() => setShowAllGrammars(!showAllGrammars)} 
-          className="btn btn-sm mt-4 ml-10"
+          className="btn btn-sm btn-outline"
         >
           {showAllGrammars ? 'Show main formats only' : `Show all ${numTotalGrammars} formats`}
         </button>
+
+        <button 
+          onClick={() => setShowHidden(true)} 
+          className="btn btn-sm btn-outline"
+          style={{ display: showHidden ? 'none' : 'block' }}
+        >
+          Show hidden passphrases
+        </button>
+        
       </div>
 
-      <button 
-        onClick={() => setShowHidden(true)} 
-        className="btn btn-sm mt-4 mb-8"
-        style={{ display: showHidden ? 'none' : 'block' }}
-      >
-        Show Hidden Passphrases
-      </button>
       
       {crackTimes.map(({ bits, label, time }) => (
         <div key={bits} 
@@ -128,11 +130,11 @@ const PassphraseGenerator = () => {
         </div>
       ))}
 
-      <div className="mt-12 form-control">
-        <span className="block font-header font-extrabold mb-1 text-2xl label label-text text-secondary ">Practice typing the phrase</span>
-        <label className="input input-bordered flex items-center gap-2 p-2 border rounded font-custom text-2xl input-secondary">
+      <div className="mt-12 form-control text-secondary">
+        <span className="block font-header font-extrabold mb-1 text-2xl label label-text text-secondary">Practice typing the phrase</span>
+        <label className="input input-bordered flex items-center gap-2 p-2 border rounded font-custom text-xl input-secondary">
         
-          <FaKey className="text-secondary text-base" />
+          <FaKey className="text-base" />
           
           <input
             type="text"
