@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
-import { timeToCrack, convertTimeToReadableFormat, getPassphrase } from './utils.js';
-import { FaRegCopy, FaCheck, FaSyncAlt } from "react-icons/fa";
+import { timeToCrack, convertTimeToReadableFormat, getPassphrase, getPrimaryGrammars } from './utils.js';
+import { FaRegCopy, FaCheck, FaSyncAlt, FaInfoCircle } from "react-icons/fa";
 
 import './PassphraseGenerator.css';
 
@@ -13,7 +13,9 @@ const PassphraseGenerator = () => {
 
   const generatePassphrases = useCallback(() => {
     const newPassphrases = {};
-    [46, 54, 58, 66, 70, 80].forEach(bits => {
+    const grammars = getPrimaryGrammars();
+    const grammar_keys = Object.keys(grammars).map(Number);
+    grammar_keys.forEach(bits => {
       newPassphrases[bits] = getPassphrase(bits);
     });
     setPassphrases(newPassphrases);
@@ -23,8 +25,11 @@ const PassphraseGenerator = () => {
   }, []);
   
   const crackTimes = useMemo(() => {
-    return [46, 54, 58, 66, 70, 80].map(bits => ({
+    const grammars = getPrimaryGrammars();
+    const grammar_keys = Object.keys(grammars).map(Number);
+    return grammar_keys.map(bits => ({
       bits,
+      label: grammars[bits],
       time: convertTimeToReadableFormat(timeToCrack(bits, hashRate))
     }));
   }, [hashRate]);
@@ -72,7 +77,7 @@ const PassphraseGenerator = () => {
           </select>
         </div>
       </div>
-      {crackTimes.map(({ bits, time }) => (
+      {crackTimes.map(({ bits, label, time }) => (
         <div key={bits} 
           className={`passphrase-block mb-8 ${
             copiedBits === bits ? 'copied' : 
@@ -80,8 +85,18 @@ const PassphraseGenerator = () => {
           }`}
         >
           <label className="block mb-1 tracking-wide uppercase">
-            <span className="font-bold inline-block w-52">{bits} bits of entropy</span>
-            <span className="crack-time">Avg time to crack: <em>{time}</em></span>
+            <div className="flex items-center">
+              <span className={`font-bold inline-block ${label}`}>{label}</span>
+              <span className="ml-2 relative group">
+                <FaInfoCircle className="h-5 w-5 text-gray-500 cursor-pointer" />
+                <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-2 bg-gray-700 text-white text-xs rounded-md opacity-0 group-hover:opacity-100 transition-opacity">
+                  {bits} bits of entropy
+                </span>
+              </span>
+              <div className="ml-2 flex-shrink-0">
+                <span className="crack-time ml-2">Avg time to crack: <em>{time}</em></span>
+              </div>
+            </div>
           </label>
           <div className="relative passphrase-content" onClick={() => copyToClipboard(passphrases[bits], bits)}>
             {passphrases[bits]}
