@@ -1,21 +1,34 @@
 {
   "files": {
-    "main.css": "/getapassphrase/static/css/main.84038499.css",
-    "main.js": "/getapassphrase/static/js/main.2bde5981.js",
-    "static/media/CourierPrime-BoldItalic.woff": "/getapassphrase/static/media/CourierPrime-BoldItalic.6968ed20cbecc2b18e03.woff",
+    "main.css": "/getapassphrase/static/css/main.30e24584.css",
+    "main.js": "/getapassphrase/static/js/main.6212592a.js",
+    "static/media/Roboto-BlackItalic.woff2": "/getapassphrase/static/media/Roboto-BlackItalic.74a49feb441ff349ee79.woff2",
+    "static/media/Roboto-BoldItalic.woff2": "/getapassphrase/static/media/Roboto-BoldItalic.1b14e835b9b3013f47e8.woff2",
+    "static/media/Roboto-Italic.woff2": "/getapassphrase/static/media/Roboto-Italic.4150dfa9c521d1571eb6.woff2",
+    "static/media/Raleway-ExtraBoldItalic.woff2": "/getapassphrase/static/media/Raleway-ExtraBoldItalic.4758058e80cfad5f059f.woff2",
+    "static/media/Roboto-Black.woff2": "/getapassphrase/static/media/Roboto-Black.a04aceecdab55c0e2ea1.woff2",
+    "static/media/Roboto-Bold.woff2": "/getapassphrase/static/media/Roboto-Bold.002079d85a6f27587d17.woff2",
+    "static/media/Roboto-Regular.woff2": "/getapassphrase/static/media/Roboto-Regular.9429985be4f46ec8fcfc.woff2",
+    "static/media/Raleway-Italic.woff2": "/getapassphrase/static/media/Raleway-Italic.0684cc8a9213a0872462.woff2",
+    "static/media/Raleway-SemiBold.woff2": "/getapassphrase/static/media/Raleway-SemiBold.64a47ff6b7af8548cca1.woff2",
+    "static/media/Raleway-Bold.woff2": "/getapassphrase/static/media/Raleway-Bold.ac83a2efd0cc5f1df1e4.woff2",
+    "static/media/Raleway-ExtraBold.woff2": "/getapassphrase/static/media/Raleway-ExtraBold.55b4ecc581880c14de24.woff2",
+    "static/media/Raleway-Regular.woff2": "/getapassphrase/static/media/Raleway-Regular.067c528cd7e529e34103.woff2",
+    "static/media/Raleway-ExtraLight.woff2": "/getapassphrase/static/media/Raleway-ExtraLight.7e173f352332fb355b69.woff2",
+    "static/media/Raleway-Medium.woff2": "/getapassphrase/static/media/Raleway-Medium.346d4988667a4adc6585.woff2",
+    "static/media/Raleway-Black.woff2": "/getapassphrase/static/media/Raleway-Black.4e5adac9423a010d522e.woff2",
     "static/media/CourierPrime-Italic.woff": "/getapassphrase/static/media/CourierPrime-Italic.f5495136e96800600a86.woff",
     "static/media/CourierPrime-Bold.woff": "/getapassphrase/static/media/CourierPrime-Bold.0f4e4a705251a79f36f5.woff",
     "static/media/CourierPrime-Regular.woff": "/getapassphrase/static/media/CourierPrime-Regular.993feb7991a7b478bb4c.woff",
-    "static/media/CourierPrime-BoldItalic.woff2": "/getapassphrase/static/media/CourierPrime-BoldItalic.17ce99620e9216ff560b.woff2",
     "static/media/CourierPrime-Italic.woff2": "/getapassphrase/static/media/CourierPrime-Italic.6871c50d0db3ec91465b.woff2",
     "static/media/CourierPrime-Bold.woff2": "/getapassphrase/static/media/CourierPrime-Bold.bf75426b6af6f029d70d.woff2",
     "static/media/CourierPrime-Regular.woff2": "/getapassphrase/static/media/CourierPrime-Regular.f771e36de1c902a4c6c4.woff2",
     "index.html": "/getapassphrase/index.html",
-    "main.84038499.css.map": "/getapassphrase/static/css/main.84038499.css.map",
-    "main.2bde5981.js.map": "/getapassphrase/static/js/main.2bde5981.js.map"
+    "main.30e24584.css.map": "/getapassphrase/static/css/main.30e24584.css.map",
+    "main.6212592a.js.map": "/getapassphrase/static/js/main.6212592a.js.map"
   },
   "entrypoints": [
-    "static/css/main.84038499.css",
-    "static/js/main.2bde5981.js"
+    "static/css/main.30e24584.css",
+    "static/js/main.6212592a.js"
   ]
 }
