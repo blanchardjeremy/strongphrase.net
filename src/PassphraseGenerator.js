@@ -74,7 +74,7 @@ const PassphraseGenerator = () => {
             onChange={(e) => setHashRate(Number(e.target.value))}
             className="p-2 border rounded-lg select select-bordered max-w-px-900 w-full pr-10" 
           >
-            <option value={1e2}>Online attack (10 guesses/second)</option>
+            {/* <option value={1e2}>Online attack (10 guesses/second)</option> */}
             {/* <option value={1e6}>Slow attack (1 million guesses/second)</option> */}
             <option value={1e10}>Standard consumer hardware (10 billion guesses/second)</option>
             {/* <option value={1e11}>High-end GPU (100 billion guesses/second)</option> */}

@@ -114,16 +114,23 @@ export const convertTimeToReadableFormat = (seconds) => {
     { value: 1, singular: "second", plural: "seconds" }
   ];
 
+  const roundToSigFig = (num, sigFig) => {
+    if (num === 0) return 0;
+    const multiplier = Math.pow(10, sigFig - Math.ceil(Math.log10(num < 0 ? -num : num)));
+    return Math.round(num * multiplier) / multiplier;
+  };
+
   for (const { value, singular, plural } of units) {
     if (seconds >= value) {
-      const amount = Math.floor(seconds / value);
-      const label = amount === 1 ? singular : plural;  // Choose the appropriate label based on the amount
+      const amount = roundToSigFig(seconds / value, 1);
+      const label = amount === 1 ? singular : plural;
       return `${amount.toLocaleString()} ${label}`;
     }
   }
 
   return "less than a second";
 };
+
 
 
 const words = {
