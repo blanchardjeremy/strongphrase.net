@@ -32,6 +32,10 @@ a, a:hover, a:active, a:visited {
   @apply text-blue-500 hover:underline;
 }
 
+footer a, footer a:hover, footer a:active, footer a:visited {
+  @apply text-neutral-content underline hover:no-underline;
+}
+
 
 @keyframes App-logo-spin {
   from {

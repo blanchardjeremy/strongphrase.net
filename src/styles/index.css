@@ -14,3 +14,8 @@ body {
 code {
   font-family: 'Courier Prime', source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+h1, h2, h3 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 800;
+}

@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import { timeToCrack, convertTimeToReadableFormat, getPassphrase, getPrimaryGrammarLabels, getAllGrammarLabels } from './utils.js';
-import { FaRegCopy, FaCheck, FaSyncAlt, FaInfoCircle } from "react-icons/fa";
+import { FaRegCopy, FaCheck, FaSyncAlt, FaInfoCircle, FaKey } from "react-icons/fa";
 
 import './PassphraseGenerator.css';
 
@@ -108,10 +108,10 @@ const PassphraseGenerator = () => {
         >
           <label className="block mb-1 tracking-wide uppercase">
             <div className="flex items-center">
-              <span className={`font-bold inline-block w-30 ${label}`}>{label}</span>
-              <span className={`ml-2 relative group ${showAllGrammars ? 'hide' : ''}`}>
-                <div class="tooltip" data-tip={`${bits} bits of entropy`}>
-                  <FaInfoCircle className="h-5 w-5 text-gray-500 cursor-pointer" />
+              <span className={`font-header font-extrabold text-xl inline-block w-30 ${label}`}>{label}</span>
+              <span className={`ml-2 group  ${showAllGrammars ? 'hide' : ''}`}>
+                <div className="tooltip mt-1" data-tip={`${bits} bits of entropy`}>
+                  <FaInfoCircle className=" text-gray-500 cursor-pointer text-base" />
                 </div>
               </span>
               <div className="ml-2 flex-shrink-0">
@@ -128,14 +128,19 @@ const PassphraseGenerator = () => {
         </div>
       ))}
 
-      <div className="mt-4 form-control">
-        <label className="block font-bold mb-1 text-2xl label label-text">Practice typing the phrase:</label>
-        <input
-          type="text"
-          value={practiceInput}
-          onChange={(e) => setPracticeInput(e.target.value)}
-          className="w-3/4 p-2 border rounded font-custom text-2xl"
-        />
+      <div className="mt-12 form-control">
+        <span className="block font-header font-extrabold mb-1 text-2xl label label-text text-secondary ">Practice typing the phrase</span>
+        <label className="input input-bordered flex items-center gap-2 p-2 border rounded font-custom text-2xl input-secondary">
+        
+          <FaKey className="text-secondary text-base" />
+          
+          <input
+            type="text"
+            value={practiceInput}
+            onChange={(e) => setPracticeInput(e.target.value)}
+            className="grow"
+          />
+        </label>
       </div>
     </section>
   );
