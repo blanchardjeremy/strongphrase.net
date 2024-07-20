@@ -90,6 +90,15 @@ const PassphraseGenerator = () => {
           {showAllGrammars ? 'Show main formats only' : `Show all ${numTotalGrammars} formats`}
         </button>
       </div>
+
+      <button 
+        onClick={() => setShowHidden(true)} 
+        className="btn btn-sm mt-4 mb-8"
+        style={{ display: showHidden ? 'none' : 'block' }}
+      >
+        Show Hidden Passphrases
+      </button>
+      
       {crackTimes.map(({ bits, label, time }) => (
         <div key={bits} 
           className={`passphrase-block mb-6 ${
@@ -119,14 +128,6 @@ const PassphraseGenerator = () => {
         </div>
       ))}
 
-      <button 
-        onClick={() => setShowHidden(true)} 
-        className="btn btn-sm mt-4"
-        style={{ display: showHidden ? 'none' : 'block' }}
-      >
-        Show Hidden Passphrases
-      </button>
-      
       <div className="mt-4 form-control">
         <label className="block font-bold mb-1 text-2xl label label-text">Practice typing the phrase:</label>
         <input

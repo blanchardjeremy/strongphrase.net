@@ -1,4 +1,4 @@
-import React, { useState, } from 'react';
+import React, { } from 'react';
 import PassphraseGenerator from './PassphraseGenerator.js';
 import './App.css';
 
@@ -26,7 +26,8 @@ const App = () => {
         </p>
       </section>
       <footer className="mt-8">
-        <p>Find the <a href="https://github.com/blanchardjeremy/getapassphrase" className="text-blue-500 hover:underline">source code on GitHub</a>. You can also <a href="https://github.com/blanchardjeremy/getapassphrase/issues" className="text-blue-500 hover:underline">report a bug or offer feedback</a>.</p>
+        <p>This site collects no data. All interactions happen directly in your browser and stay entirely on your computer.</p>
+        <p>Find the <a href="https://github.com/blanchardjeremy/getapassphrase" className="text-blue-500 hover:underline">source code on GitHub</a>. You can also <a href="https://github.com/blanchardjeremy/getapassphrase/issues" className="text-blue-500 hover:underline">report a bug or offer feedback</a>. Original code by Ryan Foster.</p>
       </footer>
     </div>
   );
