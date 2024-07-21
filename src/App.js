@@ -3,6 +3,7 @@ import PassphraseGenerator from './PassphraseGenerator.js';
 import './App.css';
 import { RiShieldKeyholeLine } from "react-icons/ri";
 import { HiOutlineChatBubbleOvalLeftEllipsis } from "react-icons/hi2";
+import logo from './img/logo.png';
 
 
 
@@ -11,6 +12,7 @@ const App = () => {
     <div className="font-body">
       <div className="max-w-screen-lg mx-auto px-4 py-8">
         <header className="mb-8">
+          <img className="float-start max-w-16 mr-4" alt="Lock icon" src={logo} />
           <h1 className="text-4xl font-header mb-2">StrongPhrase.net</h1>
           <p className="text-xl">Create a strong, memorable passphrases</p>
         </header>

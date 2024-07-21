@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import { timeToCrack, convertTimeToReadableFormat, getPassphrase, getPrimaryGrammarLabels, getAllGrammarLabels } from './utils.js';
+import HashRateSelector, { defaultHashRate } from './HashRateSelector';
 import { FaRegCopy, FaCheck, FaSyncAlt, FaInfoCircle, FaKey } from "react-icons/fa";
 
 import './PassphraseGenerator.css';
@@ -8,7 +9,7 @@ const PassphraseGenerator = () => {
   const [passphrases, setPassphrases] = useState({});
   const [practiceInput, setPracticeInput] = useState('');
   const [copiedBits, setCopiedBits] = useState(null);
-  const [hashRate, setHashRate] = useState(1e10);
+  const [hashRate, setHashRate] = useState(defaultHashRate);
   const [showHidden, setShowHidden] = useState(true);
   const [showAllGrammars, setShowAllGrammars] = useState(false);
 
@@ -65,20 +66,8 @@ const PassphraseGenerator = () => {
         >
           <FaSyncAlt /> New passphrases!
         </button>
-        
-        <div className="dropdown-container form-control mb-2 md:mb-0">
-          <label htmlFor="hashRateSelect" className="label text-xs font-bold tracking-wide block">Select attacker's power (2024 estimates):</label>
-          <select
-            id="hashRateSelect"
-            value={hashRate}
-            onChange={(e) => setHashRate(Number(e.target.value))}
-            className="border rounded-lg select select-bordered select-sm w-full"
-          >
-            <option value={2e5}>Standard consumer hardware [200,000 guesses/sec]</option>
-            <option value={3e6}>Best available consumer hardware [3 million guesses/sec]</option>
-            <option value={2e12}>Nation state (NSA, etc.) [2 trillion guesses/sec]</option>
-          </select>
-        </div>
+
+        <HashRateSelector setHashRate={setHashRate} hashRate={hashRate} />
 
         <button 
           onClick={() => setShowAllGrammars(!showAllGrammars)} 

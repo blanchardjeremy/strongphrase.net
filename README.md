@@ -32,15 +32,14 @@ The folks at hivesystems.com have a great [table](https://www.hivesystems.com/bl
 This data is current as of 2024 and will need updated.
 
 The site offers attack profiles:
-|                         | Standard consumer       | Best consumer hardware         | Nation state (NSA, etc.) |
-|-------------------------|-------------------------|--------------------------------|--------------------------|
-| Assumed hardware        | RTX 4090                | RTX 4090 x10 (or AWS A100 x16) | A100 x10,000             |
-| Cost                    | $2,300                  | $64/hour                       | A100 x10,000             |
-| Crack time [^1]         | 99 years                | 7 years                        |                          |
-| Calculation             | 70^8 / (99*365*24*3600) | 70^8 / (7*365*24*3600)         | 70^8 / (5*60)            |
-| Guesses/second          | 184,000/sec             | 2.6 million/sec                | 1.9 trillion/sec         |
-| G/s rounded to sig figs | 200,000/sec             | 3 million/sec                  | 2 trillion/sec           |
-
+|                             | Standard consumer hardware     | Best consumer hardware         | Nation state attacker (NSA, etc.) |
+|-----------------------------|--------------------------------|--------------------------------|-----------------------------------|
+| Hardware                    | RTX 4090                       | RTX 4090 x10 (or AWS A100 x16) | A100 x10,000                      |
+| Cost                        | $2,300                         | $64/hour                       | Unlmited budget                   |
+| Crack time for 8 chars [^1] | 99 years                       | 7 years                        | 5 minutes                         |
+| Calculation                 | `= 70^8 / (99\*365\*24\*3600)` | `= 70^8 / (7\*365\*24\*3600)`  | `= 70^8 / (5*60)`                 |
+| Guesses/second (g/s)        | = 184,000/sec                  | = 2.6 million/sec              | = 1.9 trillion/sec                |
+| g/s rounded to sig figs     | 200,000/sec                    | 3 million/sec                  | 2 trillion/sec                    |
 
 
 
@@ -55,4 +54,4 @@ The site offers attack profiles:
 This is a fork of [Get a Passphrase by Ryan Foster](https://github.com/openidauthority/getapassphrase). This repo is a significant re-write of the interface, while most of the core passphrase generation remains the same.
 
 ## Footnotes
-[^1]: Based on hivesystems.com's [table](https://www.hivesystems.com/blog/are-your-passwords-in-the-green) for a password with 8 characters, lowercase, uppercase, symbols, and numbers (70 character set).
+[^1]: Crack time is based on hivesystems.com's [table](https://www.hivesystems.com/blog/are-your-passwords-in-the-green) for a password with 8 characters, lowercase, uppercase, symbols, and numbers (70 character set).
