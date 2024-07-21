@@ -26,3 +26,7 @@
 .faq-answer {
   @apply text-gray-700;
 }
+
+.faq-container a, .faq-container a:visited, .faq-container a:active, .faq-container a:hover {
+  @apply link text-blue-500 hover:underline no-underline;
+}

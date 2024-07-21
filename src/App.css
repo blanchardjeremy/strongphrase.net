@@ -24,10 +24,6 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
 a.link, a:hover.link , a:active.link , a:visited.link {
   @apply text-blue-500 hover:underline no-underline;
 }
@@ -35,17 +31,6 @@ a.link, a:hover.link , a:active.link , a:visited.link {
 footer a.link, footer a:hover.link, footer a:active.link, footer a:visited.link {
   @apply text-neutral-content underline hover:no-underline;
 }
-
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 
 .password-scheme code, .example-label {
   @apply text-green-700
