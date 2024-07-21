@@ -1,7 +1,8 @@
 import React, { } from 'react';
 import './App.css';
 import PassphraseGenerator from './PassphraseGenerator.js';
-import PasswordSchemeCard from './PasswordSchemeCard';
+import PasswordSchemeCard from './PasswordSchemeCard.js';
+import Faq from './Faq.js';
 import logo from './img/logo.png';
 
 
@@ -19,20 +20,7 @@ const App = () => {
         
         <PasswordSchemeCard />
 
-        <section className="mt-8 content">
-          <h2 className="text-2xl my-4">How does it work?</h2>
-          <p>
-            This website randomly selects words from predefined lists and arranges them into meaningful sentences.
-            These passphrases are millions of times stronger than most humanly-generated passwords, but reasonably easy to memorize, making them ideal for protecting your most important accounts.
-          </p>
-          <h2 className="text-2xl my-4">Is it safe to generate my password online?</h2>
-          <p>
-            Yes (relatively). This website runs entirely on your browser. There's no server that genereates the password. You can turn off your wifi and the site will still work!
-          </p>
-          <p>
-            To be extra safe, you can generate a passphase entirely offline <a href="https://www.eff.org/dice" className="link" target="_blank" rel="noreferrer">using dice</a>.
-          </p>
-        </section>
+        <Faq />
       </div>
 
       <footer className="footer footer-center bg-neutral text-neutral-content p-10">

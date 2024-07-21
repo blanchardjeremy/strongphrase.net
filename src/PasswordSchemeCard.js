@@ -4,7 +4,7 @@ import { HiOutlineChatBubbleOvalLeftEllipsis } from "react-icons/hi2";
 
 const PasswordSchemeCard = () => {
   return (
-    <div className="card lg:card-side flex flex-row bg-slate-100 shadow-xl mt-12 password-scheme">
+    <div className="card lg:card-side flex flex-row bg-slate-100 shadow-lg mt-20 password-scheme">
       <div className="flex-none w-1/2 relative card-body">
         <h2 className="card-title"><HiOutlineChatBubbleOvalLeftEllipsis className="text-3xl" />Use a <u>passphrase</u> for...</h2>
         <p>Use randomly-generated pass<strong className="italic">phrase</strong> for each of your most important accounts that you type often:</p>
