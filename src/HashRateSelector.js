@@ -1,9 +1,9 @@
 import React from 'react';
 
 const hardwareOptions = {
-    "Standard consumer hardware": 2e5, // 200,000 guesses/sec
-    "Best consumer hardware": 3e6, // 3 million guesses/sec
-    "Nation state (NSA, etc.)": 2e12 // 2 trillion guesses/sec
+    "Standard consumer hardware": 184000, // 184,000
+    "Best consumer hardware": 2.6e6, // 2.6 million
+    "Nation state (NSA, etc.)": 1.9e12 // 1.9 trillion
 };
 
 export const defaultHashRate = Object.values(hardwareOptions)[1];
