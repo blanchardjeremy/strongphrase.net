@@ -32,15 +32,14 @@ The folks at hivesystems.com have a great [table](https://www.hivesystems.com/bl
 This data is current as of 2024 and will need updated.
 
 The site offers attack profiles:
-|                             | Standard consumer hardware     | Best consumer hardware         | Nation state attacker (NSA, etc.) |
-|-----------------------------|--------------------------------|--------------------------------|-----------------------------------|
-| Hardware                    | RTX 4090                       | RTX 4090 x10 (or AWS A100 x16) | A100 x10,000                      |
-| Cost                        | $2,300                         | $64/hour                       | Unlmited budget                   |
-| Crack time for 8 chars [^1] | 99 years                       | 7 years                        | 5 minutes                         |
-| Calculation                 | `= 70^8 / (99\*365\*24\*3600)` | `= 70^8 / (7\*365\*24\*3600)`  | `= 70^8 / (5*60)`                 |
-| Guesses/second (g/s)        | = 184,000/sec                  | = 2.6 million/sec              | = 1.9 trillion/sec                |
-| g/s rounded to sig figs     | 200,000/sec                    | 3 million/sec                  | 2 trillion/sec                    |
-
+|                                    | Standard consumer hardware     | Best consumer hardware         | Nation state attacker (NSA, etc.) |
+|------------------------------------|--------------------------------|--------------------------------|-----------------------------------|
+| Hardware                           | RTX 4090                       | RTX 4090 x10 (or AWS A100 x16) | A100 x10,000                      |
+| Cost                               | $2,300                         | $64/hour                       | Unlmited budget                   |
+| Crack time for 8 chars [^1]        | 99 years                       | 7 years                        | 5 minutes                         |
+| Calculation                        | `= 70^8 / (99\*365\*24\*3600)` | `= 70^8 / (7\*365\*24\*3600)`  | `= 70^8 / (5*60)`                 |
+| Guesses/second                     | = 184,000/sec                  | = 2.6 million/sec              | = 1.9 trillion/sec                |
+| Guesses/second rounded to sig figs | = 200,000/sec                  | = 3 million/sec                | = 2 trillion/sec                  |
 
 
 ## Resources
