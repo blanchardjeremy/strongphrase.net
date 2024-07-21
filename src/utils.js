@@ -22,7 +22,7 @@ let grammars = {
 
 export const getPrimaryGrammarLabels = () => {
   return {
-    46: "Strong", 
+    44: "Strong", 
     58: "Stronger", 
     66: "Strongest"
   };
