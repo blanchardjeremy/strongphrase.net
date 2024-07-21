@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.054b5d76.css",
-    "main.js": "/static/js/main.80fb7100.js",
+    "main.css": "/static/css/main.1ccf4a5e.css",
+    "main.js": "/static/js/main.3d0b5dfe.js",
     "static/media/Roboto-BlackItalic.woff2": "/static/media/Roboto-BlackItalic.74a49feb441ff349ee79.woff2",
     "static/media/Roboto-BoldItalic.woff2": "/static/media/Roboto-BoldItalic.1b14e835b9b3013f47e8.woff2",
     "static/media/Roboto-Italic.woff2": "/static/media/Roboto-Italic.4150dfa9c521d1571eb6.woff2",
@@ -23,12 +23,13 @@
     "static/media/CourierPrime-Italic.woff2": "/static/media/CourierPrime-Italic.6871c50d0db3ec91465b.woff2",
     "static/media/CourierPrime-Bold.woff2": "/static/media/CourierPrime-Bold.bf75426b6af6f029d70d.woff2",
     "static/media/CourierPrime-Regular.woff2": "/static/media/CourierPrime-Regular.f771e36de1c902a4c6c4.woff2",
+    "static/media/logo.png": "/static/media/logo.0f16c1b0317cd10880e1.png",
     "index.html": "/index.html",
-    "main.054b5d76.css.map": "/static/css/main.054b5d76.css.map",
-    "main.80fb7100.js.map": "/static/js/main.80fb7100.js.map"
+    "main.1ccf4a5e.css.map": "/static/css/main.1ccf4a5e.css.map",
+    "main.3d0b5dfe.js.map": "/static/js/main.3d0b5dfe.js.map"
   },
   "entrypoints": [
-    "static/css/main.054b5d76.css",
-    "static/js/main.80fb7100.js"
+    "static/css/main.1ccf4a5e.css",
+    "static/js/main.3d0b5dfe.js"
   ]
 }
