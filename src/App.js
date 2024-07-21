@@ -14,7 +14,7 @@ const App = () => {
         <header className="mb-8">
           <img className="float-start max-w-16 mr-4" alt="Lock icon" src={logo} />
           <h1 className="text-4xl font-header mb-2">StrongPhrase.net</h1>
-          <p className="text-xl">Create a strong, memorable passphrases</p>
+          <p className="text-xl">Create strong, memorable passphrases</p>
         </header>
         <PassphraseGenerator />
         
