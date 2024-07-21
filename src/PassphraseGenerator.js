@@ -58,7 +58,7 @@ const PassphraseGenerator = () => {
   
 
   return (
-    <section>
+    <section className="content">
       <div className="flex flex-col md:flex-row gap-3 items-end justify-start mb-10">
         <button
           onClick={generatePassphrases}
@@ -71,14 +71,14 @@ const PassphraseGenerator = () => {
 
         <button 
           onClick={() => setShowAllGrammars(!showAllGrammars)} 
-          className="btn btn-sm btn-outline"
+          className="btn btn-sm"
         >
           {showAllGrammars ? 'Show main formats only' : `Show all ${numTotalGrammars} formats`}
         </button>
 
         <button 
           onClick={() => setShowHidden(true)} 
-          className="btn btn-sm btn-outline"
+          className="btn btn-sm"
           style={{ display: showHidden ? 'none' : 'block' }}
         >
           Show hidden passphrases

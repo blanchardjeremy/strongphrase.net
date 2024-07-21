@@ -17,9 +17,10 @@ const App = () => {
           <p className="text-xl">Create a strong, memorable passphrases</p>
         </header>
         <PassphraseGenerator />
+        
+
+        
         <section className="content">
-
-
           <div className="card lg:card-side flex flex-row bg-slate-100 shadow-xl mt-12 password-scheme">
             <div className="flex-none w-1/2 relative card-body">
               <h2 className="card-title"><HiOutlineChatBubbleOvalLeftEllipsis className="text-3xl" />Use a <u>passphrase</u> for...</h2>
