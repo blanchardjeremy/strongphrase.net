@@ -23,19 +23,25 @@ const App = () => {
         <Faq />
       </div>
 
-      <footer className="footer footer-center bg-neutral text-neutral-content p-10">
-        <aside className="mb-0">
-          <p>
-            <strong>StrongPhrase.net</strong> - Create a strong, memorable passphrase to use as your master password
-          </p>
-          <p>This site collects no data. All interactions happen directly in your browser and stay entirely on your computer.</p>
-          <p>Originally created by Ryan Foster. Re-written by Jeremy Blanchard.</p>
-        </aside>
-        <nav className="grid grid-flow-col gap-8 mt-0">
-          <a className="link" href="https://github.com/blanchardjeremy/getapassphrase">Code on GitHub</a>
-          <a className="link" href="https://github.com/blanchardjeremy/getapassphrase/issues">Submit feedback or a bug</a>
-        </nav>
-      </footer>
+      <div className="bg-blue-950 text-neutral-content p-10 w-full">
+        <footer className="footer max-w-screen-lg mx-auto py-4">
+          <aside className="flex items-start space-x-2">
+            <img className="float-left max-w-10" alt="Lock icon" src={logo} />
+            <div>
+              <h6 className="font-header text-xl">StrongPhrase.net</h6>
+              <p><em>Create a strong, memorable passphrase to use as your master password.</em></p>
+              <p>This site collects no data. There are no trackers or calls to external services/sites. All interactions and passphrase generation happen directly in your browser and stay on your computer.</p>
+              <p>Originally created by Ryan Foster. Re-written by Jeremy Blanchard.</p>
+            </div>
+          </aside>
+          <nav className="">
+          <h6 className="footer-title">Connect</h6>
+            <a className="link link-hover" href="https://github.com/blanchardjeremy/getapassphrase">Code on GitHub</a>
+            <a className="link link-hover" href="https://github.com/blanchardjeremy/getapassphrase/issues">Submit feedback or a bug</a>
+          </nav>
+        </footer>
+      </div>
+
     </div>
   );
 };

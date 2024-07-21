@@ -89,7 +89,7 @@ const PassphraseGenerator = () => {
       
       {crackTimes.map(({ bits, label, time }) => (
         <div key={bits} 
-          className={`passphrase-block mb-6 ${
+          className={`passphrase-block ${
             copiedBits === bits ? 'copied' : 
             (copiedBits && !showHidden) ? 'hide' : ''
           }`}
@@ -107,7 +107,7 @@ const PassphraseGenerator = () => {
               </div>
             </div>
           </label>
-          <div className="relative passphrase-content" onClick={() => copyToClipboard(passphrases[bits], bits)}>
+          <div className="relative passphrase-content mb-6" onClick={() => copyToClipboard(passphrases[bits], bits)}>
             {passphrases[bits]}
             <span className="copy-button" >
               {copiedBits === bits ? <FaCheck /> : <FaRegCopy />} {copiedBits === bits ? 'Copied!' : 'Copy'}
@@ -117,7 +117,7 @@ const PassphraseGenerator = () => {
       ))}
 
 
-      <div className="card bg-blue-100 w-full shadow-xl mt-12 password-scheme">
+      <div className="card bg-blue-100 w-full shadow-xl mt-12">
         <div className="card-body form-control text-secondary">
           <span className="block font-header font-extrabold text-2xl mt-0 pt-0 label label-text text-secondary">Practice typing the phrase</span>
           <label className="input input-bordered flex items-center gap-2 p-2 border rounded font-custom text-xl input-secondary">

@@ -21,7 +21,7 @@
 }
 
 .passphrase-content {
-  @apply p-2 px-4 bg-gray-100 rounded-xl flex-grow relative font-custom text-xl pr-28
+  @apply p-2 px-4 bg-gray-100 rounded-xl font-custom text-xl pr-28
 }
 
 /* highlight when hovering */

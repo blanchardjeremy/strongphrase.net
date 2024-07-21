@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .faq-overall-container {
-  @apply p-6 bg-slate-100 rounded-xl shadow-lg;
+  @apply p-6 bg-gray-100 rounded-xl shadow-lg;
   @apply max-w-3xl mx-auto mt-24;
 }
 
