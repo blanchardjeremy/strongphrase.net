@@ -79,11 +79,15 @@ const Faq = () => {
 
             But most people don't use 10-character passwords. They use common words that can be easily found on a word list. Or they turn \`dragon\` into something harder like \`dr@g0n123!\`. That's an improvement, but since most attackers will be using a dictionary of common words, and will [expect obvious subtituations](https://blanchardjeremy.github.io/tryzxcvbn/), it doesn't help that much.
 
-            This [classic xkcd comic](https://xkcd.com/936/) about passwords vs passphrases is a good summary of why passphrases are better than passwords.
+            This [classic xkcd comic](https://xkcd.com/936/) about passwords vs passphrases is a good summary.
 
             <img src="https://imgs.xkcd.com/comics/password_strength_2x.png" alt="xkcd comic about passphrases vs password" width="700" />
 
-
+            | Password          | Attack approach                                     | Bits of entropy          | Avg time to crack <br>(3 million guesses/sec) |
+            |-------------------|-----------------------------------------------------|--------------------------|-----------------------------------------------|
+            | \`dragon\`        | Top 100 passwords                                   | = **7 bits**                   | Instatnly                                     |
+            | \`dr@g0n\`        | + Common substitutions  (10 options)                | 7+3+3 <br>= **13 bits**          | Instantly                                     |
+            | \`dr@g0n1998$!#\` | + Year (2,000 options) + symbol at end (30 options) | 7+3+3+11+5+5+4 <br>= **35 bits** | 2 hours                                       |
 
             We can achieve much more human-friendly passphrases by using something like [diceware](https://www.eff.org/dice). Diceware draws from a list of 7,776 words. So a phrase with 3 words has 7,776<sup>3</sup> = 479 trillion possible combinations.
             
@@ -130,7 +134,7 @@ const Faq = () => {
             | **Calculation**                 | = 70^8 / (99\\*365\\*24*3600) | = 70^8 / (7\\*365\\*24*3600)   | = 70^8 / (5*60)                   |
             | **Guesses/second**              | = **184,000/sec**           | = **2.6 million/sec**            | = **1.9 trillion/sec**            |
 
-            [^1]: Crack time is based on [hivesystems.com's table](https://www.hivesystems.com/blog/are-your-passwords-in-the-green) for a password with 8 characters, lowercase, uppercase, symbols, and numbers (70 character set).
+            [^1]: Crack time is based on [hivesystems.com's table](https://www.hivesystems.com/blog/are-your-passwords-in-the-green) for a password with 8 characters using lowercase, uppercase, symbols, and numbers (70 characters in the pool).
             [^2]: AWS pricing is based on the [Amazon EC2 P4d](https://aws.amazon.com/ec2/instance-types/p4/) for EC2 P4d.24xlarge instances.
 
           `} 

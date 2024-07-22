@@ -19,9 +19,3 @@ See the [FAQ on the website](https://strongphrase.net/#FAQ)
 This is a fork of [Get a Passphrase by Ryan Foster](https://github.com/openidauthority/getapassphrase). This repo is a significant re-write of the interface, while most of the core passphrase generation remains the same.
 
 
-
-| Password        | Attack approach                            | Bits of entropy      | Time to crack <br>(2.6 guesses million/sec) |
-|-----------------|--------------------------------------------|----------------------|---------------------------------------------|
-| \`dragon\`      | Top 100 passwords                          | 7 bits               | Instatnly                                   |
-| \`dr@g0n\`      | + Common substitutions  (10 options)       | 7+3+3 = 13 bits      | Instantly                                   |
-| \`dr@g0n1998!\` | + Recent year (1,000) + symbol at end (30) | 7+3+3+10+5 = 25 bits | 

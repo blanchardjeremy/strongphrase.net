@@ -52,6 +52,8 @@ const EntropyCrackTimeTable = () => {
               </p>
             </div>
 
+            <h2 className="font-header text-3xl">Time and cost to crack</h2>
+
             <div className="flex flex-row gap-4">
               <HashRateSelector setHashRate={setHashRate} hashRate={hashRate} />
               
@@ -74,31 +76,35 @@ const EntropyCrackTimeTable = () => {
                 The folks at 1Password estimate that (for password hashing scheme), it <a href="https://blog.1password.com/cracking-challenge-update/" className="link link-hover">costs $6 per 2<sup>32</sup> guesses</a>. We have been assuming bcrypt with simpler configurations, so the cost in our scenario is likely much less. And it is only going to go down in the future.
               </p>
             </div>
-            <br /><br />
 
-            <h2 className="font-header text-3xl">Time and cost to crack</h2>
-            <div className="overflow-x-auto">
+            <div className="card card-body p-6 bg-green-100 mt-4 flex flex-grow max-w-3xl text-sm">
+              <p className="mt-0">
+                <strong>Takeaway:</strong> 45 bits should be your minimum and most people don't need more than 60 bits.
+              </p>
+            </div>
+
+            <div className="overflow-x-auto mt-8">
                 <table className="table table-zebra w-auto">
-                    <thead>
-                        <tr>
-                            <th>Bits</th>
-                            <th>Pool of possible guesses</th>
-                            <th>Avg. Crack Time</th>
-                            <th>Max Crack Time (double)</th>
-                            <th>Avg cost to crack</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {tableData.map((row) => (
-                            <tr key={row.bits}>
-                                <td>{row.bits}</td>
-                                <td>{row.guesses}</td>
-                                <td>{row.avgtime}</td>
-                                <td>{row.maxtime}</td>
-                                <td>{`$${row.cost}`}</td>
-                            </tr>
-                        ))}
-                    </tbody>
+                  <thead>
+                    <tr>
+                      <th>Bits</th>
+                      <th>Pool of possible guesses</th>
+                      <th>Avg. Crack Time</th>
+                      <th>Max Crack Time (double)</th>
+                      <th>Avg cost to crack</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {tableData.map((row) => (
+                      <tr key={row.bits}>
+                        <td>{row.bits}</td>
+                        <td>{row.guesses}</td>
+                        <td>{row.avgtime}</td>
+                        <td>{row.maxtime}</td>
+                        <td>{`$${row.cost}`}</td>
+                      </tr>
+                    ))}
+                  </tbody>
                 </table>
             </div>
         </div>
