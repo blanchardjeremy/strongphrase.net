@@ -54,6 +54,14 @@ const Faq = () => {
           `} 
         />
 
+
+        <FAQItem 
+          question="Should I use strong, stronger, or strongest?" 
+          answer={stripIndent`
+            .... cite what I came up with on the table
+          `} 
+        />
+
         <FAQItem 
           question="What is password 'entropy'?"
           answer={stripIndent`

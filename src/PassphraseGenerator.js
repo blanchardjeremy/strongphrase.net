@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
-import { timeToCrack, convertTimeToReadableFormat, getPassphrase, getPrimaryGrammarLabels, getAllGrammarLabels } from './utils.js';
+import { timeToCrackAvg, convertTimeToReadableFormat, getPassphrase, getPrimaryGrammarLabels, getAllGrammarLabels } from './utils.js';
 import HashRateSelector, { defaultHashRate } from './HashRateSelector';
 import { FaRegCopy, FaCheck, FaSyncAlt, FaInfoCircle, FaKey } from "react-icons/fa";
 
@@ -36,7 +36,7 @@ const PassphraseGenerator = () => {
     return grammar_keys.map(bits => ({
       bits,
       label: grammar_labels[bits],
-      time: convertTimeToReadableFormat(timeToCrack(bits, hashRate))
+      time: convertTimeToReadableFormat(timeToCrackAvg(bits, hashRate))
     }));
   }, [hashRate, showAllGrammars]);
 

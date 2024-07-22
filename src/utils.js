@@ -97,7 +97,7 @@ const cryptoAvailable = function() {
   return (typedArr && crypto && typeof crypto.getRandomValues == "function");
 }
 
-export const timeToCrack = (bits, hashesPerSecond) => {
+export const timeToCrackAvg = (bits, hashesPerSecond) => {
   const totalCombinations = Math.pow(2, bits);
   return totalCombinations / (2 * hashesPerSecond);
 };
