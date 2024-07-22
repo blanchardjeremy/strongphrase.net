@@ -32,12 +32,8 @@ footer a.link, footer a:hover.link, footer a:active.link, footer a:visited.link 
   @apply text-neutral-content underline hover:no-underline;
 }
 
-.password-scheme ul, .password-scheme ol {
-  @apply ml-6;
-}
-
-.password-scheme .password-examples, .example-label {
-  @apply text-green-700 list-disc;
+.password-scheme .password-examples li {
+  @apply mb-2;
 }
 
 .content p {

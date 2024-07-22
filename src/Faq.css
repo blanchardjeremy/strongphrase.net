@@ -1,6 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 .faq-overall-container {
   @apply p-6 bg-gray-100 rounded-xl shadow-lg;
@@ -29,4 +26,12 @@
 
 .faq-container a, .faq-container a:visited, .faq-container a:active, .faq-container a:hover {
   @apply link text-blue-500 hover:underline no-underline;
+}
+
+.faq-container table {
+  @apply table table-zebra w-full table-sm;
+}
+
+.faq-container table th {
+  @apply uppercase;
 }

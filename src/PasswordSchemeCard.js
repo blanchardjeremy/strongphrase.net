@@ -8,17 +8,17 @@ const PasswordSchemeCard = () => {
       <div className="card-body flex flex-grow w-full">
         <h2 className="card-title"><HiOutlineChatBubbleOvalLeftEllipsis className="text-3xl" />Use a <u>passphrase</u> for...</h2>
         <p>Use randomly-generated pass<strong className="italic">phrase</strong> for each of your most important accounts that you type often:</p>
-        <ul className="list-disc">
+        <ul className="list-disc list-inside">
           <li>Your master password for your password manager</li>
           <li>Laptop</li>
           <li>Google / Apple account</li>
           <li>Wi-fi</li>
         </ul>
 
-        <p className="example-label">Examples:</p>
+        <p className="example-label font-bold">Examples:</p>
         <ul className="password-examples">
-          <li><code>dynamic mutt eats 250 deformed worms</code></li>
-          <li><code>cruel major and vocal cop fashion petty bedbug</code></li>
+          <li><code>harsh robin finds orange jalapeno</code></li>
+          <li><code>amateur dog and unruly pony hurl delicate boar</code></li>
         </ul>
       </div>
       
@@ -27,7 +27,7 @@ const PasswordSchemeCard = () => {
       <div className="card-body flex flex-grow w-full">
         <h2 className="card-title"><RiShieldKeyholeLine className="text-3xl" />And a <u>password manager</u> for...</h2>
         <p>Use a <strong>password manager</strong> with <strong>unique, randomly-generated</strong> passwords for everything else. It will generate random passwords for each website and automatically fill them for you each time you log-in, so you don't have to type them. (We suggest <a href="https://1password.com/" className="link" target="_blank" rel="noreferrer">1Password</a>).</p>
-        <p className="mb-2 example-label">Examples:</p>
+        <p className="mb-2 example-label font-bold">Examples:</p>
         <ul className="password-examples">
           <li><code>7ZuNburjjGmme-MDuE*</code></li>
           <li><code>3@Y@qXWb@LKnd7qCfsd</code></li>

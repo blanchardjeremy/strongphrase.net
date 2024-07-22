@@ -41,6 +41,9 @@ The site offers attack profiles:
 | Guesses/second              | = 184,000/sec               | = 2.6 million/sec                | = 1.9 trillion/sec                |
 
 
+
+
+
 ## Resources
 * [Time to crack passwords - famous table (Hivesystems.com)](https://www.hivesystems.com/blog/are-your-passwords-in-the-green)
 * [EFF Diceware wordlist](https://www.eff.org/dice) (and fun [D20 fandom wordlists](https://www.eff.org/deeplinks/2018/08/dragon-con-diceware))

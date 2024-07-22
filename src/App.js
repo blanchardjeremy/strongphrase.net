@@ -30,14 +30,15 @@ const App = () => {
             <div>
               <h6 className="font-header text-xl">StrongPhrase.net</h6>
               <p><em>Create a strong, memorable passphrase to use as your master password.</em></p>
-              <p>This site collects no data. There are no trackers or calls to external services/sites. All interactions and passphrase generation happen directly in your browser and stay on your computer.</p>
-              <p>Originally created by Ryan Foster. Re-written by Jeremy Blanchard.</p>
+              <p className="mt-4">This site does not collect any data. The server we host on <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages#data-collection" target="_blank" rel="noreferrer">stores only your IP address</a> for security purposes. There are no trackers or calls to external services/sites. All interactions and passphrase generation happen directly in your browser and stay on your computer.</p>
+              <p className="mt-4">Originally created by Ryan Foster. Re-written by Jeremy Blanchard.</p>
             </div>
           </aside>
           <nav className="">
           <h6 className="footer-title">Connect</h6>
-            <a className="link link-hover" href="https://github.com/blanchardjeremy/getapassphrase">Code on GitHub</a>
-            <a className="link link-hover" href="https://github.com/blanchardjeremy/getapassphrase/issues">Submit feedback or a bug</a>
+            <a className="link link-hover" href="https://github.com/blanchardjeremy/strongphrase.net" target="_blank" rel="noreferrer">Code on GitHub</a>
+            <a className="link link-hover" href="https://github.com/blanchardjeremy/strongphrase.net/issues" target="_blank" rel="noreferrer">Submit a bug or request</a>
+            <a className="link link-hover" href="https://forms.gle/pu1vqi8Mc1VYirGz6" target="_blank" rel="noreferrer">Contact</a>
           </nav>
         </footer>
       </div>
