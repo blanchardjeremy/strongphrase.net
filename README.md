@@ -15,7 +15,7 @@ See the [FAQ on the website](https://strongphrase.net/#FAQ)
 * [How strong should your master password be? Cost to crack (1Password)](https://blog.1password.com/cracking-challenge-update/)
 
 
+
 ## Credits
 This is a fork of [Get a Passphrase by Ryan Foster](https://github.com/openidauthority/getapassphrase). This repo is a significant re-write of the interface, while most of the core passphrase generation remains the same.
-
 
