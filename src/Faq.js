@@ -43,10 +43,10 @@ const Faq = () => {
             answer={stripIndent`
               | Password scheme                 | Example                              | Crackable | Easy to remember<br> and type |
               |---------------------------------|--------------------------------------|---------------|-------------------------------|
-              | Dictionary words                | \`dragon\`                            | ❌ Easy            | ✅ Easy                            |
-              | Common words <br>with substitutions | \`dr@g0n123!\`                       | ❌ Easy            | ❌ Hard                            |
+              | Dictionary word                 | \`dragon\`                            | ❌ Easy            | ✅ Easy                            |
+              | Dictionary word <br>with substitutions | \`dr@g0n123!\`                       | ❌ Easy            | ❌ Hard                            |
               | Random characters               | \`N7qm!C#9A@\`                       | ✅ Hard            | ❌ Hard                            |
-              | Diceware passphrase             | \`country cradle barbecue predator\` | ✅ Hard            | ⚠️ Kinda easy                            |
+              | Diceware passphrase             | \`wrangle matter esquire granny\` | ✅ Hard            | ⚠️ Kinda easy                            |
               | **StrongPhrase.net<br> passphrase** | **\`evil juror obtains thin moths\`**| ✅ Hard            | ✅ Easy                            |
 
             `} 
@@ -64,9 +64,11 @@ const Faq = () => {
           <FAQItem 
             question="Where does the list of words come from?" 
             answer={stripIndent`
-              You can find the full wordlists [here](https://github.com/blanchardjeremy/strongphrase.net/blob/main/src/utils.js#L136). They were chosen to be common enough words that they would be easy to remember and type
+              They were chosen to be common enough words that they would be easy to remember and type.
 
-              If you find words that you think should be removed, [I'd love to hear the feedback](https://forms.gle/pu1vqi8Mc1VYirGz6).
+              You can find the full list of owrds [here](https://github.com/blanchardjeremy/strongphrase.net/blob/main/src/utils.js#L136). 
+
+              I put some time in filtering out offensive words, but I'm sure I missed some. If you find words that you think should be removed, [I'd love to hear the feedback](https://forms.gle/pu1vqi8Mc1VYirGz6).
             `} 
           />
 
@@ -113,13 +115,13 @@ const Faq = () => {
               | \`socrates\`      | Common names (20,000) | = **14 bits** | Instantly                                       |
               | \`socrates*^$cacatus\`| Common names (20,000) + symbols <br>+ Common words (20,000) | 14+3+3+3+14 <br>= **37 bits** | 7 hours                                       |
 
-              We can achieve much more human-friendly passphrases by using something like [diceware](https://www.eff.org/dice). Diceware draws from a list of 7,776 words. So a phrase with 3 words has 7,776<sup>3</sup> = 479 trillion possible combinations.
+              We can achieve much more human-friendly passphrases by using something like [diceware](https://www.eff.org/dice). Diceware draws from a list of **7,776 words**. So a phrase with 3 words has 7,776<sup>3</sup> = 479 trillion possible combinations. Each word adds 12.9 bits of entropy.
               
               | Diceware passphrase                                     | Bits of entropy | Avg time to crack <br>(3 million guesses/sec) |
               |---------------------------------------------------------|-----------------|---------------|
-              | 3 words: \`shading deflected panorama\`                 | **40 bits**     | 2 days        |
-              | 4 words: \`country cradle barbecue predator\`           | **52 bits**     | 30 years      |
-              | 5 words: \`dyslexia glitter repossess glimpse unrobed\` | **64 bits**     | 100,000 years |
+              | 3 words: \`shading deflected panorama\`                 | **39 bits**     | 2 days        |
+              | 4 words: \`wrangle matter esquire granny\`           | **52 bits**     | 30 years      |
+              | 5 words: \`dyslexia glitter repossess glimpse unrobed\` | **65 bits**     | 100,000 years |
 
               The passphrases we generate on this site offer similar strength, but are easier to visualize and therefore easier to remember.
 
@@ -150,16 +152,22 @@ const Faq = () => {
 
               We provide profiles for 3 different levels of computing power:
 
-              |                             | Standard consumer hardware  | Best consumer hardware           | Nation state attacker (NSA, etc.) |
+              |                             | Standard consumer hardware  | Best consumer hardware           | Nation state (NSA, etc.) |
               |-----------------------------|-----------------------------|----------------------------------|-----------------------------------|
-              | **Hardware**                    | RTX 4090                    | RTX 4090 x10 (or AWS A100 x16)   | A100 x10,000                      |
-              | **Est. Cost**                   | $2,300                      | $64/hour for 2 AWS instances[^2] | $64,000/hour                      |
+              | **Hardware**                    | RTX 4090                    | RTX 4090 with 10 GPUs <br>(≈ Cloud-based A100 with 16 GPUs)[^cloudA100]   | A100 with 10,000 GPUs                      |
+              | **Est. Cost**                   | $2,300                      | $23,000 or <br>$64/hour for 2 AWS instances[^aws] | $410,000/hour                      |
               | **Crack time for 8 chars**[^1] | 99 years                    | 7 years                          | 5 minutes                         |
               | **Calculation**                 | = 70^8 / (99\\*365\\*24*3600) | = 70^8 / (7\\*365\\*24*3600)   | = 70^8 / (5*60)                   |
               | **Guesses/second**              | = **184,000/sec**           | = **2.6 million/sec**            | = **1.9 trillion/sec**            |
+              | **$USD cost per 2^32 guesses**  | = **???**           | = **???**            | = **$0.257** per 2^32 guesses            |
+
+              The "**Far future  nation state**" profile is a wild guess at what might be possible far in the future.
+
+              The powerful GPUs that help an attacker crack passwords are the same GPUs that are used to train AI models. As AI continues to explore, it's reasonable to assume that these GPUs will become ever more available on the cloud.
 
               [^1]: Crack time is based on [hivesystems.com's table](https://www.hivesystems.com/blog/are-your-passwords-in-the-green) for a password with 8 characters using lowercase, uppercase, symbols, and numbers (70 characters in the pool).
-              [^2]: AWS pricing is based on the [Amazon EC2 P4d](https://aws.amazon.com/ec2/instance-types/p4/) for EC2 P4d.24xlarge instances.
+              [^aws]: AWS pricing is based on the [Amazon EC2 P4d](https://aws.amazon.com/ec2/instance-types/p4/) for EC2 P4d.24xlarge instances.
+              [^clouda100]: [Hivesystems.com's table](https://www.hivesystems.com/blog/are-your-passwords-in-the-green) lists "17 years" to crack our standard password using an A100 x8, so A100 x16 should be about 8 years, which is close enough to the "7 years" listed for RTX 4090. 
 
             `} 
           />

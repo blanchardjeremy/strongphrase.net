@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 const costOptions = {
   "$0.001": 0.001,
   "$0.01": 0.01,
+  "$0.25 (Best-case cloud scenario bcrypt)": 0.25,
   "$1.00": 1,
   "$6.00 (1Password scenario)": 6,
 };
@@ -17,7 +18,7 @@ const formatNumber = (number) => {
 
 const EntropyCrackTimeTable = () => {
     const [hashRate, setHashRate] = useState(defaultHashRate);
-    const [costPerGuess32, setCostPerGuess32] = useState(6);
+    const [costPerGuess32, setCostPerGuess32] = useState(0.25);
 
     const handleCostChange = (event) => {
         setCostPerGuess32(Number(event.target.value));
@@ -73,7 +74,7 @@ const EntropyCrackTimeTable = () => {
 
             <div className="card card-body p-6 bg-gray-100 mt-4 flex flex-grow max-w-3xl text-sm">
               <p className="mt-0">
-                The folks at 1Password estimate that (for password hashing scheme), it <a href="https://blog.1password.com/cracking-challenge-update/" className="link link-hover">costs $6 per 2<sup>32</sup> guesses</a>. We have been assuming bcrypt with simpler configurations, so the cost in our scenario is likely much less. And it is only going to go down in the future.
+                The folks at 1Password estimate that it <a href="https://blog.1password.com/cracking-challenge-update/" className="link link-hover">costs $6 per 2<sup>32</sup> guesses</a> to crack their system. Their password hashing is much more complex than the hashing assumptions on the main page (bcrypt). bcrypt with simpler configurations, so the cost in our scenario is likely much less. And it is only going to go down in the future.
               </p>
             </div>
 
