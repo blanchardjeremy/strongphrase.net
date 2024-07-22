@@ -152,22 +152,37 @@ const Faq = () => {
 
               We provide profiles for 3 different levels of computing power:
 
-              |                             | Standard consumer hardware  | Best consumer hardware           | Nation state (NSA, etc.) |
-              |-----------------------------|-----------------------------|----------------------------------|-----------------------------------|
-              | **Hardware**                    | RTX 4090                    | RTX 4090 with 10 GPUs <br>(≈ Cloud-based A100 with 16 GPUs)[^cloudA100]   | A100 with 10,000 GPUs                      |
-              | **Est. Cost**                   | $2,300                      | $23,000 or <br>$64/hour for 2 AWS instances[^aws] | $410,000/hour                      |
-              | **Crack time for 8 chars**[^1] | 99 years                    | 7 years                          | 5 minutes                         |
-              | **Calculation**                 | = 70^8 / (99\\*365\\*24*3600) | = 70^8 / (7\\*365\\*24*3600)   | = 70^8 / (5*60)                   |
-              | **Guesses/second**              | = **184,000/sec**           | = **2.6 million/sec**            | = **1.9 trillion/sec**            |
-              | **$USD cost per 2^32 guesses**  | = **???**           | = **???**            | = **$0.257** per 2^32 guesses            |
+              |                                | Standard consumer hardware    | Best consumer hardware                                                  | Nation state (NSA, etc.)      |
+              |--------------------------------|-------------------------------|-------------------------------------------------------------------------|-------------------------------|
+              | **Hardware**                   | RTX 4090                      | RTX 4090 with 10 GPUs <br>(≈ Cloud-based A100 with 16 GPUs)[^cloudA100] | A100 with 10,000 GPUs         |
+              | **Est. Cost**                  | $2,300                        | $23,000 or <br>$64/hour for 2 AWS instances[^aws]                       | $410,000/hour                 |
+              | **Crack time for 8 chars**[^1] | 99 years                      | 7 years                                                                 | 5 minutes                     |
+              | **Calculation**                | = 70^8 / (99\\*365\\*24*3600) | = 70^8 / (7\\*365\\*24*3600)                                            | = 70^8 / (5*60)               |
+              | **Guesses/second**             | = **184,000/sec**             | = **2.6 million/sec**                                                   | = **1.9 trillion/sec**        |
 
-              The "**Far future  nation state**" profile is a wild guess at what might be possible far in the future.
-
-              The powerful GPUs that help an attacker crack passwords are the same GPUs that are used to train AI models. As AI continues to explore, it's reasonable to assume that these GPUs will become ever more available on the cloud.
 
               [^1]: Crack time is based on [hivesystems.com's table](https://www.hivesystems.com/blog/are-your-passwords-in-the-green) for a password with 8 characters using lowercase, uppercase, symbols, and numbers (70 characters in the pool).
               [^aws]: AWS pricing is based on the [Amazon EC2 P4d](https://aws.amazon.com/ec2/instance-types/p4/) for EC2 P4d.24xlarge instances.
               [^clouda100]: [Hivesystems.com's table](https://www.hivesystems.com/blog/are-your-passwords-in-the-green) lists "17 years" to crack our standard password using an A100 x8, so A100 x16 should be about 8 years, which is close enough to the "7 years" listed for RTX 4090. 
+
+              The "**Far future  nation state**" profile is a wild guess at what might be possible far in the future.
+
+              If we use [Jacob Enger's Money-to-Crack approach](https://jacobegner.blogspot.com/2020/11/password-strength-in-dollars.html), we can find:
+
+              Let's figure out a reasonable estimate for "cost to crack" scenario:
+
+              |                                                             | Guesses/second | Guesses/$           | $ per 2^32 guesses[^convert] |
+              |-------------------------------------------------------------|----------------|---------------------|------------------------------|
+              | AWS A100 x10,000 using bcrypt<br>(based on hivesystems.com) | 2.6 trillion   | 17 billion [^conv2] | $0.25                        |
+              | 1x RTX 4090 using bcrypt <br>(best case)                    | 184,000        | 9.3 billion         | $0.46                        |
+              | 1Password using PBKDF2<br>(much harder than bcrypt)         | *[???]*        | 715 million         | $6                           |
+
+              [^convert]: The formala to convert from guesses/dollar to dollars per 2^32 guesses is: **(2^32) / (guesses/second)**
+              [^conv2]: The formula here is **(guesses/second * 3600) / ($/hour)** so here we have: **(1.9 trillion * 3600) / $410,000 = 17 billion**.
+
+
+              The powerful GPUs that help an attacker crack passwords are the same GPUs that are used to train AI models. As AI continues to explore, it's reasonable to assume that these GPUs will become ever more available on the cloud.
+
 
             `} 
           />
