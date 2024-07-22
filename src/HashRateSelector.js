@@ -22,7 +22,6 @@ const HashRateSelector = ({ hashRate, setHashRate }) => {
     const handleChange = (e) => {
         const selectedValue = Number(e.target.value);
         setHashRate(selectedValue);
-        console.log(hardwareOptions);
     };
 
     return (

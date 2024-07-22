@@ -14,7 +14,6 @@ const PassphraseGenerator = () => {
   const [showAllGrammars, setShowAllGrammars] = useState(false);
 
   const numTotalGrammars = Object.keys(getAllGrammarLabels()).length;
-  console.log(numTotalGrammars);
 
   const generatePassphrases = useCallback(() => {
     const newPassphrases = {};
@@ -28,11 +27,11 @@ const PassphraseGenerator = () => {
     setCopiedBits(null);
     setShowHidden(true);
     setPracticeInput('');
+
   }, [showAllGrammars]);
   
   const crackTimes = useMemo(() => {
     const grammar_labels = showAllGrammars ? getAllGrammarLabels() : getPrimaryGrammarLabels();
-    console.log(getAllGrammarLabels);
     const grammar_keys = Object.keys(grammar_labels).map(Number);
     return grammar_keys.map(bits => ({
       bits,
@@ -68,6 +67,8 @@ const PassphraseGenerator = () => {
         </button>
 
         <HashRateSelector setHashRate={setHashRate} hashRate={hashRate} />
+
+
 
         <button 
           onClick={() => setShowAllGrammars(!showAllGrammars)} 

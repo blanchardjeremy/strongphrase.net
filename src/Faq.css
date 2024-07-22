@@ -1,6 +1,6 @@
 
 .faq-overall-container {
-  @apply p-6 bg-gray-100 rounded-xl shadow-lg;
+  @apply p-6 bg-slate-300 rounded-xl shadow-lg;
   @apply mx-auto mt-24;
 }
 
@@ -31,9 +31,12 @@
 .markdown-content table {
   @apply table table-sm w-full mb-6 mt-6 border rounded-md;
 }
+.markdown-content table td {
+  @apply text-base;
+}
 
 .markdown-content table th {
-  @apply bg-gray-200 text-base-content;
+  @apply bg-gray-100 text-base-content;
 }
 
 .markdown-content table th {
