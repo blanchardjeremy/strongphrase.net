@@ -4,7 +4,7 @@ import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { stripIndent } from 'common-tags';
 import './Faq.css';
-import { getWordStats, getSampleWords } from './utils';
+import { getWordStats, getSampleWords, avgTimeToCrackFormatted } from './utils';
 
 const FAQItem = ({ question, id, answer }) => {
   return (
@@ -24,7 +24,7 @@ const WordStatsFAQItem = () => {
 
   function dictToMarkdownTable(wordCounts) {
     // Start with the table header
-    let markdownTable = "| Category | Count | Bits of entropy | Samples |\n";
+    let markdownTable = "| Category | # of Words | Bits of entropy | Samples |\n";
     markdownTable += "|----------|-------|----------|--------|\n";
     
     // Iterate through the dictionary and append each key-value pair as a table row
@@ -43,12 +43,15 @@ const WordStatsFAQItem = () => {
 
   return (
     <FAQItem 
-        question="How long are your word lists?" 
+        question="What word lists are you drawing from?" 
         id="words"
         answer={stripIndent`
-          You can find the [full list of words here](https://github.com/blanchardjeremy/strongphrase.net/blob/main/src/utils.js#L186).
-
 ${wordStatsTable}
+
+They were chosen to be common enough words that they would be easy to remember and type. You can find the [full list of words here](https://github.com/blanchardjeremy/strongphrase.net/blob/main/src/utils.js#L186).
+The numbers were chosen to be somewhat easy to remember (rather than fully random).
+
+I put some time in filtering out offensive words, but I'm sure I missed some. If you find words that you think should be removed, [I'd love to hear the feedback](https://forms.gle/pu1vqi8Mc1VYirGz6).
         `} 
       />
   );
@@ -69,17 +72,23 @@ const Faq = () => {
               Use this site to create strong passphrases that are easy to remember.
               These passphrases are **much stronger** than most passwords because they are randomly generated, whereas passwords are often reused, shorter, and easier to guess.
               This site was inspired by other passphrase generates like [diceware](https://www.eff.org/dice), but designed to generate phrases that are **easier to visualize and remember**.
-
             `} 
           />
-
 
           <FAQItem 
             question="Should I choose STRONG, STRONGER, or STRONGEST?" 
             id="choosing"
             answer={stripIndent`
-              The best answer for most folks is: choose any passphrase that you will use. Password advice is only helpful if you use it. So while the "**STRONGEST**" option is harder to crack, it is also harder to type every time. For most folks, the "**STRONG**" is plenty.
-              If you want to geek out more, you can check out the [time to crack table](/#/table) for more details.
+              The best answer for most folks is: choose any passphrase that you will use. That's probably the easiest one ("**STRONG**"). Password advice is only helpful if you use it. So while the "**STRONGEST**" option is harder to crack, it is also harder to type every time. For most folks, the "**STRONG**" is plenty.
+              
+              The longer answer is: It depends on how important the data is you're trying to protect. 
+              If you follow the approach recommended above, you're primarily using these passphrase to secure your password manager and laptop. 
+              Hacking either of those requires physical access to your device. So the question becomes: 
+              **"How likely is it that someone will get access to my device? And how much time/money would they be willing to put into cracking it?"**
+              
+              For most of us, "STRONG" is plenty. But if you are securing extremely valuable information, you can try one of the stronger formats. (You can also use the "Show all formats" to see a number of other structures that are available at different strength levels.)
+
+              If you want to geek out more, you can check out the [time/cost to crack table](/#/table) for more details and read the FAQ answers about time and cost to crack below.
             `} 
           />
 
@@ -87,13 +96,13 @@ const Faq = () => {
             question="How does this compare with other password schemes?"
             id="compare"
             answer={stripIndent`
-              | Password scheme                 | Example                              | Crackable | Easy to remember<br> and type |
-              |---------------------------------|--------------------------------------|---------------|-------------------------------|
-              | Dictionary word                 | \`dragon\`                            | ❌ Easy            | ✅ Easy                            |
-              | Dictionary word <br>with substitutions | \`dr@g0n123!\`                       | ❌ Easy            | ❌ Hard                            |
-              | Random characters               | \`N7qm!C#9A@\`                       | ✅ Hard            | ❌ Hard                            |
-              | Diceware passphrase             | \`wrangle matter esquire granny\` | ✅ Hard            | ⚠️ Kinda easy                            |
-              | **StrongPhrase.net<br> passphrase** | **\`evil juror obtains thin moths\`**| ✅ Hard            | ✅ Easy                            |
+              | Password scheme                     | Example                               | Crackable  | Easy to remember<br> and type |
+              |-------------------------------------|---------------------------------------|------------|-------------------------------|
+              | Common word/name/etc                | \`dragon\`                            | ❌ Easy     | ✅ Easy                        |
+              | Common word <br>with substitutions  | \`dr@g0n123!\`                        | ❌ Easy     | ❌ Hard                        |
+              | Random characters                   | \`N7qm!C#9A@\`                        | ✅ Hard     | ❌ Hard                        |
+              | Diceware passphrase                 | \`wrangle matter esquire granny\`     | ✅ Hard     | ⚠️ Kinda easy                  |
+              | **StrongPhrase.net<br> passphrase** | **\`evil juror obtains thin moths\`** | ✅ **Hard** | ✅ **Easy**                    |
 
             `} 
           />
@@ -108,15 +117,6 @@ const Faq = () => {
             `} 
           />
           
-          <FAQItem 
-            question="Where does the list of words come from?" 
-            id="words"
-            answer={stripIndent`
-              They were chosen to be common enough words that they would be easy to remember and type. You can find the [full list of words here](https://github.com/blanchardjeremy/strongphrase.net/blob/main/src/utils.js#L186).
-              I put some time in filtering out offensive words, but I'm sure I missed some. If you find words that you think should be removed, [I'd love to hear the feedback](https://forms.gle/pu1vqi8Mc1VYirGz6).
-            `} 
-          />
-
         </div>
       </section>
 
@@ -125,7 +125,7 @@ const Faq = () => {
         <h1 className="section-header">🤓🤓 Technical Background 🤓🤓</h1>
         <div className="faq-container">
           <FAQItem 
-            question="What is password 'entropy'?"
+            question="What makes a strong password? (hint: entropy!)"
             id="entropy"
             answer={stripIndent`
               **Entropy** is a technical term that refers to how hard a password is to crack.
@@ -159,20 +159,20 @@ const Faq = () => {
               We can achieve much more human-friendly passphrases by using something like [diceware](https://www.eff.org/dice). Diceware draws from a list of **7,776 words**. So a phrase with 3 words has 7,776<sup>3</sup> = 479 trillion possible combinations. Each word adds 12.9 bits of entropy.
               
               | Diceware passphrase                                     | Bits of entropy | Avg time to crack <br>(3 million guesses/sec) |
-              |---------------------------------------------------------|-----------------|---------------|
-              | 3 words: \`shading deflected panorama\`                 | **39 bits**     | 2 days        |
-              | 4 words: \`wrangle matter esquire granny\`           | **52 bits**     | 30 years      |
-              | 5 words: \`dyslexia glitter repossess glimpse unrobed\` | **65 bits**     | 100,000 years |
+              |---------------------------------------------------------|-----------------|-----------------------------------------------|
+              | 3 words: \`shading deflected panorama\`                 | **39 bits**     | ${avgTimeToCrackFormatted(39, 3e6)}           |
+              | 4 words: \`wrangle matter esquire granny\`              | **52 bits**     | ${avgTimeToCrackFormatted(52, 3e6)}           |
+              | 5 words: \`dyslexia glitter repossess glimpse unrobed\` | **65 bits**     | ${avgTimeToCrackFormatted(65, 3e6)}           |
 
               The passphrases we generate on this site offer similar strength, but are easier to visualize and therefore easier to remember.
 
-              | **StrongPhrase.net passphrase**                                              | Bits of entropy |  Avg time to crack <br>(3 million guesses/sec) |
-              |------------------------------------------------------------------------------|-----------------|---------------|
-              | Strong: \`evil juror obtains thin moths\`                                    | **44 bits**     | 40 days       |
-              | Stronger: \`drunk niece and greedy goose clean tall book\`                   | **58 bits**     | 2,000 years   |
-              | Strongst: \`emotional boxer and concerned virus acquire 45 smashed baskets\` | **66 bits**     | 400,000 years |
+              | **StrongPhrase.net passphrase**                                              | Bits of entropy | Avg time to crack <br>(3 million guesses/sec) |
+              |------------------------------------------------------------------------------|-----------------|-----------------------------------------------|
+              | Strong: \`evil juror obtains thin moths\`                                    | **44 bits**     | ${avgTimeToCrackFormatted(40, 3e6)}           |
+              | Stronger: \`drunk niece and greedy goose clean tall book\`                   | **58 bits**     | ${avgTimeToCrackFormatted(58, 3e6)}           |
+              | Strongst: \`emotional boxer and concerned virus acquire 45 smashed baskets\` | **66 bits**     | ${avgTimeToCrackFormatted(66, 3e6)}           |
 
-
+              Check out the [entropy and time to crack table](/#/table) for more details.
             `} 
           />
 
@@ -220,6 +220,7 @@ const Faq = () => {
           answer={stripIndent`
             The downside to "time to crack" is that we have to make guesses about the computing power an attacker is using. 
             If it takes 500 hours to crack a certain password with 1 process, an attacker could rent 500 cloud processors and crack the same password in 1 hour.
+            The question becomes "how much money would that cost?"
 
             If we can find a reasonable guess at the cost to crack regardless of hardware, we can have a better sense of how well protected a passphrase is.
             Thankfully, we can draw from [Jacob Enger's Money-to-Crack research](https://jacobegner.blogspot.com/2020/11/password-strength-in-dollars.html).

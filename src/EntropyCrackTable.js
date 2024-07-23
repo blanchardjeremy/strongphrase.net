@@ -115,11 +115,11 @@ const EntropyCrackTimeTable = () => {
           <tbody>
             {tableData.map((row) => (
               <tr key={row.bits}>
-                <td className="font-bold">{row.bits}</td>
+                <td className="font-bold">{row.bits} bits</td>
                 <td>{row.guesses}</td>
-                <td>{row.avgtime}</td>
-                <td>{row.maxtime}</td>
-                <td>{row.cost}</td>
+                <td><em>{row.maxtime}</em></td>
+                <td><strong>{row.avgtime}</strong></td>
+                <td><strong>{row.cost}</strong></td>
               </tr>
             ))}
           </tbody>
