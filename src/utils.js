@@ -38,31 +38,41 @@ export const getPrimaryGrammarLabels = () => {
     const avgCost = maxCost / 2;
     return avgCost;
   }
-
-export function formatDollarToScale(amount, significantDigits=2) {
-  if (amount < 1e6) {
-      // Format numbers below a million with commas if over 1000
-      return `$${new Intl.NumberFormat().format(amount.toFixed(0))}`;
-  }
-
-  const scales = [
+  export function formatDollarToScale(amount, significantDigits=2, addScaleLabel=true) {
+    // Ensure amount is not less than zero
+    if (amount < 1) {
+      amount = 0;
+    }
+  
+    // Handle amounts less than a million
+    if (amount < 1e6) {
+      return `$${new Intl.NumberFormat().format(Number(amount.toPrecision(significantDigits)))}`;
+    }
+    
+  
+    const scales = [
       { value: 1e6, label: "million" },
       { value: 1e9, label: "billion" },
       { value: 1e12, label: "trillion" },
       { value: 1e15, label: "quadrillion" }
-  ];
+    ];
 
-  const scale = scales.find(scale => amount >= scale.value && amount < scale.value * 1000) || scales[scales.length - 1];
-  const scaledAmount = amount / scale.value;
-
-  // To get the rounded number with significant digits
-  const rounded = Number(scaledAmount.toPrecision(significantDigits));
-
-  // Format the rounded number with commas
-  const formattedNumber = new Intl.NumberFormat().format(rounded);
-
-  return `$${formattedNumber} ${scale.label}`;
-}
+    if(!addScaleLabel) {
+      return `$${new Intl.NumberFormat().format(Number(amount.toPrecision(significantDigits)))}`;
+    }
+  
+    const scale = scales.find(scale => amount >= scale.value && amount < scale.value * 1000) || scales[scales.length - 1];
+    const scaledAmount = amount / scale.value;
+  
+    // Get the rounded number with significant digits
+    const rounded = Number(scaledAmount.toPrecision(significantDigits));
+  
+    // Format the rounded number with commas
+    const formattedNumber = new Intl.NumberFormat().format(rounded);
+  
+    return `$${formattedNumber} ${scale.label}`;
+  }
+  
 
 // Examples
 console.log(formatDollarToScale(2500000, 3));     // Outputs: $2.

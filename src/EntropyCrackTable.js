@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { convertTimeToReadableFormat, timeToCrackAvg, avgCostToCrack } from "./utils.js";
+import { convertTimeToReadableFormat, timeToCrackAvg, avgCostToCrack, formatDollarToScale } from "./utils.js";
 import HashRateSelector, { defaultHashRate } from './HashRateSelector';
 import { Link } from "react-router-dom";
 
@@ -30,7 +30,7 @@ const EntropyCrackTimeTable = () => {
       const numberOfGuesses = 2 ** bits;
       // const avgCost = (numberOfGuesses) * (costPerGuess32/ (2 ** 32)) / 2 ;
       const avgCost = avgCostToCrack(bits, costPerGuess32);
-      const roundedCost = Math.floor(Number(avgCost.toPrecision(2)));
+      const roundedCost = formatDollarToScale(avgCost, 2, false);
       const avgTime = timeToCrackAvg(bits, hashRate);
       const maxTime = avgTime*2;
       data.push({
@@ -103,7 +103,7 @@ const EntropyCrackTimeTable = () => {
                     <td>{row.guesses}</td>
                     <td>{row.avgtime}</td>
                     <td>{row.maxtime}</td>
-                    <td>{`$${row.cost}`}</td>
+                    <td>{row.cost}</td>
                   </tr>
                 ))}
               </tbody>
