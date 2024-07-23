@@ -26,7 +26,11 @@ const PasswordSchemeCard = () => {
 
       <div className="card-body flex flex-grow w-full">
         <h2 className="card-title"><RiShieldKeyholeLine className="text-3xl" />And a <u>password manager</u> for...</h2>
-        <p>Use a <strong>password manager</strong> with <strong>unique, randomly-generated</strong> passwords for everything else. It will generate random passwords for each website and automatically fill them for you each time you log-in, so you don't have to type them. (We suggest <a href="https://1password.com/" className="link" target="_blank" rel="noreferrer">1Password</a>).</p>
+        <p>
+          Use a <strong>password manager</strong> with <strong>unique, randomly-generated</strong> passwords for everything else. 
+          It will generate random passwords for each website and automatically fill them for you each time you log-in, so you don't have to type them. 
+          (We suggest <a href="https://1password.com/" className="link" target="_blank" rel="noreferrer">1Password</a>). Turn on 2-factor authentication on your most important accounts (email, bank, etc.).
+        </p>
         <p className="mb-2 example-label font-bold">Examples:</p>
         <ul className="password-examples">
           <li><code>7ZuNburjjGmme-MDuE*</code></li>

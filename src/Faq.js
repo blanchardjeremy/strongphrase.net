@@ -72,6 +72,8 @@ const Faq = () => {
               Use this site to create strong passphrases that are easy to remember.
               These passphrases are **much stronger** than most passwords because they are randomly generated, whereas passwords are often reused, shorter, and easier to guess.
               This site was inspired by other passphrase generates like [diceware](https://www.eff.org/dice), but designed to generate phrases that are **easier to visualize and remember**.
+
+              If you're not sold on passphrases over passwords yet, maybe [Edward Snowden can convince you](https://youtu.be/yzGzB-yYKcc) 😂.
             `} 
           />
 
@@ -116,6 +118,7 @@ const Faq = () => {
               For the extra paranoid, you can generate a "[diceware](https://www.eff.org/dice)" passphrase entirely offline.
             `} 
           />
+
           
         </div>
       </section>
@@ -172,8 +175,20 @@ const Faq = () => {
               | Stronger: \`drunk niece and greedy goose clean tall book\`                   | **58 bits**     | ${avgTimeToCrackFormatted(58, 3e6)}           |
               | Strongst: \`emotional boxer and concerned virus acquire 45 smashed baskets\` | **66 bits**     | ${avgTimeToCrackFormatted(66, 3e6)}           |
 
-              Check out the [entropy and time to crack table](/#/table) for more details.
+              Check out the [entropy and time/cost to crack table](/#/table) for more examples.
             `} 
+          />
+
+          <FAQItem
+            question="But how would the attacker know I used this passphrase system?"
+            id="safe"
+            answer={stripIndent`
+            In reality, they probably wouldn't know. 
+            All of these examples assume that an attacker knows which passphrase scheme you've chosen and the exact wordlists used. So really we are listing the "minimum entropy required." That's the safest guess.
+            
+            But in reality, an attacker is more likely to try a LOT of other approaches before trying this scheme. They will try common word lists, and lots of variations on common word lists. Then they might try a lot of diceware combinations (3 words, 4 words, etc.). 
+            Then if they knew this system exists, they might try it. Even then, they'd have to know which of the 3 main formats you chose. All of that combined means you get at least 20 bits of extra entropy, and probably a lot more.
+            `}
           />
 
           <WordStatsFAQItem />
@@ -211,6 +226,10 @@ const Faq = () => {
 
               The "**Far future  nation state**" profile is a wild guess at what might be possible far in the future.
 
+              When we display "average time to crack" it takes the "max time to crack" and divides by two. 
+              It may take an attacker way less time or way more time. 
+              But on average, they will need to search through half the possible combinations to find your key.
+
               `} 
             />
 
@@ -246,6 +265,26 @@ const Faq = () => {
 
 
           `} 
+          />
+
+
+
+          <FAQItem 
+            question="Other resources" 
+            id="resources"
+            answer={stripIndent`
+              Here are some resources that I've found helpful in exploring passwords:
+
+              
+              * [How long does it take to crack a password? - HiveSystems.com](https://www.hivesystems.com/blog/are-your-passwords-in-the-green)
+              * [How to create a strong master password - 1Password](https://blog.1password.com/toward-better-master-passwords/)
+              * [Cost to crack competiation - 1Password](https://blog.1password.com/cracking-challenge-update/) and the [write ups from the winners](https://github.com/agilebits/crackme?tab=readme-ov-file#contest-status)
+              * [Money-to-Crack model - Jacob Enger](https://jacobegner.blogspot.com/2020/11/password-strength-in-dollars.html)
+              * [Choosing a password manager](https://freedom.press/training/choosing-a-password-manager/)
+              * [Password entropy calculator](https://blanchardjeremy.github.io/tryzxcvbn/) - These are only ever slightly accurate, but it is interesting. I updated this one to display bits of entropy using log2 instead of log10.
+              * [EFF updated the original diceware wordslists](https://www.eff.org/dice) and created [fandom wordlists](https://www.eff.org/deeplinks/2018/08/dragon-con-diceware)
+              * [Diceware online generator](https://diceware.rempe.us/#eff)
+            `} 
           />
 
         </div>
