@@ -99,7 +99,9 @@ const Faq = () => {
 
               This [classic xkcd comic](https://xkcd.com/936/) about passwords vs passphrases is a good summary.
 
-              <img src="https://imgs.xkcd.com/comics/password_strength_2x.png" alt="xkcd comic about passphrases vs password" width="700" />
+              <div class="text-center">
+                <img src="https://imgs.xkcd.com/comics/password_strength_2x.png" alt="xkcd comic about passphrases vs password" width="700" class="mx-auto" />
+              </div>
 
               | Password          | Attack approach                                     | Bits of entropy          | Avg time to crack <br>(3 million guesses/sec) |
               |-------------------|-----------------------------------------------------|--------------------------|-----------------------------------------------|
