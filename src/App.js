@@ -1,5 +1,5 @@
 import React, { } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import PassphraseGenerator from './PassphraseGenerator.js';
 import PasswordSchemeCard from './PasswordSchemeCard.js';
@@ -43,7 +43,7 @@ const App = () => {
               <img className="float-left max-w-10" alt="Lock icon" src={logo} />
               <div>
                 <h6 className="font-header text-xl">StrongPhrase.net</h6>
-                <p><em>Create a strong, memorable passphrase to use as your master password.</em></p>
+                <p><em>Create a memorable passphrase to use as your master password</em></p>
                 <p className="mt-4">This site does not collect any data. The server we host on <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages#data-collection" target="_blank" rel="noreferrer">stores only your IP address</a> for security purposes. There are no trackers or calls to external services/sites. All interactions and passphrase generation happen directly in your browser and stay on your computer.</p>
                 <p className="mt-4">Originally created by Ryan Foster. Re-written by Jeremy Blanchard.</p>
               </div>

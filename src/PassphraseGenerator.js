@@ -1,9 +1,10 @@
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
-import { timeToCrackAvg, convertTimeToReadableFormat, getPassphrase, getPrimaryGrammarLabels, getAllGrammarLabels } from './utils.js';
+import { timeToCrackAvg, convertTimeToReadableFormat, getPassphrase, getPrimaryGrammarLabels, getAllGrammarLabels, formatDollarToScale, avgCostToCrack } from './utils.js';
 import HashRateSelector, { defaultHashRate } from './HashRateSelector';
 import { FaRegCopy, FaCheck, FaSyncAlt, FaInfoCircle, FaKey } from "react-icons/fa";
 
 import './PassphraseGenerator.css';
+
 
 const PassphraseGenerator = () => {
   const [passphrases, setPassphrases] = useState({});
@@ -29,6 +30,7 @@ const PassphraseGenerator = () => {
     setPracticeInput('');
 
   }, [showAllGrammars]);
+
   
   const crackTimes = useMemo(() => {
     const grammar_labels = showAllGrammars ? getAllGrammarLabels() : getPrimaryGrammarLabels();
@@ -36,7 +38,8 @@ const PassphraseGenerator = () => {
     return grammar_keys.map(bits => ({
       bits,
       label: grammar_labels[bits],
-      time: convertTimeToReadableFormat(timeToCrackAvg(bits, hashRate))
+      time: convertTimeToReadableFormat(timeToCrackAvg(bits, hashRate)),
+      cost: formatDollarToScale(avgCostToCrack(bits))
     }));
   }, [hashRate, showAllGrammars]);
 
@@ -88,7 +91,7 @@ const PassphraseGenerator = () => {
       </div>
 
       
-      {crackTimes.map(({ bits, label, time }) => (
+      {crackTimes.map(({ bits, label, time, cost }) => (
         <div key={bits} 
           className={`passphrase-block ${
             copiedBits === bits ? 'copied' : 
@@ -105,6 +108,9 @@ const PassphraseGenerator = () => {
               </span>
               <div className="ml-2 flex-shrink-0">
                 <span className="crack-time ml-2">Avg time to crack: <em>{time}</em></span>
+              </div>
+              <div className="ml-2 flex-shrink-0">
+                <span className="crack-time ml-2">Avg cost to crack: <em>{cost}</em></span>
               </div>
             </div>
           </label>

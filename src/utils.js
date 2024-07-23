@@ -28,6 +28,46 @@ export const getPrimaryGrammarLabels = () => {
   };
 };
 
+
+
+  // We use $0.56 per 2^32 guesses currently
+  export const avgCostToCrack = (bits, costPerGuess32=0.56) => {
+    const guesses = 2**bits;
+    const costPerGuess = (costPerGuess32 / 2**32);
+    const maxCost = guesses * costPerGuess;
+    const avgCost = maxCost / 2;
+    return avgCost;
+  }
+
+export function formatDollarToScale(amount, significantDigits=2) {
+  if (amount < 1e6) {
+      // Format numbers below a million with commas if over 1000
+      return `$${new Intl.NumberFormat().format(amount.toFixed(0))}`;
+  }
+
+  const scales = [
+      { value: 1e6, label: "million" },
+      { value: 1e9, label: "billion" },
+      { value: 1e12, label: "trillion" },
+      { value: 1e15, label: "quadrillion" }
+  ];
+
+  const scale = scales.find(scale => amount >= scale.value && amount < scale.value * 1000) || scales[scales.length - 1];
+  const scaledAmount = amount / scale.value;
+
+  // To get the rounded number with significant digits
+  const rounded = Number(scaledAmount.toPrecision(significantDigits));
+
+  // Format the rounded number with commas
+  const formattedNumber = new Intl.NumberFormat().format(rounded);
+
+  return `$${formattedNumber} ${scale.label}`;
+}
+
+// Examples
+console.log(formatDollarToScale(2500000, 3));     // Outputs: $2.
+
+
 export const getAllGrammarLabels = () => {
   return Object.keys(grammars).reduce((acc, bits) => {
     acc[bits] = `${bits} Bits of Entropy`;
