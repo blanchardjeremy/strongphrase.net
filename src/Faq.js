@@ -31,7 +31,7 @@ const WordStatsFAQItem = () => {
     for (const key in wordCounts) {
       const samples = '`' + getSampleWords(key).join('` `') + '`';
       const entropy = Math.floor(Math.log2(wordCounts[key])); 
-      markdownTable += `| ${key} | ${Intl.NumberFormat().format(Number(wordCounts[key]))} | ${entropy} | ${samples} \n`;
+      markdownTable += `| **${key}** | ${Intl.NumberFormat().format(Number(wordCounts[key]))} | ${entropy} | ${samples} \n`;
     }
   
     return markdownTable;
@@ -175,13 +175,27 @@ const Faq = () => {
               | Stronger: \`drunk niece and greedy goose clean tall book\`                   | **58 bits**     | ${avgTimeToCrackFormatted(58, 3e6)}           |
               | Strongst: \`emotional boxer and concerned virus acquire 45 smashed baskets\` | **66 bits**     | ${avgTimeToCrackFormatted(66, 3e6)}           |
 
-              Check out the [entropy and time/cost to crack table](/#/table) for more examples.
+              Check out our **[entropy and time/cost to crack table](/#/table)** for more examples.
             `} 
           />
 
           <FAQItem
+            question="How much entropy is enough?"
+            id="enoughentropoy"
+            answer={stripIndent`
+              If you take a look athe  **[time/cost to crack table](/#/table)**, you can make an assessment for yourself. 
+
+              My two cents is that **45 bits** is sufficient for most situations, and that **65 or 70 bits** is more then enough for even very high security situations.
+
+              An example of a high-security choice is [SecureDrop](https://securedrop.org/), a tool for whitleblowers to share files anonymous with journalists. 
+              Each submitter is given a 7-word diceware passphrase in order to continue communication with the journalist in the future. 7 diceware words = 13 bits/word * 7 words = **90 bits of entropy**.
+            `}
+          />
+
+
+          <FAQItem
             question="But how would the attacker know I used this passphrase system?"
-            id="safe"
+            id="system"
             answer={stripIndent`
             In reality, they probably wouldn't know. 
             All of these examples assume that an attacker knows which passphrase scheme you've chosen and the exact wordlists used. So really we are listing the "minimum entropy required." That's the safest guess.
@@ -253,7 +267,7 @@ const Faq = () => {
 
             [^convert]: The formala to convert from guesses/dollar to dollars per 2^32 guesses is: **(2^32) / (guesses/second)**
             [^conv2]: The formula here is **(guesses/second * 3600) / ($/hour)** so here we have: **(1.9 trillion * 3600) / $410,000 = 17 billion**.
-            [^1p]: See the [1Password blog about a cracking competition](https://blog.1password.com/cracking-challenge-update/) they ran.
+            [^1p]: Details can be found on the blog post about the [1Password cracking competition](https://blog.1password.com/cracking-challenge-update/).
 
             We choose **$0.50 per 2<sup>32</sup> guesses** as our figure because we it's fairly conservative. 
             1Password has a much higher cost to crack than our assumption (bcrypt) because they have a more computationally-intense hashing function.
@@ -284,6 +298,7 @@ const Faq = () => {
               * [Password entropy calculator](https://blanchardjeremy.github.io/tryzxcvbn/) - These are only ever slightly accurate, but it is interesting. I updated this one to display bits of entropy using log2 instead of log10.
               * [EFF updated the original diceware wordslists](https://www.eff.org/dice) and created [fandom wordlists](https://www.eff.org/deeplinks/2018/08/dragon-con-diceware)
               * [Diceware online generator](https://diceware.rempe.us/#eff)
+              * [Hashcat hashes/second benchmarks](https://openbenchmarking.org/test/pts/hashcat)
             `} 
           />
 
