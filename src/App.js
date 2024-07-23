@@ -1,5 +1,5 @@
 import React, { } from 'react';
-import { HashRouter as Router, Route, Routes } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import './App.css';
 import PassphraseGenerator from './PassphraseGenerator.js';
 import PasswordSchemeCard from './PasswordSchemeCard.js';
@@ -49,7 +49,9 @@ const App = () => {
               </div>
             </aside>
             <nav className="">
-            <h6 className="footer-title">Connect</h6>
+            <h6 className="footer-title">Navigation</h6>
+              <Link className="link link-hover" to="/">Home</Link>
+              <Link className="link link-hover" to="/table">Time/cost to crack table</Link>
               <a className="link link-hover" href="https://github.com/blanchardjeremy/strongphrase.net" target="_blank" rel="noreferrer">Code on GitHub</a>
               <a className="link link-hover" href="https://github.com/blanchardjeremy/strongphrase.net/issues" target="_blank" rel="noreferrer">Submit a bug or request</a>
               <a className="link link-hover" href="https://forms.gle/pu1vqi8Mc1VYirGz6" target="_blank" rel="noreferrer">Contact</a>

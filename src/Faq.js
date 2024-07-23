@@ -30,9 +30,7 @@ const Faq = () => {
             question="What is this tool? How does it help me?" 
             answer={stripIndent`
               Use this site to create strong passphrases that are easy to remember.
-
               These passphrases are **much stronger** than most passwords because they are randomly generated, whereas passwords are often reused, shorter, and easier to guess.
-
               This site was inspired by other passphrase generates like [diceware](https://www.eff.org/dice), but designed to generate phrases that are **easier to visualize and remember**.
 
             `} 
@@ -56,7 +54,6 @@ const Faq = () => {
             question="Wait, is it safe to generate a passphrase from a website?" 
             answer={stripIndent`
               Yes (relatively). This website runs entirely on your browser. There's no server that generates the passphrase. You can turn off your wifi and the site will still work!
-
               For the extra paranoid, you can generate a "[diceware](https://www.eff.org/dice)" passphrase entirely offline.
             `} 
           />
@@ -64,10 +61,7 @@ const Faq = () => {
           <FAQItem 
             question="Where does the list of words come from?" 
             answer={stripIndent`
-              They were chosen to be common enough words that they would be easy to remember and type.
-
-              You can find the full list of owrds [here](https://github.com/blanchardjeremy/strongphrase.net/blob/main/src/utils.js#L136). 
-
+              They were chosen to be common enough words that they would be easy to remember and type. You can find the full list of words [here](https://github.com/blanchardjeremy/strongphrase.net/blob/main/src/utils.js#L136).
               I put some time in filtering out offensive words, but I'm sure I missed some. If you find words that you think should be removed, [I'd love to hear the feedback](https://forms.gle/pu1vqi8Mc1VYirGz6).
             `} 
           />
