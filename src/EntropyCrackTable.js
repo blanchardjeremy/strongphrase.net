@@ -7,9 +7,11 @@ const costOptions = {
   "$0.001": 0.001,
   "$0.01": 0.01,
   "$0.25 (Best-case cloud scenario bcrypt)": 0.25,
+  "$0.50 (Default)": 0.50,
   "$1.00": 1,
   "$6.00 (1Password scenario)": 6,
 };
+const defaultCostToCrack = 0.50;
 
 const formatNumber = (number) => {
   let rounded = Number(number.toPrecision(3));
@@ -18,7 +20,7 @@ const formatNumber = (number) => {
 
 const EntropyCrackTimeTable = () => {
   const [hashRate, setHashRate] = useState(defaultHashRate);
-  const [costPerGuess32, setCostPerGuess32] = useState(0.25);
+  const [costPerGuess32, setCostPerGuess32] = useState(defaultCostToCrack);
   const [showAllSteps, setShowAllSteps] = useState(false);
 
   const handleCostChange = (event) => {

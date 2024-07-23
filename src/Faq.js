@@ -136,9 +136,9 @@ const Faq = () => {
 
 
           <FAQItem 
-            question="How do you calculate the time to crack a passphrase?" 
+            question="How do you calculate the TIME to crack a passphrase?" 
             answer={stripIndent`
-              This is tricky. It requires making a lot of assumptions about how strong the "hash" of the password is and the computing power of the attacker. (In fact, 1Password suggests that it makes more sense to calculate [cost to crack](https://blog.1password.com/cracking-challenge-update/) rather than "time to crack".)
+              This is tricky. It requires making a lot of assumptions about how strong the "hash" of the password is and the computing power of the attacker. 
 
               Estimating the number guesses/second (aka: hashes/second) is challenging because the functions used to encrypt a password vary widely.
 
@@ -146,7 +146,8 @@ const Faq = () => {
 
               Assumptions:
               * The attacker has access to your hashed password. Either they broke into a database or have access to your physical machine.
-              * That password was hashed with bcrypt (at a [work factor](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html#using-work-factors) of 32). (Systems like 1Password and MacOS use a hashing approach that [much stronger](https://support.1password.com/pbkdf2/), so the guesses/second below wouuld be much lower than what you see below.)
+              * That password was hashed with bcrypt (at a [work factor](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html#using-work-factors) of 32). 
+                (Systems like 1Password and MacOS use a hashing approach that [much stronger](https://support.1password.com/pbkdf2/), so the guesses/second below wouuld be much lower than what you see below.)
               * The data below is current as of 2024 and will need updated as the cost of computing power continues to decrease.
 
               We provide profiles for 3 different levels of computing power:
@@ -166,24 +167,40 @@ const Faq = () => {
 
               The "**Far future  nation state**" profile is a wild guess at what might be possible far in the future.
 
-              If we use [Jacob Enger's Money-to-Crack approach](https://jacobegner.blogspot.com/2020/11/password-strength-in-dollars.html), we can find:
+              `} 
+            />
 
-              Let's figure out a reasonable estimate for "cost to crack" scenario:
+          <FAQItem 
+          question="How do you calculate the COST to crack a passphrase?" 
+          answer={stripIndent`
+            The downside to "time to crack" is that we have to make guesses about the computing power an attacker is using. 
+            If it takes 500 hours to crack a certain password with 1 process, an attacker could rent 500 cloud processors and crack the same password in 1 hour.
 
-              |                                                             | Guesses/second | Guesses/$           | $ per 2^32 guesses[^convert] |
-              |-------------------------------------------------------------|----------------|---------------------|------------------------------|
-              | AWS A100 x10,000 using bcrypt<br>(based on hivesystems.com) | 2.6 trillion   | 17 billion [^conv2] | $0.25                        |
-              | 1x RTX 4090 using bcrypt <br>(best case)                    | 184,000        | 9.3 billion         | $0.46                        |
-              | 1Password using PBKDF2<br>(much harder than bcrypt)         | *[???]*        | 715 million         | $6                           |
+            If we can find a reasonable guess at the cost to crack regardless of hardware, we can have a better sense of how well protected a passphrase is.
+            Thankfully, we can draw from [Jacob Enger's Money-to-Crack research](https://jacobegner.blogspot.com/2020/11/password-strength-in-dollars.html).
 
-              [^convert]: The formala to convert from guesses/dollar to dollars per 2^32 guesses is: **(2^32) / (guesses/second)**
-              [^conv2]: The formula here is **(guesses/second * 3600) / ($/hour)** so here we have: **(1.9 trillion * 3600) / $410,000 = 17 billion**.
+            |                                                                                                      | Guesses/second | Guesses/$           | $ per 2<sup>32</sup> guesses[^convert] |
+            |------------------------------------------------------------------------------------------------------|----------------|---------------------|----------------------------------------|
+            | **AWS A100 using 10,000 GPUs**<br>(Hash: bcrypt)<br>*(based on hivesystems.com)*                     | 2.6 trillion   | 17 billion [^conv2] | $0.25                                  |
+            | **RTX 4090 using 1 GPU**<br>(Hash: bcrypt) <br>*(best case)*                                         | 184,000        | 9.3 billion         | $0.56                                  |
+            | **1Password's cracking competition average**[^1p] <br> (Hash: PBKDF2)<br>*(much harder than bcrypt)* | *[???]*        | 715 million         | $6                                     |
+            | **Estimated average we use**                                                                         | —              | **8.6 million**     | **$0.50**                              |
+            
+
+            [^convert]: The formala to convert from guesses/dollar to dollars per 2^32 guesses is: **(2^32) / (guesses/second)**
+            [^conv2]: The formula here is **(guesses/second * 3600) / ($/hour)** so here we have: **(1.9 trillion * 3600) / $410,000 = 17 billion**.
+            [^1p]: See the [1Password blog about a cracking competition](https://blog.1password.com/cracking-challenge-update/) they ran.
+
+            We choose **$0.50 per 2<sup>32</sup> guesses** as our figure because we it's fairly conservative. 
+            1Password has a much higher cost to crack than our assumption (bcrypt) because they have a more computationally-intense hashing function.
+
+            If you want to play with different "cost to crack" scenarios, you can use our [Cost to Crack Table](/#/table).
+
+            The powerful GPUs that help an attacker crack passwords are the same GPUs that are used to train AI models. 
+            As AI continues to explore, it's reasonable to assume that these GPUs will become ever more available on the cloud.
 
 
-              The powerful GPUs that help an attacker crack passwords are the same GPUs that are used to train AI models. As AI continues to explore, it's reasonable to assume that these GPUs will become ever more available on the cloud.
-
-
-            `} 
+          `} 
           />
 
         </div>
