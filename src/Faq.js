@@ -292,11 +292,11 @@ const Faq = () => {
               
               * [How long does it take to crack a password? - HiveSystems.com](https://www.hivesystems.com/blog/are-your-passwords-in-the-green)
               * [How to create a strong master password - 1Password](https://blog.1password.com/toward-better-master-passwords/)
-              * [Cost to crack competiation - 1Password](https://blog.1password.com/cracking-challenge-update/) and the [write ups from the winners](https://github.com/agilebits/crackme?tab=readme-ov-file#contest-status)
+              * [Cost to crack competiation - 1Password](https://blog.1password.com/cracking-challenge-update/) and the [write ups from the winners](https://github.com/agilebits/crackme?tab=readme-ov-file#contest-status). Also their [2020 PasswordsCon slides about the competiation](https://github.com/agilebits/crackme/blob/master/doc/PasswordsCon2020.pdf).
               * [Money-to-Crack model - Jacob Enger](https://jacobegner.blogspot.com/2020/11/password-strength-in-dollars.html)
               * [Choosing a password manager](https://freedom.press/training/choosing-a-password-manager/)
               * [Password entropy calculator](https://blanchardjeremy.github.io/tryzxcvbn/) - These are only ever slightly accurate, but it is interesting. I updated this one to display bits of entropy using log2 instead of log10.
-              * [EFF updated the original diceware wordslists](https://www.eff.org/dice) and created [fandom wordlists](https://www.eff.org/deeplinks/2018/08/dragon-con-diceware)
+              * [EFF updated the original diceware wordslists](https://www.eff.org/dice) and created [fandom wordlists](https://www.eff.org/deeplinks/2018/08/dragon-con-diceware). Also see the [deep dive](https://www.eff.org/deeplinks/2016/07/new-wordlists-random-passphrases) on how they designed this.
               * [Diceware online generator](https://diceware.rempe.us/#eff)
               * [Hashcat hashes/second benchmarks](https://openbenchmarking.org/test/pts/hashcat)
             `} 

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { convertTimeToReadableFormat, timeToCrackAvg, avgCostToCrack, formatDollarToScale } from "./utils.js";
 import HashRateSelector, { defaultHashRate } from './HashRateSelector';
 import { Link } from "react-router-dom";
+import Markdown from "react-markdown";
 
 const costOptions = {
   "$0.001": 0.001,
@@ -97,7 +98,7 @@ const EntropyCrackTimeTable = () => {
 
       <div className="card card-body p-6 bg-green-100 mt-4 flex flex-grow max-w-3xl text-sm">
         <p className="mt-0">
-          <strong>Takeaway:</strong> <u>45 bits</u> should be your minimum and most people don't need more than <u>60 bits</u>.
+          <strong>Takeaway:</strong> <u>45 bits</u> should be your minimum and most people don't need more than <u>65 bits</u>.
         </p>
       </div>
 
