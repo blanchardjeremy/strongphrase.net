@@ -20,6 +20,29 @@
   padding: 0;
 }
 
+.label-container {
+  /* width: 180px; */
+  @apply flex items-center justify-between min-w-32;
+}
+
+.crack-time-info {
+  @apply flex justify-start w-2/3;
+}
+
+.crack-stats-container {
+  /* width: 270px; */
+}
+
+@media (max-width: 640px) { /* Tailwind's default breakpoint for 'sm' */
+  .crack-time-info {
+    @apply flex-col items-start;
+  }
+
+  .crack-stats-container {
+    @apply w-full mt-2 ml-2 flex-shrink-0; /* Adjust margin-top as needed for visual spacing */
+  }
+}
+
 .passphrase-content {
   @apply p-2 px-4 bg-gray-100 rounded-xl font-custom text-xl pr-28
 }

@@ -100,17 +100,21 @@ const PassphraseGenerator = () => {
         >
           <label className="block mb-1 tracking-wide uppercase">
             <div className="flex items-center">
-              <span className={`font-header font-extrabold text-xl inline-block w-30 ${label}`}>{label}</span>
-              <span className={`ml-2 group  ${showAllGrammars ? 'hide' : ''}`}>
-                <div className="tooltip mt-1" data-tip={`${bits} bits of entropy`}>
-                  <FaInfoCircle className=" text-gray-500 cursor-pointer text-base" />
-                </div>
-              </span>
-              <div className="ml-2 flex-shrink-0">
-                <span className="crack-time ml-2">Avg time to crack: <em>{time}</em></span>
+              <div className="label-container">
+                <span className={`font-header font-extrabold text-xl inline-block ${label}`}>{label}</span>
+                <span className={`ml-2 group  ${showAllGrammars ? 'hide' : ''}`}>
+                  <div className="tooltip mt-1" data-tip={`${bits} bits of entropy`}>
+                    <FaInfoCircle className=" text-gray-500 cursor-pointer text-base" />
+                  </div>
+                </span>
               </div>
-              <div className="ml-2 flex-shrink-0">
-                <span className="crack-time ml-2">Avg cost to crack: <em>{cost}</em></span>
+              <div className="crack-time-info">
+                <div className="crack-stats-container">
+                  <span className="crack-time ml-2">Avg time to crack: <em>{time}</em></span>
+                </div>
+                <div className="crack-stats-container">
+                  <span className="crack-time ml-2">Avg cost to crack: <em>{cost}</em></span>
+                </div>
               </div>
             </div>
           </label>
