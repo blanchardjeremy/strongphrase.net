@@ -91,13 +91,13 @@ const EntropyCrackTimeTable = () => {
 
       <div className="card card-body p-6 bg-gray-100 mt-4 flex flex-grow max-w-3xl text-sm">
         <p className="mt-0">
-          The folks at 1Password estimate that it <a href="https://blog.1password.com/cracking-challenge-update/" className="link link-hover">costs $6 per 2<sup>32</sup> guesses</a> to crack their system. Their password hashing is much more complex than the hashing assumptions on the main page (bcrypt). bcrypt with simpler configurations, so the cost in our scenario is likely much less. And it is only going to go down in the future.
+          See the <Link to="/" className="link link-hover">FAQ on the main page</Link> for more information on time to crack and cost to crack calculations.
         </p>
       </div>
 
       <div className="card card-body p-6 bg-green-100 mt-4 flex flex-grow max-w-3xl text-sm">
         <p className="mt-0">
-          <strong>Takeaway:</strong> 45 bits should be your minimum and most people don't need more than 60 bits.
+          <strong>Takeaway:</strong> <u>45 bits</u> should be your minimum and most people don't need more than <u>60 bits</u>.
         </p>
       </div>
 

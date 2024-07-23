@@ -4,10 +4,11 @@ import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { stripIndent } from 'common-tags';
 import './Faq.css';
+import { getWordStats, getSampleWords } from './utils';
 
-const FAQItem = ({ question, answer }) => {
+const FAQItem = ({ question, id, answer }) => {
   return (
-    <div className="faq-item">
+    <div className="faq-item" id={id}>
       <h2 className="faq-question">{question}</h2>
       <ReactMarkdown
         className="faq-answer"
@@ -19,6 +20,41 @@ const FAQItem = ({ question, answer }) => {
   );
 };
 
+const WordStatsFAQItem = () => {
+
+  function dictToMarkdownTable(wordCounts) {
+    // Start with the table header
+    let markdownTable = "| Category | Count | Bits of entropy | Samples |\n";
+    markdownTable += "|----------|-------|----------|--------|\n";
+    
+    // Iterate through the dictionary and append each key-value pair as a table row
+    for (const key in wordCounts) {
+      const samples = '`' + getSampleWords(key).join('` `') + '`';
+      const entropy = Math.floor(Math.log2(wordCounts[key])); 
+      markdownTable += `| ${key} | ${Intl.NumberFormat().format(Number(wordCounts[key]))} | ${entropy} | ${samples} \n`;
+    }
+  
+    return markdownTable;
+  }
+
+
+  const wordStats = getWordStats();
+  const wordStatsTable = dictToMarkdownTable(wordStats);
+
+  return (
+    <FAQItem 
+        question="How long are your word lists?" 
+        id="words"
+        answer={stripIndent`
+          You can find the [full list of words here](https://github.com/blanchardjeremy/strongphrase.net/blob/main/src/utils.js#L186).
+
+${wordStatsTable}
+        `} 
+      />
+  );
+}
+
+
 const Faq = () => {
   return (
     <div className="faq-all">
@@ -27,7 +63,8 @@ const Faq = () => {
 
         <div className="faq-container">
           <FAQItem 
-            question="What is this tool? How does it help me?" 
+            question="What is this tool? How does it help me?"
+            id="intro"
             answer={stripIndent`
               Use this site to create strong passphrases that are easy to remember.
               These passphrases are **much stronger** than most passwords because they are randomly generated, whereas passwords are often reused, shorter, and easier to guess.
@@ -38,7 +75,8 @@ const Faq = () => {
 
 
           <FAQItem 
-            question="Should I use STRONG, STRONGER, or STRONGEST?" 
+            question="Should I choose STRONG, STRONGER, or STRONGEST?" 
+            id="choosing"
             answer={stripIndent`
               The best answer for most folks is: choose any passphrase that you will use. Password advice is only helpful if you use it. So while the "**STRONGEST**" option is harder to crack, it is also harder to type every time. For most folks, the "**STRONG**" is plenty.
               If you want to geek out more, you can check out the [time to crack table](/#/table) for more details.
@@ -46,7 +84,8 @@ const Faq = () => {
           />
 
           <FAQItem 
-            question="How does this compare with other password schemes?" 
+            question="How does this compare with other password schemes?"
+            id="compare"
             answer={stripIndent`
               | Password scheme                 | Example                              | Crackable | Easy to remember<br> and type |
               |---------------------------------|--------------------------------------|---------------|-------------------------------|
@@ -62,6 +101,7 @@ const Faq = () => {
           
           <FAQItem 
             question="Wait, is it safe to generate a passphrase from a website?" 
+            id="safe"
             answer={stripIndent`
               Yes (relatively). This website runs entirely on your browser. There's no server that generates the passphrase. You can turn off your wifi and the site will still work!
               For the extra paranoid, you can generate a "[diceware](https://www.eff.org/dice)" passphrase entirely offline.
@@ -70,21 +110,23 @@ const Faq = () => {
           
           <FAQItem 
             question="Where does the list of words come from?" 
+            id="words"
             answer={stripIndent`
-              They were chosen to be common enough words that they would be easy to remember and type. You can find the full list of words [here](https://github.com/blanchardjeremy/strongphrase.net/blob/main/src/utils.js#L136).
+              They were chosen to be common enough words that they would be easy to remember and type. You can find the [full list of words here](https://github.com/blanchardjeremy/strongphrase.net/blob/main/src/utils.js#L186).
               I put some time in filtering out offensive words, but I'm sure I missed some. If you find words that you think should be removed, [I'd love to hear the feedback](https://forms.gle/pu1vqi8Mc1VYirGz6).
             `} 
           />
 
-
         </div>
       </section>
+
+
       <section className="content faq-overall-container markdown-content" id="FAQ">
         <h1 className="section-header">🤓🤓 Technical Background 🤓🤓</h1>
-
         <div className="faq-container">
           <FAQItem 
             question="What is password 'entropy'?"
+            id="entropy"
             answer={stripIndent`
               **Entropy** is a technical term that refers to how hard a password is to crack.
 
@@ -134,9 +176,11 @@ const Faq = () => {
             `} 
           />
 
+          <WordStatsFAQItem />
 
           <FAQItem 
             question="How do you calculate the TIME to crack a passphrase?" 
+            id="time"
             answer={stripIndent`
               This is tricky. It requires making a lot of assumptions about how strong the "hash" of the password is and the computing power of the attacker. 
 
@@ -172,6 +216,7 @@ const Faq = () => {
 
           <FAQItem 
           question="How do you calculate the COST to crack a passphrase?" 
+          id="cost"
           answer={stripIndent`
             The downside to "time to crack" is that we have to make guesses about the computing power an attacker is using. 
             If it takes 500 hours to crack a certain password with 1 process, an attacker could rent 500 cloud processors and crack the same password in 1 hour.
@@ -185,7 +230,6 @@ const Faq = () => {
             | **RTX 4090 using 1 GPU**<br>(Hash: bcrypt) <br>*(best case)*                                         | 184,000        | 9.3 billion         | $0.56                                  |
             | **1Password's cracking competition average**[^1p] <br> (Hash: PBKDF2)<br>*(much harder than bcrypt)* | *[???]*        | 715 million         | $6                                     |
             | **Estimated average we use**                                                                         | —              | **8.6 million**     | **$0.50**                              |
-            
 
             [^convert]: The formala to convert from guesses/dollar to dollars per 2^32 guesses is: **(2^32) / (guesses/second)**
             [^conv2]: The formula here is **(guesses/second * 3600) / ($/hour)** so here we have: **(1.9 trillion * 3600) / $410,000 = 17 billion**.
@@ -204,8 +248,6 @@ const Faq = () => {
           />
 
         </div>
-
-
       </section>
     </div>
   );
