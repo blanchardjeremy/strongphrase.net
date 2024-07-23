@@ -36,6 +36,15 @@ const Faq = () => {
             `} 
           />
 
+
+          <FAQItem 
+            question="Should I use STRONG, STRONGER, or STRONGEST?" 
+            answer={stripIndent`
+              The best answer for most folks is: choose any passphrase that you will use. Password advice is only helpful if you use it. So while the "**STRONGEST**" option is harder to crack, it is also harder to type every time. For most folks, the "**STRONG**" is plenty.
+              If you want to geek out more, you can check out the [time to crack table](/#/table) for more details.
+            `} 
+          />
+
           <FAQItem 
             question="How does this compare with other password schemes?" 
             answer={stripIndent`
@@ -49,6 +58,7 @@ const Faq = () => {
 
             `} 
           />
+
           
           <FAQItem 
             question="Wait, is it safe to generate a passphrase from a website?" 
@@ -66,13 +76,6 @@ const Faq = () => {
             `} 
           />
 
-
-          <FAQItem 
-            question="Should I use strong, stronger, or strongest?" 
-            answer={stripIndent`
-              .... cite what I came up with on the table
-            `} 
-          />
 
         </div>
       </section>

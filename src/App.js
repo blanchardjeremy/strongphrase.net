@@ -6,6 +6,7 @@ import PasswordSchemeCard from './PasswordSchemeCard.js';
 import Faq from './Faq.js';
 import logo from './img/logo.png';
 import EntropyCrackTimeTable from './EntropyCrackTable';
+import ScrollToTop from './helpers/ScrollToTop';
 
 
 const Home = () => (
@@ -21,6 +22,7 @@ const Home = () => (
 const App = () => {
   return (
     <Router>
+      <ScrollToTop />
       <div className="font-body">
         <div className="max-w-screen-lg mx-auto px-4 py-8">
           <header className="mb-8">
