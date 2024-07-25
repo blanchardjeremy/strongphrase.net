@@ -1,20 +1,23 @@
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import { timeToCrackAvg, convertTimeToReadableFormat, formatDollarToScale, avgCostToCrack } from './../passphraseUtils.js';
-import { getPasscodeAndEntropy, generateSecurePasscode } from './passcodeUtils.js';
+import { getPasscodeAndEntropy } from './passcodeUtils.js';
 import MarkdownCustom from '../MarkdownCustom.js';
-import './PasscodeDisplay.css';
+import PasscodeFAQ from './PasscodeFAQ.js'
+
+import HashRateSelector, { defaultHashRate } from './HashRateSelector.js';
 import { FaRegCopy, FaCheck, FaSyncAlt, FaInfoCircle } from "react-icons/fa";
 
-const BASE_HASH_RATE = 250;
+
+
 
 const PasscodeDisplay = () => {
   const [passcodes, setPasscodes] = useState({});
   const [copiedBits, setCopiedBits] = useState(null);
-  const [hashRate, setHashRate] = useState();
+  const [hashRate, setHashRate] = useState(defaultHashRate);
 
   const generatePasscodes = useCallback(() => {
 
-    const testPasscodes = {
+    const passcodeData = {
       '6 digits': getPasscodeAndEntropy(6),
       '10 Digits': getPasscodeAndEntropy(10),
       // '11 Digits': getPasscodeAndEntropy(11),
@@ -22,7 +25,7 @@ const PasscodeDisplay = () => {
       // '3 Words': { passcode: 'Cardinal Gainfully Scabby', entropy: 36 }
     };
 
-    setPasscodes(testPasscodes);
+    setPasscodes(passcodeData);
   }, []);
 
   
@@ -32,10 +35,10 @@ const PasscodeDisplay = () => {
       key: key,
       entropy: Math.round(entropy),
       label: key,
-      time: convertTimeToReadableFormat(timeToCrackAvg(entropy, BASE_HASH_RATE)),
+      time: convertTimeToReadableFormat(timeToCrackAvg(entropy, hashRate)),
       // cost: formatDollarToScale(avgCostToCrack(entropy))
     }));
-  }, [passcodes]);
+  }, [passcodes, hashRate]);
 
   const copyToClipboard = useCallback((text, bits) => {
     navigator.clipboard.writeText(text);
@@ -54,25 +57,15 @@ const PasscodeDisplay = () => {
 
   return (
     <section className="content">
-      <div className="flex flex-col md:flex-row gap-3 items-end justify-start mb-10">
+      <div className="flex flex-col md:flex-row gap-3 items-end justify-start mb-6">
         <button
           onClick={generatePasscodes}
           className="btn btn-primary text-base md:text-xl text-white mb-2 md:mb-0"
         >
           <FaSyncAlt /> New passcodes!
         </button>
-      </div>
 
-      
-      <div className="card card-body px-6 py-3 bg-green-100 mt-4 mb-8 flex flex-grow max-w-3xl text-sm">
-        <MarkdownCustom 
-          className="mt-0 markdown-content"
-        >
-          {`
-            **Cracking speed:** We have [evidence from 2018](https://www.komando.com/news/how-your-iphone-can-be-hacked-in-6-minutes/) that law enforcement phone cracking software worked at a rate of 25 guesses/second.
-            We assume that the speed is no more than 10x that today, and use **${BASE_HASH_RATE} guesses/second** as our baseline. This assumes your phone is off. If youre phone is on (even if it is locked), a lot of data is already unecrypted and accessible to sophistocated hackers without knowing your passcode.
-          `}
-        </MarkdownCustom>
+        <HashRateSelector setHashRate={setHashRate} hashRate={hashRate} />
       </div>
 
       {crackTimes.map(({ key, label, entropy, time, cost }) => (
@@ -107,8 +100,23 @@ const PasscodeDisplay = () => {
           </div>
         </div>
       ))}
+
+      <div> 
+        <PasscodeFAQ hashRate={hashRate} />
+      </div>
+      
     </section>
   );
 };
 
-export default PasscodeDisplay;
+
+const PasscodePage = () => (
+  <div className="container mx-auto p-4">
+    <h2 className="page-title">Passcode Generator</h2>
+
+    <PasscodeDisplay />
+    
+  </div>
+);
+
+export default PasscodePage;

@@ -6,13 +6,15 @@ import { stripIndent } from 'common-tags';
 
 
 const MarkdownCustom = ({ children, ...props }) => {
-  // Ensure children is a string
-  const content = typeof children === 'string' ? children : children.join('');
+  if (typeof children !== 'string') {
+    console.error('MarkdownCustom expects a string as children');
+    return null;
+  }
 
   return (
     <ReactMarkdown
       {...props}
-      children={stripIndent(content)}
+      children={stripIndent(children)}
       remarkPlugins={[remarkGfm]}
       rehypePlugins={[rehypeRaw]}
     />

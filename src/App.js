@@ -3,7 +3,7 @@ import { HashRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import './App.css';
 import PassphraseGenerator from './PassphraseGenerator.js';
 import PasswordSchemeCard from './PasswordSchemeCard.js';
-import PasscodeDisplay from './passcode/PasscodeDisplay.js';
+import PasscodePage from './passcode/PasscodePage.js';
 import PassphraseFAQ from './PassphraseFAQ.js';
 import logo from './img/logo.png';
 import EntropyCrackTimeTable from './EntropyCrackTable';
@@ -18,12 +18,6 @@ const Home = () => (
   </>
 );
 
-const PasscodePage = () => (
-  <>
-    <PasscodeDisplay />
-  </>
-);
-
 
 
 const App = () => {
@@ -33,7 +27,7 @@ const App = () => {
       <div className="font-body">
         <div className="max-w-screen-lg mx-auto px-4 py-8">
 
-          <header className="mb-8">
+          <header className="mb-2">
             <div className="title flex-col flex-initial w-1/">
               <img className="float-start max-w-16 mr-4" alt="Lock icon" src={logo} />
               <h1 className="text-4xl font-header mb-2">StrongPhrase.net</h1>

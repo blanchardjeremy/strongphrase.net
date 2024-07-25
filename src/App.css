@@ -24,6 +24,10 @@
   color: white;
 }
 
+.page-title {
+  @apply font-header text-3xl mb-6
+}
+
 a.link, a:hover.link , a:active.link , a:visited.link {
   @apply text-blue-500 hover:underline no-underline;
 }

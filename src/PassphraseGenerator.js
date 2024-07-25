@@ -61,17 +61,14 @@ const PassphraseGenerator = () => {
 
   return (
     <section className="content">
-      <div className="flex flex-col md:flex-row gap-3 items-end justify-start mb-10">
+      <div className="flex flex-col md:flex-row gap-3 items-start md:items-end mb-10">
         <button
           onClick={generatePassphrases}
           className="btn btn-primary text-base md:text-xl text-white mb-2 md:mb-0"
         >
           <FaSyncAlt /> New passphrases!
         </button>
-
         <HashRateSelector setHashRate={setHashRate} hashRate={hashRate} />
-
-
 
         <button 
           onClick={() => setShowAllGrammars(!showAllGrammars)} 

@@ -1,20 +1,9 @@
 import React from 'react';
 import { getWordStats, getSampleWords, avgTimeToCrackFormatted } from './passphraseUtils';
-import MarkdownCustom from './MarkdownCustom.js';
+import FAQItem from './FAQItem';
 
 import './PassphraseFAQ.css';
 
-const FAQItem = ({ question, id, answer }) => {
-  return (
-    <div className="faq-item" id={id}>
-      <h2 className="faq-question">{question}</h2>
-      <MarkdownCustom
-        className="faq-answer"
-        children={answer}
-      />
-    </div>
-  );
-};
 
 const WordStatsFAQItem = () => {
 

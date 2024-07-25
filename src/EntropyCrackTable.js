@@ -56,13 +56,7 @@ const EntropyCrackTimeTable = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <div className="mb-6">
-        <p>
-          <Link className="link link-hover mr-4" to="/">← Go back home</Link>
-        </p>
-      </div>
-
-      <h2 className="font-header text-3xl">Time and cost to crack</h2>
+      <h2 className="page-title">Time and Cost to Crack</h2>
 
       <div className="flex flex-row gap-4">
         <HashRateSelector setHashRate={setHashRate} hashRate={hashRate} />
@@ -106,10 +100,10 @@ const EntropyCrackTimeTable = () => {
         <table className="table table-zebra w-auto">
           <thead>
             <tr>
-              <th>Bits</th>
+              <th>Bits of Entropy</th>
               <th>Pool of possible guesses</th>
-              <th>Avg. Crack Time</th>
               <th>Max Crack Time (double)</th>
+              <th>Avg. Crack Time</th>
               <th>Avg cost to crack</th>
             </tr>
           </thead>
