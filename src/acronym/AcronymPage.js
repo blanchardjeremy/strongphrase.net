@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { PhraseGeneratorParent } from '../PassphraseGenerator.js'
 import { FaRegCopy, FaCheck } from "react-icons/fa";
 
@@ -23,14 +24,20 @@ const makeAcronymPassphrase = (passphrase) => {
     .join("");  // Join all the processed words into a single string
 };
 
-// Test the function
-console.log(makeAcronymPassphrase("underage worker and snobbish lemming discover 85 bogus teacups and 1977 crumbly cheetahs in Iowa"));
+
+
 
 
 
 const AcronymLabeler = ({ passphrase, copyToClipboard, copiedBits, bits }) => {
+  if(!passphrase) {
+    return null;
+  }
+  // passphrase = "underage worker and snobbish lemming discover 85 bogus teacups and 1977 crumbly cheetahs in Iowa";
   const acronym = makeAcronymPassphrase(passphrase);
   const acronymOnClipobard = `${acronym} (${passphrase})`;
+
+  
 
   return (
     <div className="relative passphrase-content mb-6" onClick={() => copyToClipboard(acronymOnClipobard, bits)}>
@@ -62,5 +69,13 @@ const AcronymPage = () => {
   )
 }
 
+
+
+AcronymLabeler.propTypes = {
+  passphrase: PropTypes.string.isRequired,
+  copyToClipboard: PropTypes.func.isRequired,
+  copiedBits: PropTypes.number,
+  bits: PropTypes.number.isRequired,
+};
 
 export default AcronymPage;
