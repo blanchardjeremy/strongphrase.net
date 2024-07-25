@@ -1,5 +1,5 @@
 import React, { } from 'react';
-import { HashRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes, Link, NavLink } from 'react-router-dom';
 import './App.css';
 import PassphraseGenerator from './PassphraseGenerator.js';
 import PasswordSchemeCard from './PasswordSchemeCard.js';
@@ -37,9 +37,9 @@ const App = () => {
             <div className="navbar bg-slate-100 rounded-xl mt-3">
               <div className="navbar-start flex w-full">
                 <ul className="menu menu-horizontal px-1">
-                  <li><Link to="/">Passphrase</Link></li>
-                  <li><Link to="/passcode">Passcode</Link></li>
-                  <li><Link to="/table">Crack Time/Cost Table</Link></li>
+                  <li><NavLink activeClassName="active" to="/">Passphrase</NavLink></li>
+                  <li><NavLink activeClassName="active" to="/passcode">Phone Passcode</NavLink></li>
+                  <li><NavLink activeClassName="active" to="/table">Crack Time/Cost Table</NavLink></li>
                 </ul>
               </div>
             </div>

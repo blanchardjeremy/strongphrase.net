@@ -13,6 +13,10 @@
   }
 }
 
+.menu-horizontal li {
+  @apply ml-2 first:ml-0;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

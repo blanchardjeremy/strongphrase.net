@@ -112,7 +112,7 @@ const PasscodeDisplay = () => {
 
 const PasscodePage = () => (
   <div className="container mx-auto p-4">
-    <h2 className="page-title">Passcode Generator</h2>
+    <h2 className="page-title">Phone Passcode Generator</h2>
 
     <PasscodeDisplay />
     

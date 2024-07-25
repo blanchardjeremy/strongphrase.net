@@ -1,8 +1,8 @@
 import React from 'react';
 
 const hardwareOptions = {
-  "Known law enforcement crack rate": 25,
-  "Speculative high-end law enforcement crack rate": 250,
+  "Expected law enforcement crack rate": 25,
+  "Speculative high-end crack rate": 250,
   // "Best consumer hardware": 2.6e6, // 2.6 million
 };
 

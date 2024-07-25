@@ -88,7 +88,7 @@ const PasscodeFAQ = ({ hashRate }) => {
             question="How do we know the guesses/second?"
             id="secure"
             answer={`
-              **Cracking speed:** We have [evidence from 2018](https://www.komando.com/news/how-your-iphone-can-be-hacked-in-6-minutes/) that law enforcement phone cracking software worked at a rate of **25 guesses/second**.
+              We have [evidence from 2018](https://www.komando.com/news/how-your-iphone-can-be-hacked-in-6-minutes/) that law enforcement phone cracking software worked at a rate of **25 guesses/second**.
               This is a lot lower than the password hashing rate because passcode hashing must be done on the phone (rather than a more-powerful computer).
 
               We include 250 guesses/second as a possible imagined high-end option since it's possible that hacking capacities have increased.
