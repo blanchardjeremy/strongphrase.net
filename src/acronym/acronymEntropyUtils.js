@@ -1,4 +1,5 @@
 const { words } = require('../words.js');
+const grammarLetterEntropies = require('./letterEntropies').default;
 
 // Function to calculate entropy
 function calculateEntropy(probabilities) {
@@ -11,7 +12,7 @@ function calculateEntropy(probabilities) {
 function countFirstLetters(wordList) {
   const counts = {};
   wordList.forEach(word => {
-    const firstLetter = word.charAt(0).toLowerCase();
+    const firstLetter = word.charAt(0);
     if (counts[firstLetter]) {
       counts[firstLetter]++;
     } else {
@@ -59,11 +60,6 @@ function calculateWordListEntropy() {
         counts: firstLetterCounts
       };
 
-      // Debugging
-      // console.log(`Word list: ${key}`);
-      // console.log(`Counts: ${JSON.stringify(firstLetterCounts, null, 2)}`);
-      // console.log(`Probabilities: ${JSON.stringify(probabilities, null, 2)}`);
-      // console.log(`Entropy: ${entropy}`);
     }
   }
   return entropies;
@@ -85,18 +81,25 @@ function calculateAcronymEntropy(grammar) {
 }
 
 // Function to calculate the entropy of a specific passphrase-turned-acronym considering the grammar
-function calculateAcronymEntropyFromPassphrase(acronym, grammar) {
-  const components = grammar.split('|').map(comp => comp.split(':')[0].trim());
-  const wordListEntropies = calculateWordListEntropy();
-  const acronymLetters = acronym.split('');
+function calculatePassphraseSpecificAcronymEntropy(passphrase, grammarId) {
+  const grammar = grammarLetterEntropies[grammarId];
+  
+  if (!grammar) {
+    throw new Error(`Grammar ID ${grammarId} not found`);
+  }
 
+  const components = grammar.components;
+  const passphraseLetters = passphrase.split('');
   let totalEntropy = 0;
 
-  acronymLetters.forEach((letter, index) => {
+  passphraseLetters.forEach((letter, index) => {
     const component = components[index];
-    if (wordListEntropies[component] && wordListEntropies[component].probabilities[letter]) {
-      const probability = wordListEntropies[component].probabilities[letter];
-      totalEntropy -= Math.log2(probability);
+    const letterEntropy = grammar.components[component]?.letterEntropies[letter];
+    
+    if (letterEntropy !== undefined) {
+      totalEntropy += letterEntropy;
+    } else {
+      console.warn(`Letter '${letter}' in component '${component}' not found in letterEntropies`);
     }
   });
 
@@ -104,9 +107,10 @@ function calculateAcronymEntropyFromPassphrase(acronym, grammar) {
 }
 
 
+
 // Export functions
 module.exports = {
   calculateWordListEntropy,
   calculateAcronymEntropy,
-  calculateAcronymEntropyFromPassphrase
+  calculatePassphraseSpecificAcronymEntropy
 };

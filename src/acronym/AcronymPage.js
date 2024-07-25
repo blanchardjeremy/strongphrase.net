@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
-import { PhraseGeneratorParent } from '../PassphraseGenerator.js'
+import { PhraseGeneratorParent } from '../PassphraseGenerator.js';
+
+import { calculatePassphraseSpecificAcronymEntropy } from './acronymEntropyUtils.js';
 import { FaRegCopy, FaCheck } from "react-icons/fa";
 
 const acronymGrammarLabels = {
@@ -42,11 +44,8 @@ const AcronymLabeler = ({ passphrase, copyToClipboard, copiedBits, bits }) => {
   // const totalEntropy = calculateAcronymEntropy(grammars[bits]);
   // console.log("Total Entropy of Acronym Password:", totalEntropy, "bits");
   
-  // const acronymEntropy = calculateAcronymEntropyFromPassphrase(acronym, grammars[bits]);
-  // console.log("Entropy of Specific Acronym:", acronymEntropy);
-
-  // console.log("Word list printed entropies:");
-  // console.log(printAllCalculatedEntropies(grammars));
+  const acronymEntropy = calculatePassphraseSpecificAcronymEntropy(acronym, bits);
+  console.log("Entropy of Specific Acronym:", acronymEntropy);
 
   return (
     <div className="relative passphrase-content mb-6" onClick={() => copyToClipboard(acronymOnClipobard, bits)}>
