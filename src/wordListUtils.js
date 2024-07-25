@@ -1,4 +1,4 @@
-import { words } from "./words.js";
+const { words } = require('./words.js');
 
 // This file has a set of tools to help with cleaning and updating word lists
 
