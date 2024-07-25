@@ -1,25 +1,22 @@
-import { words } from "./words.js";
+import { words, grammars as grammers_int } from "./words.js";
 
-let grammars = {
-  44: "adj-animate:9| |noun-animate:9| |verb-s:8| |adj:9| |noun-concrete:9",
-  46: "adj-animate:8| |noun-animate:8| |verb-s:7| |number:6| |adj:9| |noun-concrete-plural:8",
-  48: "adj-animate:10| |noun-animate:9| |verb-s:9| |adj:10| |noun-concrete:10",
-  50: "adj-animate:9| |noun-animate:9| |verb-s:8| |number:6| |adj:9| |noun-concrete-plural:9",
-  52: "adj-animate:9| |noun-animate:9| |verb-s:9| |adj:10| |noun-concrete:9| in |place:7",
-  54: "adj-animate:10| |noun-animate:10| |verb-s:9| |number:6| |adj:10| |noun-concrete-plural:10",
-  56: "adj-animate:10| |noun-animate:10| |verb-s:9| |adj:10| |noun-concrete:10| in |place:8",
-  58: "adj-animate:8| |noun-animate:8| and |adj-animate:8| |noun-animate:8| |verb:8| |adj:9| |noun-concrete:9",
-  60: "adj-animate:9| |noun-animate:8| and |adj-animate:9| |noun-animate:8| |verb:8| |adj:9| |noun-concrete:9",
-  62: "adj-animate:9| |noun-animate:9| |verb-s:8| |adj:9| |noun-concrete:9| and |adj:9| |noun-concrete:9",
-  64: "adj-animate:8| |noun-animate:8| and |adj-animate:8| |noun-animate:8| |verb:8| |adj:9| |noun-concrete:8| in |place:7",
-  66: "adj-animate:9| |noun-animate:8| and |adj-animate:9| |noun-animate:8| |verb:8| |number:6| |adj:9| |noun-concrete-plural:9",
-  68: "adj-animate:9| |noun-animate:8| and |adj-animate:9| |noun-animate:8| |verb:8| |adj:9| |noun-concrete:9| in |place:8",
-  70: "adj-animate:9| |noun-animate:9| and |adj-animate:9| |noun-animate:9| |verb:8| |adj:9| |noun-concrete:9| in |place:8",
-  80: "adj-animate:9| |noun-animate:9| and |adj-animate:9| |noun-animate:9| |verb:8| |adj:9| |noun-concrete:9| and |adj:9| |noun-concrete:9",
-  90: "adj-animate:10| |noun-animate:9| and |adj-animate:10| |noun-animate:9| |verb:7| |adj:10| |noun-concrete:9| and |adj:10| |noun-concrete:9| in |place:7",
-  100: "adj-animate:10| |noun-animate:10| and |adj-animate:10| |noun-animate:10| |verb:9| |adj:10| |noun-concrete:10| and |number:6| |adj:9| |noun-concrete-plural:9| in |place:7",
-  110: "adj-animate:10| |noun-animate:10| and |adj-animate:10| |noun-animate:10| |verb:9| |number:8| |adj:10| |noun-concrete-plural:9| and |number:8| |adj:10| |noun-concrete-plural:9| in |place:7"
-};
+
+/**
+ *   Sample of the data structure
+const words = {
+  "noun-animate": ["DJ", "ox"],
+  "noun-concrete": ["CD", "PC"],
+  "noun-concrete-plural": ["CDs", "PCs"],
+  "verb": ["have", "get", "see"],
+  "verb-s": ["has", "gets", "sees"],
+  "verb-ed": ["had", "got", "seen"],
+  "adj": ["new", "old", "big"],
+  "adj-animate": ["dead", "evil"],
+  "number": ["2", "3", "4", "5"],
+  "place": ["LA", "NYC", "Ohio"]
+}
+ * 
+ */
 
 export const getPrimaryGrammarLabels = () => {
   return {
@@ -29,9 +26,8 @@ export const getPrimaryGrammarLabels = () => {
   };
 };
 
-export const acronymGrammarLabels = {
-  110: "Baseline",
-}
+// Re-export so I don't have to change it everywhere after refactoring
+export const grammars = grammers_int;
 
 
 

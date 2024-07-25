@@ -3,7 +3,8 @@ import { PhraseGeneratorParent } from '../PassphraseGenerator.js'
 import { FaRegCopy, FaCheck } from "react-icons/fa";
 
 const acronymGrammarLabels = {
-  110: "Baseline",
+  90: "Medium",
+  110: "Long",
 }
 
 const makeAcronymPassphrase = (passphrase) => {
@@ -27,24 +28,32 @@ const makeAcronymPassphrase = (passphrase) => {
 
 
 
-
-
 const AcronymLabeler = ({ passphrase, copyToClipboard, copiedBits, bits }) => {
   if(!passphrase) {
     return null;
   }
-  // passphrase = "underage worker and snobbish lemming discover 85 bogus teacups and 1977 crumbly cheetahs in Iowa";
+
   const acronym = makeAcronymPassphrase(passphrase);
   const acronymOnClipobard = `${acronym} (${passphrase})`;
 
+  // const wordListEntropies = calculateWordListEntropy();
+  // console.log("Word List Entropies:", wordListEntropies);
+
+  // const totalEntropy = calculateAcronymEntropy(grammars[bits]);
+  // console.log("Total Entropy of Acronym Password:", totalEntropy, "bits");
   
+  // const acronymEntropy = calculateAcronymEntropyFromPassphrase(acronym, grammars[bits]);
+  // console.log("Entropy of Specific Acronym:", acronymEntropy);
+
+  // console.log("Word list printed entropies:");
+  // console.log(printAllCalculatedEntropies(grammars));
 
   return (
     <div className="relative passphrase-content mb-6" onClick={() => copyToClipboard(acronymOnClipobard, bits)}>
       {passphrase}
 
-      <div className="flex items-center font-bold">
-        <span className="font-body text-sm uppercase mr-3">Aconrym:</span> { acronym }
+      <div className="flex items-center font-bold mt-2">
+        <span className="font-body text-sm uppercase mr-3">Acronym to use as password:</span> { acronym }
       </div>
 
       <span className="copy-button" >

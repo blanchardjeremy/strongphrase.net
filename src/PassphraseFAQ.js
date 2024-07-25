@@ -31,6 +31,8 @@ const WordStatsFAQItem = () => {
         question="What word lists are you drawing from?" 
         id="words"
         answer={`
+${wordStatsTable}
+
 They were chosen to be common enough words that they would be easy to remember and type. You can find the [full list of words here](https://github.com/blanchardjeremy/strongphrase.net/blob/main/src/words.js).
 The numbers were chosen to be somewhat easy to remember (rather than fully random).
 
