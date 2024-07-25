@@ -48,7 +48,7 @@ const WordStatsFAQItem = () => {
         answer={stripIndent`
 ${wordStatsTable}
 
-They were chosen to be common enough words that they would be easy to remember and type. You can find the [full list of words here](https://github.com/blanchardjeremy/strongphrase.net/blob/main/src/utils.js#L186).
+They were chosen to be common enough words that they would be easy to remember and type. You can find the [full list of words here](https://github.com/blanchardjeremy/strongphrase.net/blob/main/src/words.js).
 The numbers were chosen to be somewhat easy to remember (rather than fully random).
 
 I put some time in filtering out offensive words, but I'm sure I missed some. If you find words that you think should be removed, [I'd love to hear the feedback](https://forms.gle/pu1vqi8Mc1VYirGz6).
