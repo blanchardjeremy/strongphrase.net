@@ -1,10 +1,14 @@
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import { timeToCrackAvg, convertTimeToReadableFormat, formatDollarToScale, avgCostToCrack } from './../passphraseUtils.js';
 import { getPasscodeAndEntropy, generateSecurePasscode } from './passcodeUtils.js';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
+import { stripIndent } from 'common-tags';
 import './PasscodeDisplay.css';
 import { FaRegCopy, FaCheck, FaSyncAlt, FaInfoCircle } from "react-icons/fa";
 
-const BASE_HASH_RATE = 25;
+const BASE_HASH_RATE = 250;
 
 const PasscodeDisplay = () => {
   const [passcodes, setPasscodes] = useState({});
@@ -63,10 +67,18 @@ const PasscodeDisplay = () => {
       </div>
 
       
-      <div className="card card-body p-6 bg-green-100 mt-4 mb-4 flex flex-grow max-w-3xl text-sm">
-        <p className="mt-0">
-          <strong>Cracking speed:</strong> We have documentation that GrayKey cracks iPhones in 2018 at a rate of <strong>{BASE_HASH_RATE} guesses/second</strong>. While it may be possible to clone the entire iphone disk and do the cracking offline, we haven't heard of such a case.
-        </p>
+      <div className="card card-body px-6 py-3 bg-green-100 mt-4 mb-8 flex flex-grow max-w-3xl text-sm">
+        <ReactMarkdown 
+          className="mt-0 markdown-content"
+          remarkPlugins={[remarkGfm]}
+          rehypePlugins={[rehypeRaw]}
+        >
+          {stripIndent`
+            **Cracking speed:** We have [evidence from 2018](https://www.komando.com/news/how-your-iphone-can-be-hacked-in-6-minutes/) that law enforcement phone cracking software worked at a rate of 25 guesses/second.
+            We assume that the speed is no more than 10x that today, and use **${BASE_HASH_RATE} guesses/second** as our baseline. This assumes your phone is off. If youre phone is on (even if it is locked), a lot of data is already unecrypted and accessible to sophistocated hackers without knowing your passcode.
+          `}
+          
+        </ReactMarkdown>
       </div>
 
       {crackTimes.map(({ key, label, entropy, time, cost }) => (

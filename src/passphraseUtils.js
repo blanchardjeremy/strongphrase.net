@@ -94,7 +94,6 @@ export const getSampleWords = (listType, quantity=5) => {
 
     sampleWords.push(words[listType][i*50+20]);
   }
-  console.log(sampleWords);
   return sampleWords;
 }
 
