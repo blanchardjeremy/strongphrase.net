@@ -29,6 +29,10 @@ export const getPrimaryGrammarLabels = () => {
   };
 };
 
+export const acronymGrammarLabels = {
+  110: "Baseline",
+}
+
 
 
 // We use $0.56 per 2^32 guesses currently

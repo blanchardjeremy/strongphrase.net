@@ -5,8 +5,25 @@ import { FaRegCopy, FaCheck, FaSyncAlt, FaInfoCircle, FaKey } from "react-icons/
 
 import './PassphraseGenerator.css';
 
+const PassphraseLabeler = ({ passphrase, copyToClipboard, copiedBits, bits }) => {
+  return (
+    <div className="relative passphrase-content mb-6" onClick={() => copyToClipboard(passphrase, bits)}>
+      {passphrase}
 
-const PassphraseGenerator = () => {
+      {/* {type === "acronym" && Labeler && <Labeler passphrase={passphrase} />} */}
+
+      <span className="copy-button" >
+        {copiedBits === bits ? <FaCheck /> : <FaRegCopy />} {copiedBits === bits ? 'Copied!' : 'Copy'}
+      </span>
+    </div>
+  );
+}
+
+export const PhraseGeneratorParent = ({ 
+  type='passphrase', 
+  base_grammar_labels=null, 
+  Labeler=PassphraseLabeler,
+}) => {
   const [passphrases, setPassphrases] = useState({});
   const [practiceInput, setPracticeInput] = useState('');
   const [copiedBits, setCopiedBits] = useState(null);
@@ -18,7 +35,7 @@ const PassphraseGenerator = () => {
 
   const generatePassphrases = useCallback(() => {
     const newPassphrases = {};
-    const grammar_labels = showAllGrammars ? getAllGrammarLabels() : getPrimaryGrammarLabels();
+    const grammar_labels = showAllGrammars ? getAllGrammarLabels() : base_grammar_labels;
     const grammar_keys = Object.keys(grammar_labels).map(Number);
     grammar_keys.forEach(bits => {
       newPassphrases[bits] = getPassphrase(bits);
@@ -29,11 +46,11 @@ const PassphraseGenerator = () => {
     setShowHidden(true);
     setPracticeInput('');
 
-  }, [showAllGrammars]);
+  }, [showAllGrammars, base_grammar_labels]);
 
   
   const crackTimes = useMemo(() => {
-    const grammar_labels = showAllGrammars ? getAllGrammarLabels() : getPrimaryGrammarLabels();
+    const grammar_labels = showAllGrammars ? getAllGrammarLabels() : base_grammar_labels;
     const grammar_keys = Object.keys(grammar_labels).map(Number);
     return grammar_keys.map(bits => ({
       bits,
@@ -41,7 +58,7 @@ const PassphraseGenerator = () => {
       time: convertTimeToReadableFormat(timeToCrackAvg(bits, hashRate)),
       cost: formatDollarToScale(avgCostToCrack(bits))
     }));
-  }, [hashRate, showAllGrammars]);
+  }, [hashRate, showAllGrammars, base_grammar_labels]);
 
   const copyToClipboard = useCallback((text, bits) => {
     navigator.clipboard.writeText(text);
@@ -56,8 +73,6 @@ const PassphraseGenerator = () => {
   useEffect(() => {
     generatePassphrases();
   }, [generatePassphrases]);
-  
-  
 
   return (
     <section className="content">
@@ -66,7 +81,7 @@ const PassphraseGenerator = () => {
           onClick={generatePassphrases}
           className="btn btn-primary text-base md:text-xl text-white mb-2 md:mb-0"
         >
-          <FaSyncAlt /> New passphrases!
+          <FaSyncAlt /> New {type}s!
         </button>
         <HashRateSelector setHashRate={setHashRate} hashRate={hashRate} />
 
@@ -115,12 +130,12 @@ const PassphraseGenerator = () => {
               </div>
             </div>
           </label>
-          <div className="relative passphrase-content mb-6" onClick={() => copyToClipboard(passphrases[bits], bits)}>
-            {passphrases[bits]}
-            <span className="copy-button" >
-              {copiedBits === bits ? <FaCheck /> : <FaRegCopy />} {copiedBits === bits ? 'Copied!' : 'Copy'}
-            </span>
-          </div>
+          <Labeler 
+            passphrase={passphrases[bits]} 
+            copyToClipboard={copyToClipboard} 
+            bits={bits} 
+            copiedBits={copiedBits} 
+          />
         </div>
       ))}
 
@@ -144,5 +159,15 @@ const PassphraseGenerator = () => {
     </section>
   );
 };
+
+const PassphraseGenerator = () => {
+  return (
+    <PhraseGeneratorParent
+      type="passphrase"
+      base_grammar_labels={getPrimaryGrammarLabels()}
+      />
+
+  )
+}
 
 export default PassphraseGenerator;

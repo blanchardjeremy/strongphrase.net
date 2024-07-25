@@ -22,7 +22,7 @@
 
 .label-container {
   /* width: 180px; */
-  @apply flex items-center justify-between min-w-32;
+  @apply flex items-center justify-between;
 }
 
 .crack-time-info {
