@@ -6,17 +6,38 @@ const acronymGrammarLabels = {
 }
 
 const makeAcronymPassphrase = (passphrase) => {
-  return passphrase.split(" ").map(word => word[0]).join("");
-}
+  // Split the passphrase into words
+  return passphrase.split(" ")
+    .map(word => {
+      // Check if the word is 'and' and replace it with '&'
+      if (word.toLowerCase() === 'and') {
+        return '&';
+      }
+      // Check if the word is a number and return the full number
+      else if (!isNaN(word)) {
+        return word;
+      }
+      // For other words, return the first character
+      return word[0];
+    })
+    .join("");  // Join all the processed words into a single string
+};
+
+// Test the function
+console.log(makeAcronymPassphrase("underage worker and snobbish lemming discover 85 bogus teacups and 1977 crumbly cheetahs in Iowa"));
 
 
-const AcronymLabel = ({ passphrase, copyToClipboard, copiedBits, bits }) => {
+
+const AcronymLabeler = ({ passphrase, copyToClipboard, copiedBits, bits }) => {
+  const acronym = makeAcronymPassphrase(passphrase);
+  const acronymOnClipobard = `${acronym} (${passphrase})`;
+
   return (
-    <div className="relative passphrase-content mb-6" onClick={() => copyToClipboard(passphrase, bits)}>
+    <div className="relative passphrase-content mb-6" onClick={() => copyToClipboard(acronymOnClipobard, bits)}>
       {passphrase}
 
       <div className="flex items-center font-bold">
-        <span className="font-body text-sm uppercase mr-3">Aconrym:</span> { makeAcronymPassphrase(passphrase) }
+        <span className="font-body text-sm uppercase mr-3">Aconrym:</span> { acronym }
       </div>
 
       <span className="copy-button" >
@@ -34,7 +55,7 @@ const AcronymPage = () => {
       <PhraseGeneratorParent
         type="acronym"
         base_grammar_labels={acronymGrammarLabels}
-        Labeler={AcronymLabel}
+        Labeler={AcronymLabeler}
        />
     
   </div>
