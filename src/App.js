@@ -72,9 +72,7 @@ const App = () => {
               </div>
             </aside>
             <nav className="">
-            <h6 className="footer-title">Navigation</h6>
-              <Link className="link link-hover" to="/">Home</Link>
-              <Link className="link link-hover" to="/table">Time/cost to crack table</Link>
+            <h6 className="footer-title">Connect</h6>
               <a className="link link-hover" href="https://github.com/blanchardjeremy/strongphrase.net" target="_blank" rel="noreferrer">Code on GitHub</a>
               <a className="link link-hover" href="https://github.com/blanchardjeremy/strongphrase.net/issues" target="_blank" rel="noreferrer">Submit a bug or request</a>
               <a className="link link-hover" href="https://forms.gle/pu1vqi8Mc1VYirGz6" target="_blank" rel="noreferrer">Contact</a>
