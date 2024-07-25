@@ -1,10 +1,7 @@
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import { timeToCrackAvg, convertTimeToReadableFormat, formatDollarToScale, avgCostToCrack } from './../passphraseUtils.js';
 import { getPasscodeAndEntropy, generateSecurePasscode } from './passcodeUtils.js';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import rehypeRaw from 'rehype-raw';
-import { stripIndent } from 'common-tags';
+import MarkdownCustom from '../MarkdownCustom.js';
 import './PasscodeDisplay.css';
 import { FaRegCopy, FaCheck, FaSyncAlt, FaInfoCircle } from "react-icons/fa";
 
@@ -68,17 +65,14 @@ const PasscodeDisplay = () => {
 
       
       <div className="card card-body px-6 py-3 bg-green-100 mt-4 mb-8 flex flex-grow max-w-3xl text-sm">
-        <ReactMarkdown 
+        <MarkdownCustom 
           className="mt-0 markdown-content"
-          remarkPlugins={[remarkGfm]}
-          rehypePlugins={[rehypeRaw]}
         >
-          {stripIndent`
+          {`
             **Cracking speed:** We have [evidence from 2018](https://www.komando.com/news/how-your-iphone-can-be-hacked-in-6-minutes/) that law enforcement phone cracking software worked at a rate of 25 guesses/second.
             We assume that the speed is no more than 10x that today, and use **${BASE_HASH_RATE} guesses/second** as our baseline. This assumes your phone is off. If youre phone is on (even if it is locked), a lot of data is already unecrypted and accessible to sophistocated hackers without knowing your passcode.
           `}
-          
-        </ReactMarkdown>
+        </MarkdownCustom>
       </div>
 
       {crackTimes.map(({ key, label, entropy, time, cost }) => (

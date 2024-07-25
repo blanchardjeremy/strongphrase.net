@@ -1,20 +1,16 @@
 import React from 'react';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import rehypeRaw from 'rehype-raw';
-import { stripIndent } from 'common-tags';
-import './PassphraseFAQ.css';
 import { getWordStats, getSampleWords, avgTimeToCrackFormatted } from './passphraseUtils';
+import MarkdownCustom from './MarkdownCustom.js';
+
+import './PassphraseFAQ.css';
 
 const FAQItem = ({ question, id, answer }) => {
   return (
     <div className="faq-item" id={id}>
       <h2 className="faq-question">{question}</h2>
-      <ReactMarkdown
+      <MarkdownCustom
         className="faq-answer"
         children={answer}
-        remarkPlugins={[remarkGfm]}
-        rehypePlugins={[rehypeRaw]}
       />
     </div>
   );
@@ -45,9 +41,7 @@ const WordStatsFAQItem = () => {
     <FAQItem 
         question="What word lists are you drawing from?" 
         id="words"
-        answer={stripIndent`
-${wordStatsTable}
-
+        answer={`
 They were chosen to be common enough words that they would be easy to remember and type. You can find the [full list of words here](https://github.com/blanchardjeremy/strongphrase.net/blob/main/src/words.js).
 The numbers were chosen to be somewhat easy to remember (rather than fully random).
 
@@ -68,7 +62,7 @@ const PassphraseFAQ = () => {
           <FAQItem 
             question="What is this tool? How does it help me?"
             id="intro"
-            answer={stripIndent`
+            answer={`
               Use this site to create strong passphrases that are easy to remember.
               These passphrases are **much stronger** than most passwords because they are randomly generated, whereas passwords are often reused, shorter, and easier to guess.
               This site was inspired by other passphrase generates like [diceware](https://www.eff.org/dice), but designed to generate phrases that are **easier to visualize and remember**.
@@ -80,7 +74,7 @@ const PassphraseFAQ = () => {
           <FAQItem 
             question="Should I choose STRONG, STRONGER, or STRONGEST?" 
             id="choosing"
-            answer={stripIndent`
+            answer={`
               The best answer for most folks is: choose any passphrase that you will use. That's probably the easiest one ("**STRONG**"). Password advice is only helpful if you use it. So while the "**STRONGEST**" option is harder to crack, it is also harder to type every time. For most folks, the "**STRONG**" is plenty.
               
               The longer answer is: It depends on how important the data is you're trying to protect. 
@@ -97,7 +91,7 @@ const PassphraseFAQ = () => {
           <FAQItem 
             question="How does this compare with other password schemes?"
             id="compare"
-            answer={stripIndent`
+            answer={`
               | Password scheme                     | Example                               | Crackable  | Easy to remember<br> and type |
               |-------------------------------------|---------------------------------------|------------|-------------------------------|
               | Common word/name/etc                | \`dragon\`                            | ❌ Easy     | ✅ Easy                        |
@@ -113,7 +107,7 @@ const PassphraseFAQ = () => {
           <FAQItem 
             question="Wait, is it safe to generate a passphrase from a website?" 
             id="safe"
-            answer={stripIndent`
+            answer={`
               Yes (relatively). This website runs entirely on your browser. There's no server that generates the passphrase. You can turn off your wifi and the site will still work!
               For the extra paranoid, you can generate a "[diceware](https://www.eff.org/dice)" passphrase entirely offline.
             `} 
@@ -130,7 +124,7 @@ const PassphraseFAQ = () => {
           <FAQItem 
             question="What makes a strong password? (hint: entropy!)"
             id="entropy"
-            answer={stripIndent`
+            answer={`
               **Entropy** is a technical term that refers to how hard a password is to crack.
 
               A 10-character password word made up of lowercase letters (26 characters) forms 26<sup>10</sup> = 141,167,095,653,376 (144 trillion) possible different combinations. It's cumbersome to write numbers that long, so we instead write it use exponents like "2 to the power of X" (2<sup>X</sup>). In our exmaple, 26<sup>10</sup> is about equal to **2<sup>47</sup>**. So we say this password has **"47 bits of entropy"**.
@@ -182,7 +176,7 @@ const PassphraseFAQ = () => {
           <FAQItem
             question="How much entropy is enough?"
             id="enoughentropoy"
-            answer={stripIndent`
+            answer={`
               If you take a look athe  **[time/cost to crack table](/#/table)**, you can make an assessment for yourself. 
 
               My two cents is that **45 bits** is sufficient for most situations, and that **65 or 70 bits** is more then enough for even very high security situations.
@@ -196,7 +190,7 @@ const PassphraseFAQ = () => {
           <FAQItem
             question="But how would the attacker know I used this passphrase system?"
             id="system"
-            answer={stripIndent`
+            answer={`
             In reality, they probably wouldn't know. 
             All of these examples assume that an attacker knows which passphrase scheme you've chosen and the exact wordlists used. So really we are listing the "minimum entropy required." That's the safest guess.
             
@@ -210,7 +204,7 @@ const PassphraseFAQ = () => {
           <FAQItem 
             question="How do you calculate the TIME to crack a passphrase?" 
             id="time"
-            answer={stripIndent`
+            answer={`
               This is tricky. It requires making a lot of assumptions about how strong the "hash" of the password is and the computing power of the attacker. 
 
               Estimating the number guesses/second (aka: hashes/second) is challenging because the functions used to encrypt a password vary widely.
@@ -250,7 +244,7 @@ const PassphraseFAQ = () => {
           <FAQItem 
           question="How do you calculate the COST to crack a passphrase?" 
           id="cost"
-          answer={stripIndent`
+          answer={`
             The downside to "time to crack" is that we have to make guesses about the computing power an attacker is using. 
             If it takes 500 hours to crack a certain password with 1 process, an attacker could rent 500 cloud processors and crack the same password in 1 hour.
             The question becomes "how much money would that cost?"
@@ -286,7 +280,7 @@ const PassphraseFAQ = () => {
           <FAQItem 
             question="Other resources" 
             id="resources"
-            answer={stripIndent`
+            answer={`
               Here are some resources that I've found helpful in exploring passwords:
 
               

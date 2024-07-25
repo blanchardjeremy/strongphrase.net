@@ -36,13 +36,8 @@ footer a.link, footer a:hover.link, footer a:active.link, footer a:visited.link 
   @apply mb-2;
 }
 
-
 .content p {
-  @apply mt-2;
-}
-
-.content p {
-  @apply mb-4 last:mb-0;
+  @apply mt-2 mb-4 last:mb-0;
 }
 
 
@@ -74,5 +69,5 @@ footer a.link, footer a:hover.link, footer a:active.link, footer a:visited.link 
 }
 
 .markdown-content p {
- @apply m-0;
+ @apply last:m-0;
 }
