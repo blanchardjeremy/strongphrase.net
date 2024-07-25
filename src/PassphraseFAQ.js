@@ -3,8 +3,8 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { stripIndent } from 'common-tags';
-import './Faq.css';
-import { getWordStats, getSampleWords, avgTimeToCrackFormatted } from './utils';
+import './PassphraseFAQ.css';
+import { getWordStats, getSampleWords, avgTimeToCrackFormatted } from './passphraseUtils';
 
 const FAQItem = ({ question, id, answer }) => {
   return (
@@ -58,7 +58,7 @@ I put some time in filtering out offensive words, but I'm sure I missed some. If
 }
 
 
-const Faq = () => {
+const PassphraseFAQ = () => {
   return (
     <div className="faq-all">
       <section className="content faq-overall-container markdown-content" id="FAQ">
@@ -308,4 +308,4 @@ const Faq = () => {
   );
 };
 
-export default Faq;
+export default PassphraseFAQ;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { convertTimeToReadableFormat, timeToCrackAvg, avgCostToCrack, formatDollarToScale } from "./utils.js";
+import { convertTimeToReadableFormat, timeToCrackAvg, avgCostToCrack, formatDollarToScale } from "./passphraseUtils.js";
 import HashRateSelector, { defaultHashRate } from './HashRateSelector';
 import { Link } from "react-router-dom";
 import Markdown from "react-markdown";

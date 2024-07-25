@@ -3,7 +3,8 @@ import { HashRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import './App.css';
 import PassphraseGenerator from './PassphraseGenerator.js';
 import PasswordSchemeCard from './PasswordSchemeCard.js';
-import Faq from './Faq.js';
+// import Passcode from './passcode/Passcode.js';
+import PassphraseFAQ from './PassphraseFAQ.js';
 import logo from './img/logo.png';
 import EntropyCrackTimeTable from './EntropyCrackTable';
 import ScrollToTop from './helpers/ScrollToTop';
@@ -13,7 +14,13 @@ const Home = () => (
   <>
     <PassphraseGenerator />
     <PasswordSchemeCard />
-    <Faq />
+    <PassphraseFAQ />
+  </>
+);
+
+const PasscodePage = () => (
+  <>
+    {/* <Passcode /> */}
   </>
 );
 
@@ -34,6 +41,7 @@ const App = () => {
 
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/passcode" element={<PasscodePage />} />
             <Route path="/table" element={<EntropyCrackTimeTable />} />
           </Routes>
 
