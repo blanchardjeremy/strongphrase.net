@@ -3,7 +3,7 @@ import { HashRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import './App.css';
 import PassphraseGenerator from './PassphraseGenerator.js';
 import PasswordSchemeCard from './PasswordSchemeCard.js';
-// import Passcode from './passcode/Passcode.js';
+import PasscodeDisplay from './passcode/PasscodeDisplay.js';
 import PassphraseFAQ from './PassphraseFAQ.js';
 import logo from './img/logo.png';
 import EntropyCrackTimeTable from './EntropyCrackTable';
@@ -20,7 +20,7 @@ const Home = () => (
 
 const PasscodePage = () => (
   <>
-    {/* <Passcode /> */}
+    <PasscodeDisplay />
   </>
 );
 
@@ -32,6 +32,43 @@ const App = () => {
       <ScrollToTop />
       <div className="font-body">
         <div className="max-w-screen-lg mx-auto px-4 py-8">
+
+          <div className="navbar bg-base-100">
+            <div className="navbar-start">
+              <div className="dropdown">
+                <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M4 6h16M4 12h8m-8 6h16" />
+                  </svg>
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                  <li><Link to="/">Passphrase</Link></li>
+                  <li><Link to="/table">Passcode</Link></li>
+                  <li><Link to="/table">Crack Time/Cost Table</Link></li>
+                </ul>
+              </div>
+              <Link to="/" className="btn btn-ghost text-xl">StrongPhrase.net</Link>
+            </div>
+            <div className="navbar-center hidden lg:flex">
+              <ul className="menu menu-horizontal px-1">
+                <li><Link to="/">Passphrase</Link></li>
+                <li><Link to="/table">Passcode</Link></li>
+                <li><Link to="/table">Crack Time/Cost Table</Link></li>
+              </ul>
+            </div>
+          </div>
+
           <header className="mb-8">
             <img className="float-start max-w-16 mr-4" alt="Lock icon" src={logo} />
             <h1 className="text-4xl font-header mb-2">StrongPhrase.net</h1>
