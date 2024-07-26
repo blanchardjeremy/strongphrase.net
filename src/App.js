@@ -39,7 +39,7 @@ const App = () => {
               <div className="navbar-start flex w-full">
                 <ul className="menu menu-horizontal px-1">
                   <li><NavLink activeClassName="active" to="/">Passphrase</NavLink></li>
-                  <li><NavLink activeClassName="active" to="/acronym">Acronym Passphrase</NavLink></li>
+                  {/* <li><NavLink activeClassName="active" to="/acronym">Acronym Passphrase</NavLink></li> */}
                   <li><NavLink activeClassName="active" to="/passcode">Phone Passcode</NavLink></li>
                   <li><NavLink activeClassName="active" to="/table">Crack Time/Cost Table</NavLink></li>
                 </ul>
