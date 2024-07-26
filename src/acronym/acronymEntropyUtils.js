@@ -82,6 +82,7 @@ function calculateAcronymEntropy(grammar) {
 
 // Function to calculate the entropy of a specific passphrase-turned-acronym considering the grammar
 function calculatePassphraseSpecificAcronymEntropy(passphrase, grammarId) {
+  console.log('Passphrase:', passphrase);
   const grammar = grammarLetterEntropies[grammarId];
   
   if (!grammar) {

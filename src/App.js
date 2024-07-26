@@ -23,7 +23,7 @@ const Home = () => (
 
 const App = () => {
   return (
-    <Router>
+    <Router basename='/'>
       <ScrollToTop />
       <div className="font-body">
         <div className="max-w-screen-lg mx-auto px-4 py-8">
