@@ -1,5 +1,5 @@
-const { words } = require('../words.js');
-const grammarLetterEntropies = require('./letterEntropies').default;
+const { words, grammars } = require('../words.js');
+const componentLetterEntropies = require('./letterEntropies').default;
 
 // Function to calculate entropy
 function calculateEntropy(probabilities) {
@@ -81,31 +81,70 @@ function calculateAcronymEntropy(grammar) {
 }
 
 // Function to calculate the entropy of a specific passphrase-turned-acronym considering the grammar
-function calculatePassphraseSpecificAcronymEntropy(passphrase, grammarId) {
+function calculatePassphraseAndAcronymEntropy(passphrase, grammarId) {
   console.log('Passphrase:', passphrase);
-  const grammar = grammarLetterEntropies[grammarId];
+  console.log('grammarId:', grammarId);
+
+  const grammarString = grammars[grammarId];
   
-  if (!grammar) {
+  if (!grammarString) {
     throw new Error(`Grammar ID ${grammarId} not found`);
   }
 
-  const components = grammar.components;
-  const passphraseLetters = passphrase.split('');
+  const components = grammarString.split('|').map(comp => comp.split(':')[0].trim());
+  const passphraseWords = passphrase.split(' ');
   let totalEntropy = 0;
+  let acronym = '';
+  let wordIndex = 0;
 
-  passphraseLetters.forEach((letter, index) => {
-    const component = components[index];
-    const letterEntropy = grammar.components[component]?.letterEntropies[letter];
-    
-    if (letterEntropy !== undefined) {
-      totalEntropy += letterEntropy;
-    } else {
-      console.warn(`Letter '${letter}' in component '${component}' not found in letterEntropies`);
+  components.forEach((component) => {
+    const skipList = ['', ' ', 'and', 'in'];
+
+    if (skipList.includes(component)) {
+      // Skip zero entropy components and corresponding word
+      if (component === 'and') {
+        acronym += '&';
+        wordIndex++;
+      } else if (component === 'in') {
+        acronym += 'i';
+        wordIndex++;
+      }
+      return;
     }
+
+    // If the component is 'number', treat it as one unit of entropy
+    if (component === 'number') {
+      const number = passphraseWords[wordIndex];
+      acronym += number;
+      totalEntropy += 10; // Always add 10 bits of entropy for numbers
+      wordIndex++;
+      return;
+    }
+
+    const word = passphraseWords[wordIndex];
+    const wordParts = word.split(/[\s-]+/); // Split by spaces or hyphens
+    wordParts.forEach((part, partIndex) => {
+      const letter = part[0];
+      acronym += letter;
+      if (partIndex === 0) { // Only add entropy for the first part
+        const letterEntropy = componentLetterEntropies[component]?.letterEntropies[letter];
+        console.log(`Letter '${letter}' in component '${component}' has entropy of ${letterEntropy}`);
+
+        if (letterEntropy !== undefined) {
+          totalEntropy += letterEntropy;
+        } else {
+          console.warn(`Letter '${letter}' in component '${component}' not found in letterEntropies`);
+        }
+      }
+    });
+
+    wordIndex++;
   });
 
-  return totalEntropy;
+  console.log('Acronym:', acronym);
+  return [acronym, totalEntropy];
 }
+
 
 
 
@@ -113,5 +152,5 @@ function calculatePassphraseSpecificAcronymEntropy(passphrase, grammarId) {
 module.exports = {
   calculateWordListEntropy,
   calculateAcronymEntropy,
-  calculatePassphraseSpecificAcronymEntropy
+  calculatePassphraseAndAcronymEntropy
 };

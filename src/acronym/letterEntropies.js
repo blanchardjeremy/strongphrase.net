@@ -309,3 +309,5 @@ const componentLetterEntropies = {
     }
   }
 };
+
+export default componentLetterEntropies;

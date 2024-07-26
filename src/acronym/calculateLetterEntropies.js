@@ -80,6 +80,8 @@ const componentEntropiesString = JSON.stringify(componentEntropies, null, 2);
 
 const fileContent = `
 const componentLetterEntropies = ${componentEntropiesString};
+
+export default componentLetterEntropies;
 `;
 
 const filePath = path.join(__dirname, 'letterEntropies.js');

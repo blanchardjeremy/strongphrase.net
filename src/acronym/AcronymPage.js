@@ -1,13 +1,14 @@
 import PropTypes from 'prop-types';
 import { PhraseGeneratorParent } from '../PassphraseGenerator.js';
 
-import { calculatePassphraseSpecificAcronymEntropy } from './acronymEntropyUtils.js';
+import { calculatePassphraseAndAcronymEntropy } from './acronymEntropyUtils.js';
 import { FaRegCopy, FaCheck } from "react-icons/fa";
 
 const acronymGrammarLabels = {
   90: "Medium",
   110: "Long",
 }
+
 
 const makeAcronymPassphrase = (passphrase) => {
   // Split the passphrase into words
@@ -29,13 +30,14 @@ const makeAcronymPassphrase = (passphrase) => {
 
 
 
-
-const AcronymLabeler = ({ passphrase, copyToClipboard, copiedBits, bits }) => {
+const AcronymLabeler = ({ passphrase, copyToClipboard, copiedBits, grammarBits }) => {
   if(!passphrase) {
     return null;
   }
 
-  const acronym = makeAcronymPassphrase(passphrase);
+  console.log("AcronymLabeler grammarBits:", grammarBits);
+
+  const [acronym, acronymEntropy] = calculatePassphraseAndAcronymEntropy(passphrase, grammarBits);
   const acronymOnClipobard = `${acronym} (${passphrase})`;
 
   // const wordListEntropies = calculateWordListEntropy();
@@ -44,11 +46,11 @@ const AcronymLabeler = ({ passphrase, copyToClipboard, copiedBits, bits }) => {
   // const totalEntropy = calculateAcronymEntropy(grammars[bits]);
   // console.log("Total Entropy of Acronym Password:", totalEntropy, "bits");
   
-  const acronymEntropy = calculatePassphraseSpecificAcronymEntropy(acronym, bits);
+  // const acronymEntropy = calculatePassphraseSpecificAcronymEntropy(acronym, bits);
   console.log("Entropy of Specific Acronym:", acronymEntropy);
 
   return (
-    <div className="relative passphrase-content mb-6" onClick={() => copyToClipboard(acronymOnClipobard, bits)}>
+    <div className="relative passphrase-content mb-6" onClick={() => copyToClipboard(acronymOnClipobard, grammarBits)}>
       {passphrase}
 
       <div className="flex items-center font-bold mt-2">
@@ -56,7 +58,7 @@ const AcronymLabeler = ({ passphrase, copyToClipboard, copiedBits, bits }) => {
       </div>
 
       <span className="copy-button" >
-        {copiedBits === bits ? <FaCheck /> : <FaRegCopy />} {copiedBits === bits ? 'Copied!' : 'Copy'}
+        {copiedBits === grammarBits ? <FaCheck /> : <FaRegCopy />} {copiedBits === grammarBits ? 'Copied!' : 'Copy'}
       </span>
     </div>
   );

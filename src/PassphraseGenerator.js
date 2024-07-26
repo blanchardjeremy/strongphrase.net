@@ -133,7 +133,7 @@ export const PhraseGeneratorParent = ({
           <Labeler 
             passphrase={passphrases[bits]} 
             copyToClipboard={copyToClipboard} 
-            bits={bits} 
+            grammarBits={bits} 
             copiedBits={copiedBits} 
           />
         </div>
