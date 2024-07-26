@@ -5,16 +5,56 @@ import { FaRegCopy, FaCheck, FaSyncAlt, FaInfoCircle, FaKey } from "react-icons/
 
 import './PassphraseGenerator.css';
 
-const PassphraseLabeler = ({ passphrase, copyToClipboard, copiedBits, bits }) => {
+export const PassphraseItem = ({ 
+  passphrase, 
+  label, 
+  time, 
+  cost, 
+  showAllGrammars, 
+  showHidden, 
+  copyToClipboard, 
+  clipboardVersion,
+  copiedBits, 
+  grammarBits, 
+  entropy=null,
+  children
+}) => {
   return (
-    <div className="relative passphrase-content mb-6" onClick={() => copyToClipboard(passphrase, bits)}>
-      {passphrase}
+    <div key={grammarBits} 
+      className={`passphrase-block ${
+        copiedBits === grammarBits ? 'copied' : 
+        (copiedBits && !showHidden) ? 'hide' : ''
+      }`}
+    >
+      <label className="block mb-1 tracking-wide uppercase">
+        <div className="flex items-center">
+          <div className="label-container">
+            <span className={`font-header font-extrabold text-xl inline-block ${label}`}>{label}</span>
+            <span className={`ml-2 group  ${showAllGrammars ? 'hide' : ''}`}>
+              <div className="tooltip mt-1" data-tip={`${entropy} bits of entropy`}>
+                <FaInfoCircle className=" text-gray-500 cursor-pointer text-base" />
+              </div>
+            </span>
+          </div>
+          <div className="crack-time-info">
+            <div className="crack-stats-container">
+              <span className="crack-time ml-2">Avg time to crack: <em>{time}</em></span>
+            </div>
+            <div className="crack-stats-container">
+              <span className="crack-time ml-2">Avg cost to crack: <em>{cost}</em></span>
+            </div>
+          </div>
+        </div>
+      </label>
+      <div className="relative passphrase-content mb-6" onClick={() => copyToClipboard(clipboardVersion, grammarBits)}>
+        {passphrase}
 
-      {/* {type === "acronym" && Labeler && <Labeler passphrase={passphrase} />} */}
+        {children} {/* Render children if present */}
 
-      <span className="copy-button" >
-        {copiedBits === bits ? <FaCheck /> : <FaRegCopy />} {copiedBits === bits ? 'Copied!' : 'Copy'}
-      </span>
+        <span className="copy-button" >
+          {copiedBits === grammarBits ? <FaCheck /> : <FaRegCopy />} {copiedBits === grammarBits ? 'Copied!' : 'Copy'}
+        </span>
+      </div>
     </div>
   );
 }
@@ -22,7 +62,7 @@ const PassphraseLabeler = ({ passphrase, copyToClipboard, copiedBits, bits }) =>
 export const PhraseGeneratorParent = ({ 
   type='passphrase', 
   base_grammar_labels=null, 
-  Labeler=PassphraseLabeler,
+  ItemComponent=PassphraseItem,
 }) => {
   const [passphrases, setPassphrases] = useState({});
   const [practiceInput, setPracticeInput] = useState('');
@@ -104,39 +144,19 @@ export const PhraseGeneratorParent = ({
 
       
       {crackTimes.map(({ bits, label, time, cost }) => (
-        <div key={bits} 
-          className={`passphrase-block ${
-            copiedBits === bits ? 'copied' : 
-            (copiedBits && !showHidden) ? 'hide' : ''
-          }`}
-        >
-          <label className="block mb-1 tracking-wide uppercase">
-            <div className="flex items-center">
-              <div className="label-container">
-                <span className={`font-header font-extrabold text-xl inline-block ${label}`}>{label}</span>
-                <span className={`ml-2 group  ${showAllGrammars ? 'hide' : ''}`}>
-                  <div className="tooltip mt-1" data-tip={`${bits} bits of entropy`}>
-                    <FaInfoCircle className=" text-gray-500 cursor-pointer text-base" />
-                  </div>
-                </span>
-              </div>
-              <div className="crack-time-info">
-                <div className="crack-stats-container">
-                  <span className="crack-time ml-2">Avg time to crack: <em>{time}</em></span>
-                </div>
-                <div className="crack-stats-container">
-                  <span className="crack-time ml-2">Avg cost to crack: <em>{cost}</em></span>
-                </div>
-              </div>
-            </div>
-          </label>
-          <Labeler 
-            passphrase={passphrases[bits]} 
-            copyToClipboard={copyToClipboard} 
-            grammarBits={bits} 
-            copiedBits={copiedBits} 
-          />
-        </div>
+        <ItemComponent 
+          passphrase={passphrases[bits]}  
+          label={label} 
+          time={time} 
+          cost={cost}  
+          showAllGrammars={showAllGrammars} 
+          showHidden={showHidden} 
+          copyToClipboard={copyToClipboard}
+          clipboardVersion={passphrases[bits]} 
+          copiedBits={copiedBits}  
+          grammarBits={bits}  
+          entropy={bits}
+        />
       ))}
 
 
