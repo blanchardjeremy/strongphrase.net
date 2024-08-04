@@ -26,7 +26,7 @@ const App = () => {
     <Router basename='/'>
       <ScrollToTop />
       <div className="font-body">
-        <div className="max-w-screen-lg mx-auto px-4 py-8">
+        <div className="max-w-screen-lg mx-auto px-2 py-4 md:px-4 md:py-8">
 
           <header className="mb-2">
             <div className="title flex-col flex-initial w-1/">
@@ -41,7 +41,7 @@ const App = () => {
                   <li><NavLink activeClassName="active" to="/">Passphrase</NavLink></li>
                   {/* <li><NavLink activeClassName="active" to="/acronym">Acronym Passphrase</NavLink></li> */}
                   <li><NavLink activeClassName="active" to="/passcode">Phone Passcode</NavLink></li>
-                  <li><NavLink activeClassName="active" to="/table">Crack Time/Cost Table</NavLink></li>
+                  <li><NavLink activeClassName="active" to="/table">Crack Time/Cost</NavLink></li>
                 </ul>
               </div>
             </div>

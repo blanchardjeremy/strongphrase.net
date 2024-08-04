@@ -1,6 +1,6 @@
 
 .faq-overall-container {
-  @apply p-6 bg-slate-300 rounded-xl shadow-lg;
+  @apply p-2 md:p-6 bg-slate-300 rounded-xl shadow-lg;
   @apply mx-auto mt-24;
 }
 
@@ -13,7 +13,7 @@
 }
 
 .faq-item {
-  @apply bg-white shadow-sm py-6 px-8 mb-6 rounded-xl border border-gray-200;
+  @apply bg-white shadow-sm  py-3 px-4 md:py-6 md:px-8 mb-3 md:mb-6 rounded-xl border border-gray-200;
 }
 
 .faq-question {
