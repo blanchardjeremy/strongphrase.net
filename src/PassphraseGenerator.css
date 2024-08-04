@@ -44,13 +44,14 @@
 }
 
 .passphrase-content {
-  @apply p-2 px-4 bg-gray-100 rounded-xl font-custom text-xl pr-28
+  @apply pt-2 pb-1 px-4  bg-gray-100 rounded-xl font-custom text-xl pr-28 border border-gray-300;
 }
 
 /* highlight when hovering */
 .passphrase-content:hover,
 .copied .passphrase-content {
-  @apply bg-green-100 text-green-800 cursor-pointer
+  @apply bg-green-100 text-green-800 cursor-pointer;
+  border-color: rgb(145, 198, 166);
 }
 
 .crack-time {
@@ -62,7 +63,7 @@
 }
 
 .copy-button {
-  @apply px-2 py-0 rounded absolute right-0 text-sm uppercase font-sans bg-gray-300 tracking-wide top-0 flex items-center cursor-pointer btn btn-xs border-0
+  @apply px-2 py-0 rounded-none rounded-tr-xl rounded-bl-lg absolute right-0 text-sm uppercase font-sans bg-gray-300 tracking-wide top-0 flex items-center cursor-pointer btn btn-xs border-0;
 }
 
 
