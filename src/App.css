@@ -2,19 +2,20 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.navbar {
+  @apply min-h-0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.menu-horizontal {
+  @apply px-1 md:px-2 py-1 md:py-2;
 }
 
 .menu-horizontal li {
-  @apply ml-2 first:ml-0;
+  @apply md:ml-2 ml-0 first:ml-0;
+}
+
+.menu-horizontal li a {
+  @apply md:px-4 px-2 md:py-2 py-2;
 }
 
 .App-header {

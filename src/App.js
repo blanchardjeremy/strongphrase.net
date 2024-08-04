@@ -35,9 +35,9 @@ const App = () => {
               <p className="text-xl">Create strong, memorable passphrases</p>
             </div>
 
-            <div className="navbar bg-slate-100 rounded-xl mt-3">
+            <div className="navbar bg-slate-100 rounded-xl mt-3 p-1">
               <div className="navbar-start flex w-full">
-                <ul className="menu menu-horizontal px-1">
+                <ul className="menu menu-horizontal">
                   <li><NavLink activeClassName="active" to="/">Passphrase</NavLink></li>
                   {/* <li><NavLink activeClassName="active" to="/acronym">Acronym Passphrase</NavLink></li> */}
                   <li><NavLink activeClassName="active" to="/passcode">Phone Passcode</NavLink></li>
