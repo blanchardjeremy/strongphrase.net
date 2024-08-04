@@ -96,6 +96,24 @@ const PasscodeFAQ = ({ hashRate }) => {
             `}
           />
 
+          <FAQItem
+            question="What if the generator randomly gives me passcode that is easy to crack?"
+            id="secure"
+            answer={`
+              For six-digit passcodes specifically, there are a number of commonly used passcodes. Birthdays are also very common.
+
+              An attacker would likely try these common patterns first, and there is chance that the random passcode generator actually gives you one of these common passcodes. 
+
+              To prevent this, we prevent the generator from giving you a 6-digit passcode that is either:
+              * On a list of the top 10,000 commonly used 6-digit codes: \`123456\` or \`225577\` 
+              * Or fits a common birthday format (MMDDYY, DDMMYY, YYMMDD).
+              
+              We only do this for 6-digit passcodes.
+
+              This helps the entropy of your passcode be more trustworthy.
+            `}
+          />
+
           
 
         </div>
