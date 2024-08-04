@@ -107,10 +107,10 @@ const PasscodeFAQ = ({ hashRate }) => {
               To prevent this, we prevent the generator from giving you a 6-digit passcode that is either:
               * On a list of the top 10,000 commonly used[^rockyou] 6-digit codes: \`123456\` or \`555555\` or \`789456\`
               * Or fits a common birthday format[^bday] (MMDDYY, DDMMYY, YYMMDD).
-              
-              We only do this for 6-digit passcodes.
 
               This helps the entropy of your passcode be more trustworthy. You can see the full list of about [94,000 filtered passcodes here](https://github.com/blanchardjeremy/strongphrase.net/blob/main/src/scripts/wordlists/filtered_passcodes_six.js).
+
+              We only do this filtering for 6-digit passcodes. Removing 94k from 10^6 possible passcodes is a very small fraction of the total, so you still have ~20 bits of entropy.
 
               [^rockyou]: Our list is derived from the [RockYou](https://en.wikipedia.org/wiki/RockYou) 2009 data breach that exposed 32 million passwords. These are sorted by how frequently they occurred in the leaked passwords. In our process, we filtered down to only 6-digit codes on that list. We then remove anything fitting our birthday formats (because we are going to re-add them separately). We then take the top 10,000.
               [^bday]: You can see this [heatmap for 4-digit pins](https://datagenetics.com/blog/september32012/index.html) for information on how birthdays and anniversaries are commonly used. 
