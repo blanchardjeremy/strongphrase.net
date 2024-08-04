@@ -30,9 +30,9 @@ const App = () => {
 
           <header className="mb-2">
             <div className="title flex-col flex-initial w-1/">
-              <img className="float-start max-w-16 mr-4" alt="Lock icon" src={logo} />
-              <h1 className="text-4xl font-header mb-2">StrongPhrase.net</h1>
-              <p className="text-xl">Create strong, memorable passphrases</p>
+              <img className="float-start max-w-8 md:max-w-16 mr-4" alt="Lock icon" src={logo} />
+              <h1 className="text-2xl md:text-4xl font-header mb-2">StrongPhrase.net</h1>
+              <p className="text-md md:text-xl">Create strong, memorable passphrases</p>
             </div>
 
             <div className="navbar bg-slate-100 rounded-xl mt-3 p-1">

@@ -18,17 +18,6 @@
   @apply md:px-4 px-2 md:py-2 py-2;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
 .page-title {
   @apply font-header text-3xl mb-6
 }
@@ -49,6 +38,9 @@ footer a.link, footer a:hover.link, footer a:active.link, footer a:visited.link 
   @apply mt-2 mb-4 last:mb-0;
 }
 
+.card-body {
+  @apply md:p-8 p-4;
+}
 
 .markdown-content a, .markdown-content a:visited, .markdown-content a:active, .markdown-content a:hover {
   @apply link text-blue-500 hover:underline no-underline;
