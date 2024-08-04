@@ -18,7 +18,7 @@ const PasswordSchemeCard = () => {
         <p className="example-label font-bold">Examples:</p>
         <ul className="password-examples">
           <li><code>harsh robin finds orange jalapeno</code></li>
-          <li><code>amateur dog and unruly pony hurl delicate boar</code></li>
+          <li><code>amateur dog and unruly pony steal icy sock</code></li>
         </ul>
       </div>
       
