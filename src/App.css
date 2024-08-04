@@ -54,7 +54,7 @@ footer a.link, footer a:hover.link, footer a:active.link, footer a:visited.link 
 }
 
 .markdown-content table {
-  @apply table table-sm w-full mb-6 mt-6 border rounded-md;
+  @apply table table-sm w-full mb-6 mt-6 border rounded-md min-w-full border-collapse overflow-x-auto block;
 }
 .markdown-content table td {
   @apply text-base;

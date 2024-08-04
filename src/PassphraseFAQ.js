@@ -90,7 +90,6 @@ const PassphraseFAQ = () => {
               | Random characters                   | \`N7qm!C#9A@\`                        | ✅ Hard     | ❌ Hard                        |
               | Diceware passphrase                 | \`wrangle matter esquire granny\`     | ✅ Hard     | ⚠️ Kinda easy                  |
               | **StrongPhrase.net<br> passphrase** | **\`evil juror obtains thin moths\`** | ✅ **Hard** | ✅ **Easy**                    |
-
             `} 
           />
 

@@ -5,6 +5,22 @@ import rehypeRaw from 'rehype-raw';
 import { stripIndent } from 'common-tags';
 
 
+
+const MarkdownTableWrapper = ({ children }) => {
+  return (
+    <div className="overflow-x-auto">
+      <table className="min-w-full border-collapse">{children}</table>
+    </div>
+  );
+};
+
+const renderers = {
+  table: MarkdownTableWrapper,
+};
+
+
+
+
 const MarkdownCustom = ({ children, ...props }) => {
   if (typeof children !== 'string') {
     console.error('MarkdownCustom expects a string as children');
@@ -15,6 +31,7 @@ const MarkdownCustom = ({ children, ...props }) => {
     <ReactMarkdown
       {...props}
       children={stripIndent(children)}
+      components={renderers}
       remarkPlugins={[remarkGfm]}
       rehypePlugins={[rehypeRaw]}
     />
