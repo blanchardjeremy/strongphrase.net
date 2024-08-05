@@ -6,7 +6,7 @@ Use this site to create memorable, strong passphrases.
 This tool is similar to [diceware](https://www.eff.org/dice), but generates phrases that are easier to visualize and remember.
 
 ## FAQ
-See the [FAQ on the website](https://strongphrase.net/#FAQ)
+See the [FAQ on the website](https://strongphrase.net/#/#FAQ)
 
 ## Resources
 * [Time to crack passwords - famous table (Hivesystems.com)](https://www.hivesystems.com/blog/are-your-passwords-in-the-green)
