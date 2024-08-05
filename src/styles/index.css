@@ -12,9 +12,9 @@ body {
 }
 
 code {
-  font-family: 'Courier Prime', source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-  @apply bg-green-200 text-green-900 px-2 py-1 rounded-md mb-2 border;
+  @apply font-mono bg-green-200 text-green-900 px-2 pt-0 mb-4 rounded-md  border;
   padding-bottom: 1px;
+  /* font-size: 1.1em; */
   border-color: rgb(145, 198, 166);
   /* line-height: 1.9; */
 }

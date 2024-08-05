@@ -1,4 +1,19 @@
 /* Add to your CSS file */
+
+@font-face {
+  font-family: 'Roboto Mono';
+  src: url('../fonts/RobotoMono-VariableFont_wght.woff2') format('woff2');
+  font-weight: 100 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto Mono';
+  src: url('../fonts/RobotoMono-Italic-VariableFont_wght.woff2') format('woff2');
+  font-weight: 100 700;
+  font-style: italic;
+}
+
 @font-face {
   font-family: 'Courier Prime';
   src: url('../fonts/CourierPrime-Bold.woff2') format('woff2'),

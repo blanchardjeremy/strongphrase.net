@@ -9,7 +9,7 @@ module.exports = {
       fontFamily: {
         header: ['Raleway', 'sans-serif'],
         body: ['Roboto', 'sans-serif'],
-        'custom': ['"Courier Prime"', 'monospace'],
+        'mono': ['"Roboto Mono"', 'source-code-pro', 'Menlo', 'Monaco', 'Consolas', 'Courier New', 'monospace'],
       },
       fontWeight: {
         extrabold: 800,
