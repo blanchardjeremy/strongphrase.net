@@ -5,8 +5,8 @@ import { HiOutlineChatBubbleOvalLeftEllipsis } from "react-icons/hi2";
 const PasswordSchemeCard = () => {
   return (
     <div className="flex flex-col md:flex-row bg-gray-100 shadow-lg mt-20 card password-scheme">
-      <div className="card-body flex flex-grow w-full">
-        <h2 className="card-title"><HiOutlineChatBubbleOvalLeftEllipsis className="text-3xl" />Use a <u>passphrase</u> for...</h2>
+      <div className="card-body w-full">
+        <h2 className="card-title flex items-center"><HiOutlineChatBubbleOvalLeftEllipsis className="text-3xl" />Use a <u>passphrase</u> for...</h2>
         <p>Use randomly-generated pass<strong className="italic">phrase</strong> for each of your most important accounts that you type often:</p>
         <ul className="list-disc list-inside">
           <li>Your master password for your password manager</li>
@@ -22,10 +22,10 @@ const PasswordSchemeCard = () => {
         </ul>
       </div>
       
-      <div className="border-r md:border-b flex flex-grow border-gray-200"></div>
+      <div className="border-r md:border-b border-gray-200"></div>
 
-      <div className="card-body flex flex-grow w-full">
-        <h2 className="card-title"><RiShieldKeyholeLine className="text-3xl" />And a <u>password manager</u> for...</h2>
+      <div className="card-body w-full">
+        <h2 className="card-title flex items-center"><RiShieldKeyholeLine className="text-3xl" />And a <u>password manager</u> for...</h2>
         <p>
           Use a <strong>password manager</strong> with <strong>unique, randomly-generated</strong> passwords for everything else. 
           It will generate random passwords for each website and automatically fill them for you each time you log-in, so you don't have to type them. 
