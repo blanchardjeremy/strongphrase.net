@@ -182,10 +182,15 @@ const PassphraseFAQ = () => {
             id="system"
             answer={`
             In reality, they probably wouldn't know. 
-            All of these examples assume that an attacker knows which passphrase scheme you've chosen and the exact wordlists used. So really we are listing the "minimum entropy required." That's the safest guess.
+            All of these examples assume that an attacker knows which passphrase scheme you've chosen and the exact wordlists used. So really we are listing the "minimum entropy" because that's the safest guess.
             
-            But in reality, an attacker is more likely to try a LOT of other approaches before trying this scheme. They will try common word lists, and lots of variations on common word lists. Then they might try a lot of diceware combinations (3 words, 4 words, etc.). 
-            Then if they knew this system exists, they might try it. Even then, they'd have to know which of the 3 main formats you chose. All of that combined means you get at least 20 bits of extra entropy, and probably a lot more.
+            But in reality, an attacker is more likely to try a lot of other approaches before trying this scheme. They will likely try [common word lists](https://github.com/kkrypt0nn/wordlists), and lots of variations on common word lists (replacing the letter i with the number 1, adding numebrs and symbmols to the beginning and end, etc.). 
+            Then perhaps they might try a lot of diceware combinations (3 words, 4 words, etc.). 
+            Then if they knew this system exists, they might try it. Even then, they'd have to know which of the 3 main formats you chose. 
+            If they don't know this exact system exists, they would resort to a pure brute force at some point where they try every combination.
+            
+            All of those other approaches being tested first means you get the equivalent of another at least 20 bits of extra entropy (and probably a lot more). 
+            (Your password itself doesn't truly have more entropy in it, but the attacker would have to go through a large number of possiblel guesses before event starting to guess passphrases like yours.)
             `}
           />
 
