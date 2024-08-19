@@ -83,13 +83,13 @@ const PassphraseFAQ = () => {
             question="How does this compare with other password schemes?"
             id="compare"
             answer={`
-              | Password scheme                     | Example                               | Crackable  | Easy to remember<br> and type |
-              |-------------------------------------|---------------------------------------|------------|-------------------------------|
-              | Common word/name/etc                | \`dragon\`                            | ❌ Easy     | ✅ Easy                        |
-              | Common word <br>with substitutions  | \`dr@g0n123!\`                        | ❌ Easy     | ❌ Hard                        |
-              | Random characters                   | \`N7qm!C#9A@\`                        | ✅ Hard     | ❌ Hard                        |
-              | Diceware passphrase                 | \`wrangle matter esquire granny\`     | ✅ Hard     | ⚠️ Kinda easy                  |
-              | **StrongPhrase.net<br> passphrase** | **\`evil juror obtains thin moths\`** | ✅ **Hard** | ✅ **Easy**                    |
+              | Password scheme                     | Example                               | Strength     | Easy to remember<br> and type |
+              |-------------------------------------|---------------------------------------|--------------|-------------------------------|
+              | Common word/name/etc                | \`dragon\`                            | ❌ Weak       | ✅ Easy                        |
+              | Common word <br>with substitutions  | \`dr@g0n123!\`                        | ❌ Weak       | ❌ Hard                        |
+              | Random characters                   | \`N7qm!C#9A@\`                        | ✅ Strong     | ❌ Hard                        |
+              | Diceware passphrase                 | \`wrangle matter esquire granny\`     | ✅ Strong     | ⚠️ Kinda easy                  |
+              | **StrongPhrase.net<br> passphrase** | **\`evil juror obtains thin moths\`** | ✅ **Strong** | ✅ **Easy**                    |
             `} 
           />
 
