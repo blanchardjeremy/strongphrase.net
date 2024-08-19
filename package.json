@@ -26,7 +26,8 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build && cp CNAME build/",
     "deploy": "gh-pages -d build",
-    "calculate-letter-entropies": "node src/acronym/calculateLetterEntropies.js"
+    "calculate-letter-entropies": "node src/acronym/calculateLetterEntropies.js",
+    "entropy-per-char": "node src/entropy_per_char.js"
   },
   "eslintConfig": {
     "extends": [

@@ -1,7 +1,6 @@
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
-import { timeToCrackAvg, convertTimeToReadableFormat, formatDollarToScale, avgCostToCrack } from './../passphraseUtils.js';
+import { timeToCrackAvg, convertTimeToReadableFormat } from './../passphraseUtils.js';
 import { getPasscodeAndEntropy } from './passcodeUtils.js';
-import MarkdownCustom from '../MarkdownCustom.js';
 import PasscodeFAQ from './PasscodeFAQ.js'
 
 import HashRateSelector, { defaultHashRate } from './HashRateSelector.js';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { getWordStats, getSampleWords, avgTimeToCrackFormatted } from './passphraseUtils';
+import { getWordStats, getSampleWords, avgTimeToCrackFormatted } from './passphraseUtils.js';
 import FAQItem from './FAQItem';
 
 import './PassphraseFAQ.css';
@@ -265,8 +265,6 @@ const PassphraseFAQ = () => {
 
             The powerful GPUs that help an attacker crack passwords are the same GPUs that are used to train AI models. 
             As AI continues to explore, it's reasonable to assume that these GPUs will become ever more available on the cloud.
-
-
           `} 
           />
 

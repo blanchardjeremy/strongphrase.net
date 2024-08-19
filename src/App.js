@@ -8,6 +8,7 @@ import AcronymPage from './acronym/AcronymPage.js';
 import PassphraseFAQ from './PassphraseFAQ.js';
 import logo from './img/logo.png';
 import EntropyCrackTimeTable from './EntropyCrackTable';
+import EntropyPerCharTable from './EntropyPerChar.js';
 import ScrollToTop from './helpers/ScrollToTop';
 
 
@@ -56,6 +57,7 @@ const App = () => {
             <Route path="/acronym" element={<AcronymPage />} />
             <Route path="/passcode" element={<PasscodePage />} />
             <Route path="/table" element={<EntropyCrackTimeTable />} />
+            <Route path="/entropy-per-char" element={<EntropyPerCharTable />} />
           </Routes>
 
         </div>
