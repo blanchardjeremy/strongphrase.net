@@ -1,5 +1,6 @@
 import React from 'react';
-import { getWordStats, getSampleWords, avgTimeToCrackFormatted } from './passphraseUtils.js';
+import { getWordStats, getSampleWords, avgTimeToCrackFormatted, getPrimaryGrammarLabels } from './passphraseUtils';
+import { entropyPerCharData } from './entropy_per_char_data.js';
 import FAQItem from './FAQItem';
 
 import './PassphraseFAQ.css';
@@ -41,6 +42,54 @@ I put some time in filtering out offensive words, but I'm sure I missed some. If
       />
   );
 }
+
+const EntropyPerCharTable = () => {
+  // Function to convert the data to a markdown table
+  const convertToMarkdownTable = (data) => {
+    const labels = getPrimaryGrammarLabels();
+
+    let markdown = `| Passphrase System | Avg Entropy Bits/Char | Sample |\n`;
+    markdown += `|------|-----|--------|\n`;
+
+    Object.entries(labels).forEach(([key, label]) => {
+      if (data[key]) {
+        const { avg, min, max, sample } = data[key];
+        const sampleText = sample ? ` \`${sample}\`` : "";
+        markdown += `| StrongPhrase (${key} bits)  | **${avg}** | ${sampleText} |\n`;
+      }
+    });
+
+    markdown += `| EFF Diceware (Long)[^eff] | **1.8** | \`snort crust range droop quiet\` |\n`;
+    markdown += `| EFF Diceware (Short) | **2.3** | \`halves croak magazine sappy never\` |\n`;
+    markdown += `| Original Diceware | **3.0** | \`nr x's jive ev flock\` |\n`;
+
+    return markdown;
+  };
+
+  const entropyPerCharMarkdownTable = convertToMarkdownTable(entropyPerCharData);
+
+  return (
+    <FAQItem 
+        question="These passwords are pretty long!" 
+        id="words"
+        answer={`
+The biggest downside to passphrases that are longer to type is it's easier to make typos. 
+
+Compared to other passphrase schemes, StrongPhrase.net passphrases have less entropy per character. Which means you need a longer passphrase to get the same amount of entropy. 
+
+Here is a table for comparison: 
+
+${entropyPerCharMarkdownTable}
+
+The EFF word lists are much more efficient (higher entropy per character) than our system. So if you want to reduce typing errors, their system provides and advantage.
+
+The original Diceware list has some very short words that makes them more efficient, but the words are often very odd and therefore hard to remember (examples: nr, ev, zzz, $$, 28th).)
+
+[^eff]: Averages come form the [EFF diceware wordlist write-up](https://www.eff.org/deeplinks/2016/07/new-wordlists-random-passphrases).
+        `}
+      />
+  );
+};
 
 
 const PassphraseFAQ = () => {
@@ -268,6 +317,7 @@ const PassphraseFAQ = () => {
           `} 
           />
 
+          <EntropyPerCharTable />
 
 
           <FAQItem 
