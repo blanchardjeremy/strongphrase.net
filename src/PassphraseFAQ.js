@@ -48,7 +48,7 @@ const EntropyPerCharTable = () => {
   const convertToMarkdownTable = (data) => {
     const labels = getPrimaryGrammarLabels();
 
-    let markdown = `| Passphrase System | Avg Entropy Bits/Char | Sample |\n`;
+    let markdown = `| Passphrase System | Avg Entropy<br/>Bits/Char | Sample |\n`;
     markdown += `|------|-----|--------|\n`;
 
     Object.entries(labels).forEach(([key, label]) => {
@@ -59,9 +59,12 @@ const EntropyPerCharTable = () => {
       }
     });
 
-    markdown += `| EFF Diceware (Long)[^eff] | **1.8** | \`snort crust range droop quiet\` |\n`;
-    markdown += `| EFF Diceware (Short) | **2.3** | \`halves croak magazine sappy never\` |\n`;
     markdown += `| Original Diceware | **3.0** | \`nr x's jive ev flock\` |\n`;
+    markdown += `| [EFF Diceware (Long)](https://www.eff.org/deeplinks/2016/07/new-wordlists-random-passphrases) | **1.8** | \`halves croak magazine sappy never\` |\n`;
+    markdown += `| [EFF Diceware (Short)](https://www.eff.org/deeplinks/2016/07/new-wordlists-random-passphrases) | **2.3** | \`bust boil sheep pest scorn\` |\n`;
+    markdown += `| [Orchard Street Wordlist (Long)](https://github.com/sts10/orchard-street-wordlists?tab=readme-ov-file#orchard-street-long-list) | **1.77** | \`plank billionaire evaluated punched proficiency\` |\n`;
+    markdown += `| [Orchard Street Wordlist (Medium)](https://github.com/sts10/orchard-street-wordlists?tab=readme-ov-file#orchard-street-medium-list) | **1.83** | \`adding pilots maximal website opponent\` |\n`;
+    markdown += `| [Orchard Street Wordlist (Smart TV)](https://github.com/sts10/orchard-street-wordlists?tab=readme-ov-file#orchard-street-alpha-list) | **2.51** | \`deity jazz cad bay beg lest\` |\n`;
 
     return markdown;
   };
@@ -70,7 +73,7 @@ const EntropyPerCharTable = () => {
 
   return (
     <FAQItem 
-        question="These passwords are pretty long!" 
+        question="Why are these passphrases so long? I keep making typos!" 
         id="words"
         answer={`
 The biggest downside to passphrases that are longer to type is it's easier to make typos. 
@@ -84,8 +87,6 @@ ${entropyPerCharMarkdownTable}
 The EFF word lists are much more efficient (higher entropy per character) than our system. So if you want to reduce typing errors, their system provides and advantage.
 
 The original Diceware list has some very short words that makes them more efficient, but the words are often very odd and therefore hard to remember (examples: nr, ev, zzz, $$, 28th).)
-
-[^eff]: Averages come form the [EFF diceware wordlist write-up](https://www.eff.org/deeplinks/2016/07/new-wordlists-random-passphrases).
         `}
       />
   );
@@ -332,8 +333,9 @@ const PassphraseFAQ = () => {
               * [Cost to crack competiation - 1Password](https://blog.1password.com/cracking-challenge-update/) and the [write ups from the winners](https://github.com/agilebits/crackme?tab=readme-ov-file#contest-status). Also their [2020 PasswordsCon slides about the competiation](https://github.com/agilebits/crackme/blob/master/doc/PasswordsCon2020.pdf).
               * [Money-to-Crack model - Jacob Enger](https://jacobegner.blogspot.com/2020/11/password-strength-in-dollars.html)
               * [Choosing a password manager](https://freedom.press/training/choosing-a-password-manager/)
-              * [Password entropy calculator](https://blanchardjeremy.github.io/tryzxcvbn/) - These are only ever slightly accurate, but it is interesting. I updated this one to display bits of entropy using log2 instead of log10.
+              * [Password entropy calculator](https://blanchardjeremy.github.io/tryzxcvbn/) - These password strengths checkers are never able to be fully accurate, because an attacker might know the system you're using, but this strengther check might assume it's totally random. That said, it can be helpful in learning to think the way password crackers think. I updated this tool to display bits of entropy using log2 instead of log10.
               * [EFF updated the original diceware wordslists](https://www.eff.org/dice) and created [fandom wordlists](https://www.eff.org/deeplinks/2018/08/dragon-con-diceware). Also see the [deep dive](https://www.eff.org/deeplinks/2016/07/new-wordlists-random-passphrases) on how they designed this.
+              * [Orchard Street wordlists](https://github.com/sts10/orchard-street-wordlists) including options for [wordlists that are great for use with Smart TVs](https://github.com/sts10/orchard-street-wordlists?tab=readme-ov-file#orchard-street-alpha-list)
               * [Diceware online generator](https://diceware.rempe.us/#eff)
               * [Hashcat hashes/second benchmarks](https://openbenchmarking.org/test/pts/hashcat)
             `} 
