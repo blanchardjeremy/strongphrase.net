@@ -262,25 +262,30 @@ const PassphraseFAQ = () => {
             answer={`
               This is tricky. It requires making a lot of assumptions about how strong the "hash" of the password is and the computing power of the attacker. 
 
-              Estimating the number guesses/second (aka: hashes/second) is challenging because the functions used to encrypt a password vary widely.
+              Estimating the number guesses/second (aka: hashes/second) is challenging because the functions used to "hash" a password vary widely, meaning it can take more/less time to check if the password is computer.
 
-              Hive Systems maintains a great [password strength table](https://www.hivesystems.com/blog/are-your-passwords-in-the-green) that shows the time it would take to crack various kinds of passwords. They've put a great deal of thought into their assumptions, so we will use the same assumptions.
+              We could go with what Edward Snowden told us in 2014: [Assume your adversary is capable of a trillion guesses per second](https://www.nytimes.com/2013/08/18/magazine/laura-poitras-snowden.html). This applies to the NSA or other "nation state" attacker.
+              A lot has changed since then both in terms of computing power (which has gone up) and also in terms of complexity of password hashing algorithms (which have made it harder for an attacker to guess).
+              Our "nation state" profile (below) ends up being quite similar (1.9 trillion guesses/second).
+
+              In an effort to think through this problem step-by-step (and offer "consumer" attack situations), we'll use the great great [password strength table maintined by Hive Systems](https://www.hivesystems.com/blog/are-your-passwords-in-the-green) which shows the time it would take to crack various kinds of passwords. 
+              We'll use the same assumptions they used, since they put so much thought into their work.
 
               Assumptions:
               * The attacker has access to your hashed password. Either they broke into a database or have access to your physical machine.
               * That password was hashed with bcrypt (at a [work factor](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html#using-work-factors) of 32). 
-                (Systems like 1Password and MacOS use a hashing approach that [much stronger](https://support.1password.com/pbkdf2/), so the guesses/second below wouuld be much lower than what you see below.)
+                (Systems like 1Password and MacOS use a hashing approach that [much stronger](https://support.1password.com/pbkdf2/), so the guesses/second would be much lower than what you see below.)
               * The data below is current as of 2024 and will need updated as the cost of computing power continues to decrease.
 
               We provide profiles for 3 different levels of computing power:
 
-              |                                | Standard consumer hardware    | Best consumer hardware                                                  | Nation state (NSA, etc.)      |
+              |                                | Standard consumer hardware    | Best consumer hardware (default)                                        | Nation state (NSA, etc.)      |
               |--------------------------------|-------------------------------|-------------------------------------------------------------------------|-------------------------------|
-              | **Hardware**                   | RTX 4090                      | RTX 4090 with 10 GPUs <br>(≈ Cloud-based A100 with 16 GPUs)[^cloudA100] | A100 with 10,000 GPUs         |
+              | **Hardware**                   | RTX 4090 (single GPU)         | RTX 4090 with 10 GPUs <br>(≈ Cloud-based A100 with 16 GPUs)[^cloudA100] | A100 with 10,000 GPUs         |
               | **Est. Cost**                  | $2,300                        | $23,000 or <br>$64/hour for 2 AWS instances[^aws]                       | $410,000/hour                 |
               | **Crack time for 8 chars**[^1] | 99 years                      | 7 years                                                                 | 5 minutes                     |
               | **Calculation**                | = 70^8 / (99\\*365\\*24*3600) | = 70^8 / (7\\*365\\*24*3600)                                            | = 70^8 / (5*60)               |
-              | **Guesses/second**             | = **184,000/sec**             | = **2.6 million/sec**                                                   | = **1.9 trillion/sec**        |
+              | **Guesses/second**             | = **184,000 guesses/sec**             | = **2.6 million guesses/sec**                                   | = **1.9 trillion guesses/sec**        |
 
 
               [^1]: Crack time is based on [hivesystems.com's table](https://www.hivesystems.com/blog/are-your-passwords-in-the-green) for a password with 8 characters using lowercase, uppercase, symbols, and numbers (70 characters in the pool).
@@ -310,7 +315,7 @@ const PassphraseFAQ = () => {
             |                                                                                                      | Guesses/second | Guesses/$           | $ per 2<sup>32</sup> guesses[^convert] |
             |------------------------------------------------------------------------------------------------------|----------------|---------------------|----------------------------------------|
             | **AWS A100 using 10,000 GPUs**<br>(Hash: bcrypt)<br>*(based on hivesystems.com)*                     | 2.6 trillion   | 17 billion [^conv2] | $0.25                                  |
-            | **RTX 4090 using 1 GPU**<br>(Hash: bcrypt) <br>*(best case)*                                         | 184,000        | 9.3 billion         | $0.56                                  |
+            | **RTX 4090 using a single GPU**<br>(Hash: bcrypt) <br>*(best case)*                                         | 184,000        | 9.3 billion         | $0.56                                  |
             | **1Password's cracking competition average**[^1p] <br> (Hash: PBKDF2)<br>*(much harder than bcrypt)* | *[???]*        | 715 million         | $6                                     |
             | **Estimated average we use**                                                                         | —              | **8.6 million**     | **$0.50**                              |
 
