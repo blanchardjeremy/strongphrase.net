@@ -24,6 +24,8 @@ const PasscodeDisplay = () => {
       // '3 Words': { passcode: 'Cardinal Gainfully Scabby', entropy: 36 }
     };
 
+    setCopiedBits();
+
     setPasscodes(passcodeData);
   }, []);
 
