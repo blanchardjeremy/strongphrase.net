@@ -78,7 +78,11 @@ const PasscodeFAQ = ({ hashRate }) => {
             <h2 className="faq-question">How long does it take to crack a passcode?</h2>
             <div className="faq-answer">
               <MarkdownCustom>
-                You can adjust the crack rate using the menu at the top of this page.
+                **You can adjust the crack rate using the menu at the top of this page.**
+
+                It is a lot slower than normal password cracking because of something called [Secure Enclave](https://support.apple.com/guide/security/secure-enclave-sec59b0b31ff/web) (this is Apple's name for it, other device makers have other names). 
+                This system forces password/passcode checking to be done on the device, which means it can't be scaled up to dozens or hundreds of computers simultaneously guessing.
+
               </MarkdownCustom>
               <PasscodeCrackTable hashRate={hashRate} />
             </div>
