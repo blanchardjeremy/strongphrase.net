@@ -94,9 +94,9 @@ Here is a table for comparison of the entropy per character for different passph
 
 ${entropyPerCharMarkdownTable}
 
-The EFF word lists are much more efficient (higher entropy per character) than our system. So if you want to reduce typing errors, their system provides and advantage.
+The EFF word lists are much more efficient (higher entropy per character) than our system. So if you want to reduce typing errors, their system provides an advantage.
 
-The original Diceware list has some very short words that makes them more efficient, but the words are often very odd and therefore hard to remember (examples: nr, ev, zzz, $$, 28th).)
+The original Diceware list has some very short words that makes them more efficient, but the words are often very odd and therefore hard to remember (examples: nr, ev, zzz, $$, 28th).
         `}
       />
   );
