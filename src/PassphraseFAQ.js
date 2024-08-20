@@ -65,6 +65,8 @@ const EntropyPerCharTable = () => {
     markdown += `| [Orchard Street Wordlist (Long)](https://github.com/sts10/orchard-street-wordlists?tab=readme-ov-file#orchard-street-long-list) | **1.77** | \`plank billionaire evaluated punched proficiency\` |\n`;
     markdown += `| [Orchard Street Wordlist (Medium)](https://github.com/sts10/orchard-street-wordlists?tab=readme-ov-file#orchard-street-medium-list) | **1.83** | \`adding pilots maximal website opponent\` |\n`;
     markdown += `| [Orchard Street Wordlist (Smart TV)](https://github.com/sts10/orchard-street-wordlists?tab=readme-ov-file#orchard-street-alpha-list) | **2.51** | \`deity jazz cad bay beg lest\` |\n`;
+    markdown += `| Random (all lower) | **4.70** | \`bddacsvxmh\` |\n`;
+    markdown += `| Random (w/ num and symbols) | **6.13** | \`N7qm!C#9A@\` |\n`;
 
     return markdown;
   };
@@ -76,11 +78,19 @@ const EntropyPerCharTable = () => {
         question="Why are these passphrases so long? I keep making typos!" 
         id="words"
         answer={`
-The biggest downside to passphrases that are longer to type is it's easier to make typos. 
+The biggest downside to passphrases like this is that you're more likely to have typos given how long the phrase is!
 
-Compared to other passphrase schemes, StrongPhrase.net passphrases have less entropy per character. Which means you need a longer passphrase to get the same amount of entropy. 
+One way we can measure the "efficiency" of a passphrase is to calculate the entropy per character. 
+For example, \`bored pupil picks out five-star softball\` contains 40 character (including spaces) and has 44 bits of entropy.
+So 44/40 = **1.1 bits of entropy per character**. 
 
-Here is a table for comparison: 
+A fully random password with lower, upper, numers, and symbols like \`N7qm!C#9A@\` has log<sub>2</sub>(70) = **6.13 bits per character**.
+These are much higher entropy, but as we've discussed, they're very difficult to remember.
+
+Compared to other passphrase schemes, StrongPhrase.net passphrases have less entropy per character. 
+Which means you need a longer passphrase to get the same amount of entropy. Which means you're somewhat more likely to get a typo.
+
+Here is a table for comparison of the entropy per character for different passphrase systems: 
 
 ${entropyPerCharMarkdownTable}
 
